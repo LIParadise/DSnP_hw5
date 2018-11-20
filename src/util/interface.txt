@@ -1,0 +1,27 @@
+template<class T>
+class AdtType{
+  void    clear();
+  // don't throw away dummy data if any.
+  // don't reset capacity for dynamic array.
+  void    pop_front();
+  void    pop_back();
+  void    sort();
+  size_t  size();
+  bool    empty();
+  bool    erase( const AdtTestObj& );
+  // just erase first encountered.
+  // return false iff not found.
+  bool    erase( iterator pos );
+  // pos would be valid except when ADT.empty() in this homework.
+  // pos invalid iff ADT is empty, return false in this case.
+  iterator find();
+  iterator end();
+  iterator begin();
+
+#ifdef TEST_BST
+  void insert( const AdtTestObj& );
+  void print();
+#else
+  void push_back( const AdtTestObj& );
+#endif // TEST_BST
+};
