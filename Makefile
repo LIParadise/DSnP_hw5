@@ -73,6 +73,7 @@ clean: ctags
 	@cd lib; rm -f $(SRCLIBS)
 	@echo "Removing $(EXEC)..."
 	@rm -rf bin/$(EXEC)*
+	@rm -rf log/*
 
 cleanall: clean
 	@echo "Removing bin/*..."
