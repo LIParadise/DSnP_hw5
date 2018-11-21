@@ -34,7 +34,7 @@ public:
       iterator(const iterator& i): _node(i._node) {}
       ~iterator() {} // Should NOT delete _node
 
-      // TODO ... done: implement these overloaded operators
+      // TODO ... done 1118 afternoon: implement these overloaded operators
       const T& operator * () const ;
       T& operator * () ;     
       iterator& operator ++ () ;
@@ -54,7 +54,7 @@ public:
       T*    _node;
    };
 
-   // TODO: implement these functions
+   // TODO ... done 1118 1746: implement these functions
    iterator begin() const ;
    iterator end() const ;
    bool empty() const ;
@@ -215,6 +215,65 @@ void Array<T>::push_back( const T& other){
 
 template<class T>
 void Array<T>::pop_front() {
+  if( this->empty() )
+    return;
+  std::swap( _data[0], _data[_size-1] );
+  this->pop_back();
+  return;
+}
 
+template<class T>
+void Array<T>::pop_back() {
+  if( this->empty() )
+    return;
+  _size--;
+  (_data+_size) -> ~T();
+}
+
+template<class T>
+bool Array<T>::erase( Array<T>::iterator it ){
+  // document:
+  // return false iff i'm empty.
+  // no need to check if in range.
+  if( this->empty() )
+    return false;
+  
+  std::swap( *(it._node), _data[_size-1] );
+  this->pop_back();
+  return true;
+}
+
+template<class T>
+bool Array<T>::erase( const T& other ){
+  size_t pos = 0;
+  bool found = false;
+  for( ; pos < _size; ++pos ){
+    if( other == _data[pos] ){
+      std::swap( _data[pos], _data[_size-1] );
+      this->pop_back();
+      found = true;
+      break;
+    }
+  }
+
+  return found;
+}
+
+template<class T>
+class Array<T>::iterator Array<T>::find ( const T& other){
+  for( size_t i = 0; i < _size; ++i ){
+    if( other == _data[i] ){
+      return iterator( _data + i );
+    }
+  }
+  return this->end() ;
+}
+
+template<class T>
+void Array<T>::clear() {
+  for( size_t i = 0; i < _size; ++i )
+    (_data+i)->~T();
+  _size = 0;
+}
 
 #endif // ARRAY_H

@@ -70,6 +70,7 @@ begin	util/array.h	/^class Array<T>::iterator Array<T>::begin() const {$/;"	f	cl
 begin	util/dlist.h	/^   iterator begin() const { return 0; }$/;"	f	class:DList
 checkMem	util/myUsage.h	/^   double checkMem() const {$/;"	f	class:MyUsage
 checkTick	util/myUsage.h	/^   double checkTick() const {$/;"	f	class:MyUsage
+clear	util/array.h	/^void Array<T>::clear() {$/;"	f	class:Array
 clear	util/dlist.h	/^   void clear() { }  \/\/ delete all nodes except for the dummy node$/;"	f	class:DList
 clearList	util/util.h	/^void clearList(T& l)$/;"	f
 deleteAll	main/adtTest.h	/^   void deleteAll() { _container.clear(); }$/;"	f	class:AdtTest
@@ -81,6 +82,8 @@ empty	util/array.h	/^bool Array<T>::empty() const {$/;"	f	class:Array
 empty	util/dlist.h	/^   bool empty() const { return false; }$/;"	f	class:DList
 end	util/array.h	/^class Array<T>::iterator Array<T>::end() const {$/;"	f	class:Array
 end	util/dlist.h	/^   iterator end() const { return 0; }$/;"	f	class:DList
+erase	util/array.h	/^bool Array<T>::erase( Array<T>::iterator it ){$/;"	f	class:Array
+erase	util/array.h	/^bool Array<T>::erase( const T& other ){$/;"	f	class:Array
 erase	util/dlist.h	/^   bool erase(const T& x) { return false; }$/;"	f	class:DList
 erase	util/dlist.h	/^   bool erase(iterator pos) { return false; }$/;"	f	class:DList
 exec	main/adtTest.cpp	/^AdtAddCmd::exec(const string& option)$/;"	f	class:AdtAddCmd
@@ -90,6 +93,7 @@ exec	main/adtTest.cpp	/^AdtQueryCmd::exec(const string& option)$/;"	f	class:AdtQ
 exec	main/adtTest.cpp	/^AdtResetCmd::exec(const string& option)$/;"	f	class:AdtResetCmd
 exec	main/adtTest.cpp	/^AdtSortCmd::exec(const string& option)$/;"	f	class:AdtSortCmd
 find	main/adtTest.h	/^   bool find(const AdtTestObj& n) {$/;"	f	class:AdtTest
+find	util/array.h	/^class Array<T>::iterator Array<T>::find ( const T& other){$/;"	f	class:Array
 find	util/dlist.h	/^   iterator find(const T& x) { return end(); }$/;"	f	class:DList
 getHashSize	util/util.cpp	/^size_t getHashSize(size_t s) {$/;"	f
 getLen	main/adtTest.h	/^   static int getLen() { return _strLen; }$/;"	f	class:AdtTestObj
@@ -150,6 +154,7 @@ operator >	main/adtTest.h	/^   bool operator > (const AdtTestObj& o) const { ret
 operator >=	main/adtTest.h	/^   bool operator >= (const AdtTestObj& o) const { return (_str >= o._str); }$/;"	f	class:AdtTestObj
 operator []	util/array.h	/^T& Array<T>::operator [] (size_t i) {$/;"	f	class:Array
 operator []	util/array.h	/^const T& Array<T>::operator [] (size_t i) const {$/;"	f	class:Array
+pop_back	util/array.h	/^void Array<T>::pop_back() {$/;"	f	class:Array
 pop_back	util/dlist.h	/^   void pop_back() { }$/;"	f	class:DList
 pop_front	util/array.h	/^void Array<T>::pop_front() {$/;"	f	class:Array
 pop_front	util/dlist.h	/^   void pop_front() { }$/;"	f	class:DList
