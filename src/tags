@@ -67,11 +67,10 @@ add	main/adtTest.h	/^   void add() { add(AdtTestObj()); }$/;"	f	class:AdtTest
 add	main/adtTest.h	/^   void add(const AdtTestObj& o) {$/;"	f	class:AdtTest
 adtTest	main/adtTest.cpp	/^AdtTest adtTest;$/;"	v
 begin	util/array.h	/^class Array<T>::iterator Array<T>::begin() const {$/;"	f	class:Array
-begin	util/dlist.h	/^   iterator begin() const { return 0; }$/;"	f	class:DList
+begin	util/dlist.h	/^DList<T>::begin() const {$/;"	f	class:DList
 checkMem	util/myUsage.h	/^   double checkMem() const {$/;"	f	class:MyUsage
 checkTick	util/myUsage.h	/^   double checkTick() const {$/;"	f	class:MyUsage
 clear	util/array.h	/^void Array<T>::clear() {$/;"	f	class:Array
-clear	util/dlist.h	/^   void clear() { }  \/\/ delete all nodes except for the dummy node$/;"	f	class:DList
 clearList	util/util.h	/^void clearList(T& l)$/;"	f
 deleteAll	main/adtTest.h	/^   void deleteAll() { _container.clear(); }$/;"	f	class:AdtTest
 deleteBack	main/adtTest.h	/^   void deleteBack(size_t repeat = 1) {$/;"	f	class:AdtTest
@@ -79,13 +78,11 @@ deleteFront	main/adtTest.h	/^   void deleteFront(size_t repeat = 1) {$/;"	f	clas
 deleteObj	main/adtTest.h	/^   bool deleteObj(const AdtTestObj& o) { return _container.erase(o); }$/;"	f	class:AdtTest
 deleteRandom	main/adtTest.h	/^   void deleteRandom(size_t repeat = 1) {$/;"	f	class:AdtTest
 empty	util/array.h	/^bool Array<T>::empty() const {$/;"	f	class:Array
-empty	util/dlist.h	/^   bool empty() const { return false; }$/;"	f	class:DList
+empty	util/dlist.h	/^DList<T>::empty() const {$/;"	f	class:DList
 end	util/array.h	/^class Array<T>::iterator Array<T>::end() const {$/;"	f	class:Array
-end	util/dlist.h	/^   iterator end() const { return 0; }$/;"	f	class:DList
+end	util/dlist.h	/^DList<T>::end() const {$/;"	f	class:DList
 erase	util/array.h	/^bool Array<T>::erase( Array<T>::iterator it ){$/;"	f	class:Array
 erase	util/array.h	/^bool Array<T>::erase( const T& other ){$/;"	f	class:Array
-erase	util/dlist.h	/^   bool erase(const T& x) { return false; }$/;"	f	class:DList
-erase	util/dlist.h	/^   bool erase(iterator pos) { return false; }$/;"	f	class:DList
 exec	main/adtTest.cpp	/^AdtAddCmd::exec(const string& option)$/;"	f	class:AdtAddCmd
 exec	main/adtTest.cpp	/^AdtDeleteCmd::exec(const string& option)$/;"	f	class:AdtDeleteCmd
 exec	main/adtTest.cpp	/^AdtPrintCmd::exec(const string& option)$/;"	f	class:AdtPrintCmd
@@ -94,7 +91,6 @@ exec	main/adtTest.cpp	/^AdtResetCmd::exec(const string& option)$/;"	f	class:AdtR
 exec	main/adtTest.cpp	/^AdtSortCmd::exec(const string& option)$/;"	f	class:AdtSortCmd
 find	main/adtTest.h	/^   bool find(const AdtTestObj& n) {$/;"	f	class:AdtTest
 find	util/array.h	/^class Array<T>::iterator Array<T>::find ( const T& other){$/;"	f	class:Array
-find	util/dlist.h	/^   iterator find(const T& x) { return end(); }$/;"	f	class:DList
 getHashSize	util/util.cpp	/^size_t getHashSize(size_t s) {$/;"	f
 getLen	main/adtTest.h	/^   static int getLen() { return _strLen; }$/;"	f	class:AdtTestObj
 getPos	main/adtTest.h	/^   AdtType<AdtTestObj>::iterator getPos(size_t pos) const {$/;"	f	class:AdtTest
@@ -126,45 +122,37 @@ my_srandom	util/rnGen.h	16;"	d
 myexit	main/main.cpp	/^myexit()$/;"	f	file:
 operator !=	main/adtTest.h	/^   bool operator != (const AdtTestObj& o) const { return (_str != o._str); }$/;"	f	class:AdtTestObj
 operator !=	util/array.h	/^Array<T>::iterator::operator != (const iterator& other ) const{$/;"	f	class:Array::iterator
-operator !=	util/dlist.h	/^      bool operator != (const iterator& i) const { return false; }$/;"	f	class:DList::iterator
 operator ()	util/rnGen.h	/^      const int operator() (const int range) const {$/;"	f	class:RandomNumGen
 operator *	util/array.h	/^T& Array<T>::iterator::operator * () {$/;"	f	class:Array::iterator
 operator *	util/array.h	/^const T& Array<T>::iterator::operator * () const {$/;"	f	class:Array::iterator
-operator *	util/dlist.h	/^      T& operator * () { return _node->_data; }$/;"	f	class:DList::iterator
-operator *	util/dlist.h	/^      const T& operator * () const { return *(this); }$/;"	f	class:DList::iterator
+operator *	util/dlist.h	/^DList<T>::iterator::operator * () const {$/;"	f	class:DList::iterator
+operator *	util/dlist.h	/^DList<T>::iterator::operator * () {$/;"	f	class:DList::iterator
 operator +	util/array.h	/^Array<T>::iterator::operator + (int i ) const{$/;"	f	class:Array::iterator
 operator ++	util/array.h	/^class Array<T>::iterator Array<T>::iterator::operator ++ (int i) {$/;"	f	class:Array::iterator
 operator ++	util/array.h	/^class Array<T>::iterator& Array<T>::iterator::operator ++ () {$/;"	f	class:Array::iterator
-operator ++	util/dlist.h	/^      iterator operator ++ (int) { return *(this); }$/;"	f	class:DList::iterator
-operator ++	util/dlist.h	/^      iterator& operator ++ () { return *(this); }$/;"	f	class:DList::iterator
 operator +=	util/array.h	/^Array<T>::iterator::operator += ( int i ){$/;"	f	class:Array::iterator
 operator --	util/array.h	/^class Array<T>::iterator Array<T>::iterator::operator -- (int i) {$/;"	f	class:Array::iterator
 operator --	util/array.h	/^class Array<T>::iterator& Array<T>::iterator::operator -- () {$/;"	f	class:Array::iterator
-operator --	util/dlist.h	/^      iterator operator -- (int) { return *(this); }$/;"	f	class:DList::iterator
-operator --	util/dlist.h	/^      iterator& operator -- () { return *(this); }$/;"	f	class:DList::iterator
 operator <	main/adtTest.h	/^   bool operator < (const AdtTestObj& o) const { return (_str < o._str); }$/;"	f	class:AdtTestObj
 operator <<	main/adtTest.cpp	/^ostream& operator << (ostream& os, const AdtTestObj& o)$/;"	f
 operator <=	main/adtTest.h	/^   bool operator <= (const AdtTestObj& o) const { return (_str <= o._str); }$/;"	f	class:AdtTestObj
 operator =	util/array.h	/^Array<T>::iterator::operator = (const iterator& other ){$/;"	f	class:Array::iterator
-operator =	util/dlist.h	/^      iterator& operator = (const iterator& i) { return *(this); }$/;"	f	class:DList::iterator
 operator ==	main/adtTest.h	/^   bool operator == (const AdtTestObj& o) const { return (_str == o._str); }$/;"	f	class:AdtTestObj
 operator ==	util/array.h	/^Array<T>::iterator::operator == (const iterator& other ) const{$/;"	f	class:Array::iterator
-operator ==	util/dlist.h	/^      bool operator == (const iterator& i) const { return false; }$/;"	f	class:DList::iterator
 operator >	main/adtTest.h	/^   bool operator > (const AdtTestObj& o) const { return (_str > o._str); }$/;"	f	class:AdtTestObj
 operator >=	main/adtTest.h	/^   bool operator >= (const AdtTestObj& o) const { return (_str >= o._str); }$/;"	f	class:AdtTestObj
 operator []	util/array.h	/^T& Array<T>::operator [] (size_t i) {$/;"	f	class:Array
 operator []	util/array.h	/^const T& Array<T>::operator [] (size_t i) const {$/;"	f	class:Array
 pop_back	util/array.h	/^void Array<T>::pop_back() {$/;"	f	class:Array
-pop_back	util/dlist.h	/^   void pop_back() { }$/;"	f	class:DList
 pop_front	util/array.h	/^void Array<T>::pop_front() {$/;"	f	class:Array
-pop_front	util/dlist.h	/^   void pop_front() { }$/;"	f	class:DList
+pop_front	util/dlist.h	/^DList<T>::pop_front() {$/;"	f	class:DList
 print	main/adtTest.h	/^   void print(bool reverse = false, bool verbose = false) const {$/;"	f	class:AdtTest
 printBackward	main/adtTest.h	/^   void printBackward() const {$/;"	f	class:AdtTest
 printData	main/adtTest.h	/^   void printData(size_t idx, AdtType<AdtTestObj>::iterator li,$/;"	f	class:AdtTest
 printData	main/adtTest.h	/^   void printData(size_t index) const {$/;"	f	class:AdtTest
 printForward	main/adtTest.h	/^   void printForward() const {$/;"	f	class:AdtTest
 push_back	util/array.h	/^void Array<T>::push_back( const T& other){$/;"	f	class:Array
-push_back	util/dlist.h	/^   void push_back(const T& x) { }$/;"	f	class:DList
+push_back	util/dlist.h	/^DList<T>::push_back( const T& other) {$/;"	f	class:DList
 removeData	util/util.h	/^void removeData(T& l, const D& d)$/;"	f
 report	util/myUsage.h	/^   void report(bool repTime, bool repMem) {$/;"	f	class:MyUsage
 reset	main/adtTest.h	/^   void reset(int len) { deleteAll(); AdtTestObj::setLen(len); }$/;"	f	class:AdtTest
@@ -176,10 +164,9 @@ setTimeUsage	util/myUsage.h	/^   void setTimeUsage() {$/;"	f	class:MyUsage
 set_keypress	util/myGetChar.cpp	/^static void set_keypress(void)$/;"	f	file:
 size	main/adtTest.h	/^   size_t size() const { return _container.size(); }$/;"	f	class:AdtTest
 size	util/array.h	/^size_t Array<T>::size() const {$/;"	f	class:Array
-size	util/dlist.h	/^   size_t size() const {  return 0; }$/;"	f	class:DList
+size	util/dlist.h	/^DList<T>::size() const {$/;"	f	class:DList
 sort	main/adtTest.h	/^   void sort() { _container.sort(); }$/;"	f	class:AdtTest
 sort	util/array.h	/^   void sort() const { if (!empty()) ::sort(_data, _data+_size); }$/;"	f	class:Array
-sort	util/dlist.h	/^   void sort() const { }$/;"	f	class:DList
 stored_settings	util/myGetChar.cpp	/^static struct termios stored_settings;$/;"	v	typeref:struct:termios	file:
 usage	main/adtTest.cpp	/^AdtAddCmd::usage(ostream& os) const$/;"	f	class:AdtAddCmd
 usage	main/adtTest.cpp	/^AdtDeleteCmd::usage(ostream& os) const$/;"	f	class:AdtDeleteCmd
