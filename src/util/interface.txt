@@ -3,6 +3,23 @@ class AdtType{
   void    clear();
   // don't throw away dummy data if any.
   // don't reset capacity for dynamic array.
+  class iterator{
+    public:
+      friend class AdtType;
+      const T&  operator *   () const             ;
+      T&        operator *   ()                   ;
+      iterator& operator ++  ()                   ;
+      iterator  operator ++  (int)                ;
+      iterator& operator --  ()                   ;
+      iterator  operator --  (int)                ;
+      iterator& operator = (const iterator& i)    ;
+      bool operator != (const iterator& i) const  ;
+      bool operator == (const iterator& i) const  ;
+#ifdef TEST_ARRAY
+      iterator  operator +   (int i) const        ;
+      iterator& operator +=  (int i)              ;
+#endif // TEST_ARRAY
+};
   void    pop_front();
   void    pop_back();
   void    sort();

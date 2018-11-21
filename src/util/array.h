@@ -34,45 +34,45 @@ public:
       iterator(const iterator& i): _node(i._node) {}
       ~iterator() {} // Should NOT delete _node
 
-      // TODO: implement these overloaded operators
-      const T& operator * () const { return (*this); }
-      T& operator * () { return (*_node); }
-      iterator& operator ++ () { return (*this); }
-      iterator operator ++ (int) { return (*this); }
-      iterator& operator -- () { return (*this); }
-      iterator operator -- (int) { return (*this); }
+      // TODO ... done: implement these overloaded operators
+      const T& operator * () const ;
+      T& operator * () ;     
+      iterator& operator ++ () ;
+      iterator operator ++ (int) ;
+      iterator& operator -- () ;
+      iterator operator -- (int) ;
 
-      iterator operator + (int i) const { return (*this); }
-      iterator& operator += (int i) { return (*this); }
+      iterator operator + (int ) const ;
+      iterator& operator += (int ) ;
 
-      iterator& operator = (const iterator& i) { return (*this); }
+      iterator& operator = (const iterator& ) ;
 
-      bool operator != (const iterator& i) const { return false; }
-      bool operator == (const iterator& i) const { return false; }
+      bool operator != (const iterator& ) const ;
+      bool operator == (const iterator& ) const ;
 
    private:
       T*    _node;
    };
 
    // TODO: implement these functions
-   iterator begin() const { return 0; }
-   iterator end() const { return 0; }
-   bool empty() const { return false; }
-   size_t size() const { return 0; }
+   iterator begin() const ;
+   iterator end() const ;
+   bool empty() const ;
+   size_t size() const ;
 
-   T& operator [] (size_t i) { return _data[0]; }
-   const T& operator [] (size_t i) const { return _data[0]; }
+   T& operator [] (size_t ) ;
+   const T& operator [] (size_t ) const ;
 
-   void push_back(const T& x) { }
-   void pop_front() { }
-   void pop_back() { }
+   void push_back(const T& ) ;
+   void pop_front() ;
+   void pop_back() ;
 
-   bool erase(iterator pos) { return false; }
-   bool erase(const T& x) { return false; }
+   bool erase(iterator ) ;
+   bool erase(const T& ) ;
 
-   iterator find(const T& x) { return end(); }
+   iterator find(const T& ) ;
 
-   void clear() { }
+   void clear() ;
 
    // [Optional TODO] Feel free to change, but DO NOT change ::sort()
    void sort() const { if (!empty()) ::sort(_data, _data+_size); }
@@ -90,5 +90,131 @@ private:
 
    // [OPTIONAL TODO] Helper functions; called by public member functions
 };
+
+template<class T>
+const T& Array<T>::iterator::operator * () const {
+  return (*_node );
+}
+
+template<class T>
+T& Array<T>::iterator::operator * () {
+  return (*_node );
+}
+
+template<class T>
+class Array<T>::iterator& Array<T>::iterator::operator ++ () {
+  // pre-increment operator
+  ++_node;
+  return (*this);
+}
+
+template<class T>
+class Array<T>::iterator& Array<T>::iterator::operator -- () {
+  // pre-decrement operator
+  --_node;
+  return (*this);
+}
+
+template<class T>
+class Array<T>::iterator Array<T>::iterator::operator ++ (int i) {
+  // post-increment operator
+  Array<T>::iterator ret = *this;
+  _node++;
+  return ret;
+}
+
+template<class T>
+class Array<T>::iterator Array<T>::iterator::operator -- (int i) {
+  // post-decrement operator
+  Array<T>::iterator ret = *this;
+  _node--;
+  return ret;
+}
+
+template<class T>
+class Array<T>::iterator
+Array<T>::iterator::operator + (int i ) const{
+  return ( Array<T>::iterator( ( _node + i ) ) );
+}
+
+template<class T>
+class Array<T>::iterator&
+Array<T>::iterator::operator += ( int i ){
+  _node += i;
+  return *this;
+}
+
+template<class T>
+class Array<T>::iterator&
+Array<T>::iterator::operator = (const iterator& other ){
+  _node = other._node;
+}
+
+template<class T>
+bool
+Array<T>::iterator::operator != (const iterator& other ) const{
+  return ( ! ( this->operator == ( other ) ) );
+}
+
+template<class T>
+bool
+Array<T>::iterator::operator == (const iterator& other ) const{
+  return ( _node == other._node );
+}
+
+template<class T>
+class Array<T>::iterator Array<T>::begin() const {
+  return Array<T>::iterator( _data );
+}
+
+template<class T>
+class Array<T>::iterator Array<T>::end() const {
+  return Array<T>::iterator( _data+_size );
+}
+
+template<class T>
+bool Array<T>::empty() const {
+  return ( this->size() == 0 );
+}
+
+template<class T>
+size_t Array<T>::size() const {
+  return _size ;
+}
+
+template<class T>
+T& Array<T>::operator [] (size_t i) {
+  return _data[i];
+}
+
+template<class T>
+const T& Array<T>::operator [] (size_t i) const {
+  return _data[i];
+}
+
+template<class T>
+void Array<T>::push_back( const T& other){
+  if( _size == _capacity ){
+    T* tmp_ptr = _data;
+    if( _capacity == 0 ){
+      _capacity = 1;
+    }else{
+      _capacity += _capacity;
+    }
+    _data = new T[ _capacity ];
+    for( size_t i = 0; i < _size; ++i )
+      _data[i] = tmp_ptr[i];
+    delete[] tmp_ptr;
+  }
+  _data[_size] = other;
+  _size++;
+#ifdef DEBUG
+  assert( size <= capacity && "array push_back error" );
+#endif // DEBUG
+}
+
+template<class T>
+void Array<T>::pop_front() {
+
 
 #endif // ARRAY_H
