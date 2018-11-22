@@ -10,6 +10,7 @@
 #define DLIST_H
 
 #include <cassert>
+#include <algorithm>
 
 template <class T> class DList;
 
@@ -119,7 +120,7 @@ DList<T>::end() const {
 template <class T>
 bool
 DList<T>::empty() const {
-  return (begin() == end());
+  return begin()._node == end()._node;
 }
 
 template <class T>
@@ -138,8 +139,8 @@ DList<T>::size() const {
 template <class T>
 void
 DList<T>::push_back( const T& other) {
-  DListNode<T>* ptr = new DListNode<T>( other, end()._node,
-      (--end())._node);
+  DListNode<T>* ptr = new DListNode<T>( other, (--end())._node,
+      end()._node);
   DList<T>::iterator it = end();
   // it points to dummy node.
   bool first_ele = empty();
@@ -156,17 +157,17 @@ DList<T>::pop_front() {
   if( empty() )
     return;
 
-  bool one_ele = false;
-  if( (++begin()) == end() )
-    one_ele = true;
+  auto ptr = (++begin())._node;
 
   // list is non-empty;
-  auto tmp_it = begin();
-  end()._node->_next = tmp_it._node->_next;
-  tmp_it._node->_next->_prev = end()._node;
-  tmp_it._node -> _data.~T();
-  if( one_ele )
-    _head = end()._node;
+#ifdef DEBUG
+  assert( erase( begin() ) && "pop_front error in dlist" );
+#else
+  erase( begin() );
+#endif // DEBUG
+
+  _head = ptr;
+
 }
 
 template <class T>
@@ -174,17 +175,37 @@ void
 DList<T>::pop_back() {
   if( empty() )
     return;
-  erase ( (--end()) );
+
+#ifdef DEBUG
+  assert( erase( --end() ) && "pop_front error in dlist" );
+#else
+  erase( --end() );
+#endif // DEBUG
+
 }
 
 template <class T>
 bool
 DList<T>::erase( DList<T>::iterator pos ){
-  if( empty() )
+  if( empty() || pos == end() )
     return false;
-  pos._node -> _prev -> _next = pos._node->_next;
-  pos._node -> _next -> _prev = pos._node->_prev;
+
+  bool one_ele = false;
+  if( (++begin()) == end() )
+    one_ele = true;
+
+  auto next_it = pos;
+  auto prev_it = pos;
+  ++next_it; // next element of pos;
+  --prev_it; // prev element of pos;
+  next_it . _node -> _prev = prev_it . _node;
+  prev_it . _node -> _next = next_it . _node;
   (*pos).~T();
+  pos = next_it;
+
+  if( one_ele )
+    _head = end()._node;
+
   return true;
 }
 
@@ -196,16 +217,13 @@ DList<T>::erase( const T& other ){
 
   // we need _head != dummy iff !empty()
   // s.t. we would not delete dummy node.
-
-  auto it = begin();
-  auto end_it = end();
-  for( ; it != end_it; ++it ){
-    if( *it == other ){
-      erase( it );
-      return true;
-    }
+  auto it = find ( other );
+  if( it == end () ){
+    return false;
+  }else {
+    erase( it );
+    return true;
   }
-  return false;
 }
 
 template <class T>
@@ -216,19 +234,14 @@ DList<T>::find( const T& other ){
     if( *it == other )
       return it;
   }
-  return it;
+  return end();
 }
 
 template <class T>
 void
 DList<T>::clear() {
-  auto end_it = end();
-  auto it     = begin();
-  for( ; it != end_it; ++it )
-    erase(it);
-  erase(it);
-  _head = new DListNode<T>(T());
-  // we reset the dummy node here.
+  while( !empty() )
+    pop_front();
 }
 
 template <class T>
@@ -242,9 +255,8 @@ DList<T>::sort() const {
   auto end_it    = end();
   end_it --;
 
-
   for( auto it2 = start_it, it1 = it2++
-      ; start_it != end_it; ++start_it ){
+      ; start_it != end_it; --end_it ){
     // it1 = start_it, it2 = (it1 + 1);
     for( ; it1 != end_it; it1 = it2++ ){
       // for( ; (ry); it1+=1, it2+=1 )
@@ -258,7 +270,7 @@ template <class T>
 void
 DList<T>::my_iterator_swap_content ( DList<T>::iterator& it1,
     DList<T>::iterator& it2 ) const {
-  std::swap( *it1, *it2 );
+  std::swap( it1._node->_data, it2._node->_data );
 }
 
 template <class T>
@@ -293,18 +305,18 @@ template <class T>
 class DList<T>::iterator
 DList<T>::iterator::operator ++ (int dummy ) {
   // post-increment;
-  DListNode<T>* ptr = _node;
-  ++(*this);
-  return DList<T>::iterator( ptr );
+  auto it = *this;
+  this->operator ++();
+  return it;
 }
 
 template <class T>
 class DList<T>::iterator
 DList<T>::iterator::operator -- (int dummy ) {
   // post-increment;
-  DListNode<T>* ptr = _node;
-  --(*this);
-  return DList<T>::iterator( ptr );
+  auto it = *this;
+  this->operator --();
+  return it;
 }
 
 template <class T>
@@ -323,6 +335,6 @@ DList<T>::iterator::operator != ( const iterator& i ) const {
 template <class T>
 bool
 DList<T>::iterator::operator == ( const iterator& i ) const {
-  return i._node == _node;
+  return i._node == this->_node; 
 }
 #endif // DLIST_H

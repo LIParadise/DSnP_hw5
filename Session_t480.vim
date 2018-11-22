@@ -39,7 +39,7 @@ badd +1 src/main/main.cpp
 badd +1 src/cmd/cmdParser.h
 badd +1 src/main/adtTest.h
 badd +1 src/main/adtTest.cpp
-badd +108 src/util/array.h
+badd +273 src/util/array.h
 badd +27 src/util/dlist.h
 badd +1 src/util/bst.h
 badd +1 src/util/util.h
@@ -172,11 +172,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 83 - ((3 * winheight(0) + 19) / 39)
+let s:l = 91 - ((11 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-83
+91
 normal! 02|
 wincmd w
 argglobal
@@ -425,12 +425,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 34 - ((8 * winheight(0) + 19) / 39)
+let s:l = 166 - ((30 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-34
-normal! 0
+166
+normal! 07|
 wincmd w
 argglobal
 edit src/main/adtTest.h
@@ -545,13 +545,14 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 92 - ((4 * winheight(0) + 19) / 39)
+let s:l = 53 - ((0 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-92
+53
 normal! 0
 wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 73 + 73) / 146)
 exe 'vert 2resize ' . ((&columns * 72 + 73) / 146)
 tabedit src/util/dlist.h
@@ -564,8 +565,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 73 + 73) / 146)
-exe 'vert 2resize ' . ((&columns * 72 + 73) / 146)
+exe 'vert 1resize ' . ((&columns * 72 + 73) / 146)
+exe 'vert 2resize ' . ((&columns * 73 + 73) / 146)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -678,11 +679,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 309 - ((34 * winheight(0) + 19) / 39)
+let s:l = 258 - ((23 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-309
+258
 normal! 0
 wincmd w
 argglobal
@@ -798,15 +799,15 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 71 - ((24 * winheight(0) + 19) / 39)
+let s:l = 79 - ((38 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-71
+79
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 73 + 73) / 146)
-exe 'vert 2resize ' . ((&columns * 72 + 73) / 146)
+exe 'vert 1resize ' . ((&columns * 72 + 73) / 146)
+exe 'vert 2resize ' . ((&columns * 73 + 73) / 146)
 tabedit src/util/bst.h
 set splitbelow splitright
 set nosplitbelow
@@ -1055,7 +1056,7 @@ exe s:l
 normal! zt
 24
 normal! 0
-tabnext 3
+tabnext 2
 set stal=1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
