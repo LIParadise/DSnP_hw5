@@ -105,7 +105,7 @@ template<class T>
 class Array<T>::iterator& Array<T>::iterator::operator ++ () {
   // pre-increment operator
   ++_node;
-  return (*this);
+  return *this;
 }
 
 template<class T>
