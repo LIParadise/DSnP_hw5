@@ -188,8 +188,11 @@ DList<T>::erase( DList<T>::iterator pos ){
     return false;
 
   bool one_ele = false;
+  bool is_begin = false;
   if( (++begin()) == end() )
     one_ele = true;
+  if( pos == begin() )
+    is_begin = true;
 
   auto next_it = pos;
   auto prev_it = pos;
@@ -199,6 +202,9 @@ DList<T>::erase( DList<T>::iterator pos ){
   prev_it . _node -> _next = next_it . _node;
   (*pos).~T();
   pos = next_it;
+
+  if( is_begin )
+    _head = (++end())._node;
 
   if( one_ele )
     _head = end()._node;
