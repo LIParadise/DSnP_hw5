@@ -253,12 +253,14 @@ DList<T>::sort() const {
 
   auto start_it  = begin();
   auto end_it    = end();
+  auto it2 = start_it;
+  auto it1 = it2++;
   end_it --;
 
-  for( auto it2 = start_it, it1 = it2++
+  for( it2 = start_it, it1 = it2++
       ; start_it != end_it; --end_it ){
     // it1 = start_it, it2 = (it1 + 1);
-    for( ; it1 != end_it; it1 = it2++ ){
+    for( ; it1 != end_it; ++it1, ++it2 ){
       // for( ; (ry); it1+=1, it2+=1 )
       if( *it1 > *it2 )
         my_iterator_swap_content ( it1, it2 );
@@ -270,7 +272,7 @@ template <class T>
 void
 DList<T>::my_iterator_swap_content ( DList<T>::iterator& it1,
     DList<T>::iterator& it2 ) const {
-  std::swap( it1._node->_data, it2._node->_data );
+  std::swap( (it1._node->_data), (it2._node->_data) );
 }
 
 template <class T>
