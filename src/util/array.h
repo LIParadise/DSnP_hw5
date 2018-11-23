@@ -105,7 +105,7 @@ template<class T>
 class Array<T>::iterator& Array<T>::iterator::operator ++ () {
   // pre-increment operator
   ++_node;
-  return *this;
+  return (*this);
 }
 
 template<class T>
@@ -209,7 +209,7 @@ void Array<T>::push_back( const T& other){
   _data[_size] = other;
   _size++;
 #ifdef DEBUG
-  assert( size <= capacity && "array push_back error" );
+  assert( size <= _capacity && "array push_back error" );
 #endif // DEBUG
 }
 
