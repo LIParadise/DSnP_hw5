@@ -120,7 +120,7 @@ DList<T>::end() const {
 template <class T>
 bool
 DList<T>::empty() const {
-  return begin()._node == end()._node;
+  return begin() == end();
 }
 
 template <class T>
@@ -157,8 +157,6 @@ DList<T>::pop_front() {
   if( empty() )
     return;
 
-  auto ptr = (++begin())._node;
-
   // list is non-empty;
 #ifdef DEBUG
   assert( erase( begin() ) && "pop_front error in dlist" );
@@ -166,8 +164,7 @@ DList<T>::pop_front() {
   erase( begin() );
 #endif
 
-  _head = ptr;
-
+  _head = (++end())._node;
 }
 
 template <class T>
@@ -329,13 +326,15 @@ DList<T>::iterator::operator = ( const iterator& i ) {
 
 template <class T>
 bool
-DList<T>::iterator::operator != ( const iterator& i ) const {
+DList<T>::iterator::operator != ( 
+    const DList<T>::iterator& i ) const {
   return ( ! ( i == (*this) ) );
 }
 
 template <class T>
 bool
-DList<T>::iterator::operator == ( const iterator& i ) const {
-  return i._node == this->_node; 
+DList<T>::iterator::operator == ( 
+    const DList<T>::iterator& i ) const {
+  return i._node == _node; 
 }
 #endif // DLIST_H
