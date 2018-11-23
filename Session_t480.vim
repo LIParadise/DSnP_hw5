@@ -38,7 +38,7 @@ set shortmess=aoO
 badd +1 src/main/main.cpp
 badd +1 src/cmd/cmdParser.h
 badd +1 src/main/adtTest.h
-badd +144 src/main/adtTest.cpp
+badd +1 src/main/adtTest.cpp
 badd +273 src/util/array.h
 badd +260 src/util/dlist.h
 badd +1 src/util/bst.h
@@ -553,11 +553,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 158 - ((12 * winheight(0) + 9) / 19)
+let s:l = 160 - ((14 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-158
+160
 normal! 0
 wincmd w
 argglobal
@@ -680,7 +680,6 @@ normal! zt
 37
 normal! 0
 wincmd w
-2wincmd w
 exe '1resize ' . ((&lines * 19 + 21) / 42)
 exe '2resize ' . ((&lines * 19 + 21) / 42)
 exe 'vert 2resize ' . ((&columns * 73 + 73) / 146)
@@ -810,12 +809,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 241 - ((10 * winheight(0) + 19) / 39)
+let s:l = 106 - ((18 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-241
-normal! 016|
+106
+normal! 019|
 wincmd w
 argglobal
 edit src/util/dlist.h
@@ -930,13 +929,14 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 196 - ((21 * winheight(0) + 19) / 39)
+let s:l = 344 - ((14 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-196
-normal! 017|
+344
+normal! 0
 wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 72 + 73) / 146)
 exe 'vert 2resize ' . ((&columns * 73 + 73) / 146)
 tabedit src/util/bst.h
@@ -1187,7 +1187,7 @@ exe s:l
 normal! zt
 24
 normal! 0
-tabnext 2
+tabnext 3
 set stal=1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
