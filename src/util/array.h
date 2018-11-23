@@ -209,7 +209,7 @@ void Array<T>::push_back( const T& other){
   _data[_size] = other;
   _size++;
 #ifdef DEBUG
-  assert( size <= _capacity && "array push_back error" );
+  assert( _size <= _capacity && "array push_back error" );
 #endif // DEBUG
 }
 
