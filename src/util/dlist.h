@@ -251,16 +251,15 @@ DList<T>::sort() const {
     return;
   // we'll use bubble sort.
 
-  auto start_it  = begin();
+  const auto start_it  = begin();
   auto end_it    = end();
   auto it2 = start_it;
   auto it1 = it2++;
-  end_it --;
 
-  for( it2 = start_it, it1 = it2++
-      ; start_it != end_it; --end_it ){
+  for( ; start_it != end_it;
+      --end_it , it2 = start_it, it1 = it2++){
     // it1 = start_it, it2 = (it1 + 1);
-    for( ; it1 != end_it; ++it1, ++it2 ){
+    for( ; it2 != end_it; ++it1, ++it2 ){
       // for( ; (ry); it1+=1, it2+=1 )
       if( *it1 > *it2 )
         my_iterator_swap_content ( it1, it2 );

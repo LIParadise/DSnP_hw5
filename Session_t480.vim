@@ -40,10 +40,11 @@ badd +1 src/cmd/cmdParser.h
 badd +1 src/main/adtTest.h
 badd +1 src/main/adtTest.cpp
 badd +273 src/util/array.h
-badd +27 src/util/dlist.h
+badd +260 src/util/dlist.h
 badd +1 src/util/bst.h
 badd +1 src/util/util.h
 badd +1 src/util/interface.txt
+badd +29 ~/test/cpp_test/test_bubble_sort.cc
 argglobal
 silent! argdel *
 argadd src/main/main.cpp
@@ -678,12 +679,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 252 - ((17 * winheight(0) + 19) / 39)
+let s:l = 260 - ((21 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-252
-normal! 011|
+260
+normal! 042|
 wincmd w
 argglobal
 edit src/util/dlist.h
@@ -798,11 +799,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 28 - ((17 * winheight(0) + 19) / 39)
+let s:l = 27 - ((15 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-28
+27
 normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 72 + 73) / 146)
