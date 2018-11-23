@@ -679,12 +679,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 169 - ((19 * winheight(0) + 19) / 39)
+let s:l = 170 - ((20 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-169
-normal! 014|
+170
+normal! 0
 wincmd w
 argglobal
 edit src/util/dlist.h
@@ -799,13 +799,14 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 201 - ((23 * winheight(0) + 19) / 39)
+let s:l = 196 - ((18 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-201
+196
 normal! 0
 wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 72 + 73) / 146)
 exe 'vert 2resize ' . ((&columns * 73 + 73) / 146)
 tabedit src/util/bst.h

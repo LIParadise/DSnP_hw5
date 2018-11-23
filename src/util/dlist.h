@@ -161,9 +161,9 @@ DList<T>::pop_front() {
 
   // list is non-empty;
 #ifdef DEBUG
-  assert( 0 && "flag set" );
-#else
   assert( erase( begin() ) && "pop_front error in dlist" );
+#else
+  erase( begin() );
 #endif
 
   _head = ptr;
@@ -177,9 +177,9 @@ DList<T>::pop_back() {
     return;
 
 #ifdef DEBUG
-  assert( 0 && "flag set" );
+  assert( erase( --end() ) && "pop_back error in dlist" );
 #else
-  assert( erase( begin() ) && "pop_back error in dlist" );
+  erase( --end() );
 #endif
 
 }
