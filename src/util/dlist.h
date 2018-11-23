@@ -342,21 +342,22 @@ void
 DList<T>::my_merge_sort( const DList<T>::iterator& start_it,
     const DList<T>::iterator& end_it ) const {
 
-  auto my_start_it = start_it;
-  auto my_end_it   = end_it;
+  DList<T>::iterator my_start_it ( start_it );
+  DList<T>::iterator my_end_it   ( end_it   );
 
   if( my_start_it == my_end_it || ++my_start_it == my_end_it )
     return;
 
   my_start_it = start_it;
   my_end_it   = end_it;
-  const auto my_mid2_it = my_find_mid_itor( start_it, end_it );
-  const auto my_mid1_it = ++my_mid2_it;
+  DList<T>::iterator my_mid2_it (
+      my_find_mid_itor( start_it, end_it ) );
+  auto my_mid1_it = ++my_mid2_it;
 
-  my_merge_sort( start_it, my_mid1_it++ );
+  my_merge_sort( start_it, my_mid1_it );
   my_merge_sort( my_mid2_it, end_it );
 
-  my_merge( start_it, my_mid1_it, my_mid2_it, end_it );
+  my_merge( start_it, my_mid2_it, end_it );
 
 }
 
@@ -368,8 +369,8 @@ DList<T>::my_find_mid_itor ( const DList<T>::iterator& start_it,
   auto it1 = start_it;
   auto it2 = end_it;
 
-  while( it1 != it2 && it1 != (--it2) )
-    ++it1;
+  while( it1 != it2 && ++it1 != it2 )
+    --it2;
 
   return it1;
 }
@@ -377,18 +378,20 @@ DList<T>::my_find_mid_itor ( const DList<T>::iterator& start_it,
 template <typename T>
 void
 DList<T>::my_merge( const DList<T>::iterator& start_it,
-    const DList<T>::iterator& my_mid2_it
+    const DList<T>::iterator& my_mid2_it,
     const DList<T>::iterator& end_it ) const { 
 
   auto it1 = start_it;
   auto it2 = my_mid2_it;
 
-  while( it1 != end_it ){
+  while( it2 != end_it && it1 != it2){
     if( *it1 > *it2 ){
       my_iterator_swap_content( it1, it2 );
       ++it2;
+      ++it1;
+    }else{
+      ++it1;
     }
-    ++it1;
   }
 }
 

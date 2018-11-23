@@ -121,13 +121,16 @@ myStr2Int	util/myString.cpp	/^myStr2Int(const string& str, int& num)$/;"	f
 myStrGetTok	util/myString.cpp	/^myStrGetTok(const string& str, string& tok, size_t pos = 0,$/;"	f
 myStrNCmp	util/myString.cpp	/^myStrNCmp(const string& s1, const string& s2, unsigned n)$/;"	f
 myUsage	util/util.cpp	/^MyUsage       myUsage;$/;"	v
+my_find_mid_itor	util/dlist.h	/^DList<T>::my_find_mid_itor ( const DList<T>::iterator& start_it,$/;"	f	class:DList
 my_iterator_swap_content	util/dlist.h	/^DList<T>::my_iterator_swap_content ( DList<T>::iterator& it1,$/;"	f	class:DList
+my_merge	util/dlist.h	/^DList<T>::my_merge( const DList<T>::iterator& start_it,$/;"	f	class:DList
+my_merge_sort	util/dlist.h	/^DList<T>::my_merge_sort( const DList<T>::iterator& start_it,$/;"	f	class:DList
 my_random	util/rnGen.h	17;"	d
 my_srandom	util/rnGen.h	16;"	d
 myexit	main/main.cpp	/^myexit()$/;"	f	file:
 operator !=	main/adtTest.h	/^   bool operator != (const AdtTestObj& o) const { return (_str != o._str); }$/;"	f	class:AdtTestObj
 operator !=	util/array.h	/^Array<T>::iterator::operator != (const iterator& other ) const{$/;"	f	class:Array::iterator
-operator !=	util/dlist.h	/^DList<T>::iterator::operator != ( const iterator& i ) const {$/;"	f	class:DList::iterator
+operator !=	util/dlist.h	/^DList<T>::iterator::operator != ( $/;"	f	class:DList::iterator
 operator ()	util/rnGen.h	/^      const int operator() (const int range) const {$/;"	f	class:RandomNumGen
 operator *	util/array.h	/^T& Array<T>::iterator::operator * () {$/;"	f	class:Array::iterator
 operator *	util/array.h	/^const T& Array<T>::iterator::operator * () const {$/;"	f	class:Array::iterator
@@ -150,7 +153,7 @@ operator =	util/array.h	/^Array<T>::iterator::operator = (const iterator& other 
 operator =	util/dlist.h	/^DList<T>::iterator::operator = ( const iterator& i ) {$/;"	f	class:DList::iterator
 operator ==	main/adtTest.h	/^   bool operator == (const AdtTestObj& o) const { return (_str == o._str); }$/;"	f	class:AdtTestObj
 operator ==	util/array.h	/^Array<T>::iterator::operator == (const iterator& other ) const{$/;"	f	class:Array::iterator
-operator ==	util/dlist.h	/^DList<T>::iterator::operator == ( const iterator& i ) const {$/;"	f	class:DList::iterator
+operator ==	util/dlist.h	/^DList<T>::iterator::operator == ( $/;"	f	class:DList::iterator
 operator >	main/adtTest.h	/^   bool operator > (const AdtTestObj& o) const { return (_str > o._str); }$/;"	f	class:AdtTestObj
 operator >=	main/adtTest.h	/^   bool operator >= (const AdtTestObj& o) const { return (_str >= o._str); }$/;"	f	class:AdtTestObj
 operator []	util/array.h	/^T& Array<T>::operator [] (size_t i) {$/;"	f	class:Array
