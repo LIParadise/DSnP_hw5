@@ -546,12 +546,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 59 - ((6 * winheight(0) + 19) / 39)
+let s:l = 108 - ((27 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-59
-normal! 0
+108
+normal! 09|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 73 + 73) / 146)
 exe 'vert 2resize ' . ((&columns * 72 + 73) / 146)
@@ -679,12 +679,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 260 - ((21 * winheight(0) + 19) / 39)
+let s:l = 169 - ((19 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-260
-normal! 042|
+169
+normal! 014|
 wincmd w
 argglobal
 edit src/util/dlist.h
@@ -799,11 +799,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 27 - ((15 * winheight(0) + 19) / 39)
+let s:l = 201 - ((23 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-27
+201
 normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 72 + 73) / 146)

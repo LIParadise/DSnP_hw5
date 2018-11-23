@@ -19,23 +19,7 @@ d: ADTFLAG = -DTEST_DLIST
 a: ADTFLAG = -DTEST_ARRAY
 b: ADTFLAG = -DTEST_BST
 
-d: DBGFLAG = 
-a: DBGFLAG = 
-b: DBGFLAG =
-
-d_debug: ADT = dlist
-d_debug: ADTFLAG = -DTEST_DLIST 
-d_debug: DBGFLAG = -DDEBUG
-
-a_debug: ADT = array
-a_debug: ADTFLAG = -DTEST_ARRAY
-a_debug: DBGFLAG = -DDEBUG
-
-b_debug: ADT = bst
-b_debug: ADTFLAG = -DTEST_BST
-b_debug: DBGFLAG = -DDEBUG
-
-d a b d_debug a_debug b_debug: clean clean all
+d a b: clean clean all
 
 EXEC     = adtTest.$(ADT)
 
@@ -46,8 +30,7 @@ libs:
 	do \
 		echo "Checking $$pkg..."; \
 		cd src/$$pkg; \
-                make -f make.$$pkg --no-print-directory \
-                DBGFLAG=$(DEBUG_FLAG) PKGNAME=$$pkg; \
+                make -f make.$$pkg --no-print-directory PKGNAME=$$pkg; \
 		cd ../..; \
 	done
 
@@ -59,7 +42,7 @@ main:
 	@ln -fs bin/$(EXEC) .
 #	@strip bin/$(EXEC)
 
-clean: ctags
+clean:
 	@for pkg in $(SRCPKGS); \
 	do \
 		echo "Cleaning $$pkg..."; \
@@ -73,7 +56,6 @@ clean: ctags
 	@cd lib; rm -f $(SRCLIBS)
 	@echo "Removing $(EXEC)..."
 	@rm -rf bin/$(EXEC)*
-	@rm -rf log/*
 
 cleanall: clean
 	@echo "Removing bin/*..."
