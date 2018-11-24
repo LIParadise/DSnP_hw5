@@ -206,7 +206,7 @@ DList<T>::erase( DList<T>::iterator pos ){
   --prev_it; // prev element of pos;
   next_it . _node -> _prev = prev_it . _node;
   prev_it . _node -> _next = next_it . _node;
-  (*pos).~T();
+  delete pos._node;
   pos = next_it;
 
   if( is_begin )
@@ -348,16 +348,13 @@ DList<T>::my_merge_sort( const DList<T>::iterator& start_it,
   if( my_start_it == my_end_it || ++my_start_it == my_end_it )
     return;
 
-  my_start_it = start_it;
-  my_end_it   = end_it;
-  DList<T>::iterator my_mid2_it (
+  DList<T>::iterator my_mid_it (
       my_find_mid_itor( start_it, end_it ) );
-  auto my_mid1_it = ++my_mid2_it;
 
-  my_merge_sort( start_it, my_mid1_it );
-  my_merge_sort( my_mid2_it, end_it );
+  my_merge_sort( start_it, my_mid_it );
+  my_merge_sort( my_mid_it, end_it );
 
-  my_merge( start_it, my_mid2_it, end_it );
+  my_merge( start_it, my_mid_it, end_it );
 
 }
 
@@ -378,21 +375,47 @@ DList<T>::my_find_mid_itor ( const DList<T>::iterator& start_it,
 template <typename T>
 void
 DList<T>::my_merge( const DList<T>::iterator& start_it,
-    const DList<T>::iterator& my_mid2_it,
+    const DList<T>::iterator& my_mid_it,
     const DList<T>::iterator& end_it ) const { 
 
   auto it1 = start_it;
-  auto it2 = my_mid2_it;
+  auto it2 = my_mid_it;
 
-  while( it2 != end_it && it1 != it2){
+  while( it2 != end_it && it1 != my_mid_it){
     if( *it1 > *it2 ){
-      my_iterator_swap_content( it1, it2 );
-      ++it2;
-      ++it1;
+      // O o o o o X x x x x _
+      // ^         ^         ^
+      // it1       it2       end_it
+      // we want to modify the list s.t. it becomes
+      // X O o o o o x x x x _
+      // ^ ^         ^       ^
+      // T it1       it2     end_it
+      // where T means old_it2
+      auto old_it2 = it2++;
+
+      // oXx --> ox
+      old_it2._node->_prev->_next = old_it2._node->_next;
+      old_it2._node->_next->_prev = old_it2._node->_prev;
+
+      // Ooo... --> XOoo...
+      // notice we have a ring.
+      old_it2._node->_prev        = it1._node->_prev;
+      old_it2._node->_next        = it1._node;
+      it1._node->_prev->_next     = old_it2._node;
+      it1._node->_prev            = old_it2._node;
+
     }else{
-      ++it1;
+      // O o o o o X x x x x _
+      // ^         ^         ^
+      // it1       it2       end_it
+      // we want to modify the list s.t. it becomes
+      // O o o o o X x x x x _
+      //   ^       ^         ^
+      //   it1     it2       end_it
+      it1++;
     }
   }
+
 }
 
 #endif // DLIST_H
