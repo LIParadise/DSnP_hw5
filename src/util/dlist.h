@@ -114,13 +114,13 @@ template <class T>
 class DList<T>::iterator
 DList<T>::begin() const {
   // return end() if empty.
-  return DList<T>::iterator( _head );
+  return _head->_next;
 }
 
 template <class T>
 class DList<T>::iterator
 DList<T>::end() const {
-  return DList<T>::iterator ( _head->_prev );
+  return _head;
 }
 
 template <class T>
@@ -149,12 +149,9 @@ DList<T>::push_back( const T& other) {
       end()._node);
   DList<T>::iterator it = end();
   // it points to dummy node.
-  bool first_ele = empty();
 
   (--end())._node->_next = ptr;
   end()    ._node->_prev = ptr;
-  if( first_ele )
-    _head = ptr;
 }
 
 template <class T>
@@ -169,8 +166,6 @@ DList<T>::pop_front() {
 #else
   erase( begin() );
 #endif
-
-  _head = (++end())._node;
 }
 
 template <class T>
@@ -193,13 +188,6 @@ DList<T>::erase( DList<T>::iterator pos ){
   if( empty() || pos == end() )
     return false;
 
-  bool one_ele = false;
-  bool is_begin = false;
-  if( (++begin()) == end() )
-    one_ele = true;
-  if( pos == begin() )
-    is_begin = true;
-
   auto next_it = pos;
   auto prev_it = pos;
   ++next_it; // next element of pos;
@@ -208,12 +196,6 @@ DList<T>::erase( DList<T>::iterator pos ){
   prev_it . _node -> _next = next_it . _node;
   delete pos._node;
   pos = next_it;
-
-  if( is_begin )
-    _head = (++end())._node;
-
-  if( one_ele )
-    _head = end()._node;
 
   return true;
 }
