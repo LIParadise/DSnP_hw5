@@ -147,8 +147,6 @@ void
 DList<T>::push_back( const T& other) {
   DListNode<T>* ptr = new DListNode<T>( other, (--end())._node,
       end()._node);
-  DList<T>::iterator it = end();
-  // it points to dummy node.
 
   (--end())._node->_next = ptr;
   end()    ._node->_prev = ptr;
@@ -209,7 +207,7 @@ DList<T>::erase( const T& other ){
   // we need _head != dummy iff !empty()
   // s.t. we would not delete dummy node.
   auto it = find ( other );
-  if( it == end () ){
+  if( it == end() ){
     return false;
   }else {
     erase( it );
