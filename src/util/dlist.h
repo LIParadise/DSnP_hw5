@@ -120,7 +120,7 @@ DList<T>::begin() const {
 template <class T>
 class DList<T>::iterator
 DList<T>::end() const {
-  return _head;
+  return const_cast<DListNode<T>*>(_head);
 }
 
 template <class T>
@@ -322,14 +322,22 @@ void
 DList<T>::my_merge_sort( const DList<T>::iterator& start_it,
     const DList<T>::iterator& end_it ) const {
 
-  DList<T>::iterator my_start_it ( start_it );
-  DList<T>::iterator my_end_it   ( end_it   );
+  DList<T>::iterator my_start_it = start_it ;
 
-  if( my_start_it == my_end_it || ++my_start_it == my_end_it )
+  if( my_start_it == end_it || ++my_start_it == end_it )
     return;
 
-  DList<T>::iterator my_mid_it (
-      my_find_mid_itor( start_it, end_it ) );
+#ifdef DEBUG
+  my_start_it = start_it;
+  while( my_start_it != end_it ){
+    ++ my_start_it;
+    if( my_start_it == end() && end_it != end() )
+      assert( 0 && "mergesort error" );
+  }
+#endif // DEBUG
+
+  DList<T>::iterator my_mid_it =
+      my_find_mid_itor( start_it, end_it );
 
   my_merge_sort( start_it, my_mid_it );
   my_merge_sort( my_mid_it, end_it );
@@ -360,6 +368,7 @@ DList<T>::my_merge( const DList<T>::iterator& start_it,
 
   auto it1 = start_it;
   auto it2 = my_mid_it;
+  assert( it1 != end() && it2 != end() && "merge failure");
 
   while( it2 != end_it && it1 != my_mid_it){
     if( *it1 > *it2 ){
