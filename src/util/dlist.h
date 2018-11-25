@@ -11,6 +11,7 @@
 
 #include <cassert>
 #include <algorithm>
+#include <vector>
 
 template <class T> class DList;
 
@@ -120,7 +121,7 @@ DList<T>::begin() const {
 template <class T>
 class DList<T>::iterator
 DList<T>::end() const {
-  return const_cast<DListNode<T>*>(_head);
+  return _head;
 }
 
 template <class T>
@@ -145,6 +146,7 @@ DList<T>::size() const {
 template <class T>
 void
 DList<T>::push_back( const T& other) {
+
   DListNode<T>* ptr = new DListNode<T>( other, (--end())._node,
       end()._node);
 
@@ -240,6 +242,7 @@ DList<T>::sort() const {
     return;
   // we'll implement merge_sort.
 
+  cerr << "entering merge sort..." << endl;
   my_merge_sort( begin(), end() );
 }
 
@@ -322,28 +325,24 @@ void
 DList<T>::my_merge_sort( const DList<T>::iterator& start_it,
     const DList<T>::iterator& end_it ) const {
 
-  DList<T>::iterator my_start_it = start_it ;
+  DList<T>::iterator tmp_start_it = start_it ;
 
-  if( my_start_it == end_it || ++my_start_it == end_it )
+  if( tmp_start_it == end_it || ((++tmp_start_it) == end_it) )
     return;
 
-#ifdef DEBUG
-  my_start_it = start_it;
-  while( my_start_it != end_it ){
-    ++ my_start_it;
-    if( my_start_it == end() && end_it != end() )
-      assert( 0 && "mergesort error" );
-  }
-#endif // DEBUG
+  DList<T>::iterator mid_it = 
+    my_find_mid_itor( start_it, end_it );
+  DList<T>::iterator mid_it_bak1 = mid_it;
+  ++mid_it_bak1;
 
-  DList<T>::iterator my_mid_it =
-      my_find_mid_itor( start_it, end_it );
+  DList<T>::iterator start_it_bak = start_it;
+  --start_it_bak;
 
-  my_merge_sort( start_it, my_mid_it );
-  my_merge_sort( my_mid_it, end_it );
+  my_merge_sort( start_it, mid_it );
+  --my_mid_it_bak1;
+  my_merge_sort( my_mid_it_bak1, end_it );
 
-  my_merge( start_it, my_mid_it, end_it );
-
+  my_merge( ++start_it_bak, /*TODO*/ , end_it );
 }
 
 template <typename T>
@@ -363,14 +362,24 @@ DList<T>::my_find_mid_itor ( const DList<T>::iterator& start_it,
 template <typename T>
 void
 DList<T>::my_merge( const DList<T>::iterator& start_it,
-    const DList<T>::iterator& my_mid_it,
+    const DList<T>::iterator& mid_it,
     const DList<T>::iterator& end_it ) const { 
+
+  auto my_mid_it = mid_it;
+  size_t i = 0;
+  for( auto it = begin(); it != start_it; ++it, ++i );
+  cerr << "start_it  is at " << i << endl;
+  size_t j = 0;
+  for( auto it = begin(); it != my_mid_it; ++it, ++j );
+  cerr << "my_mid_it is at " << j << endl;
+  size_t k = 0;
+  for( auto it = begin(); it != end_it; ++it, ++k );
+  cerr << "end_it    is at " << k << endl;
 
   auto it1 = start_it;
   auto it2 = my_mid_it;
-  assert( it1 != end() && it2 != end() && "merge failure");
 
-  while( it2 != end_it && it1 != my_mid_it){
+  while( it2 != end_it && it1 != my_mid_it && my_mid_it != end_it){
     if( *it1 > *it2 ){
       // O o o o o X x x x x _
       // ^         ^         ^
@@ -380,11 +389,13 @@ DList<T>::my_merge( const DList<T>::iterator& start_it,
       // ^ ^         ^       ^
       // T it1       it2     end_it
       // where T means old_it2
+      if( it2 == my_mid_it )
+        my_mid_it ++;
       auto old_it2 = it2++;
 
       // oXx --> ox
-      old_it2._node->_prev->_next = old_it2._node->_next;
-      old_it2._node->_next->_prev = old_it2._node->_prev;
+      old_it2._node->_prev->_next = it2._node;
+      it2._node->_prev            = old_it2._node->_prev;
 
       // Ooo... --> XOoo...
       // notice we have a ring.
@@ -404,7 +415,6 @@ DList<T>::my_merge( const DList<T>::iterator& start_it,
       it1++;
     }
   }
-
 }
 
 #endif // DLIST_H
