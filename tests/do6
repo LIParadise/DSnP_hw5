@@ -1,4 +1,4 @@
-adta -r 500
+adta -r 150000
 usage
 adtp
 usage
@@ -11,18 +11,18 @@ usage
 adtp -r
 usage
 adtr 3
-adta -r 500
+adta -r 200000
 usage
 adtp
 usage
-adtd -r 100
+adtd -r 150000
 adtp -r
 usage
 adts
 usage
 adtp
 usage
-adtd -r 100
+adtd -r 100000
 usage
 adts
 usage
