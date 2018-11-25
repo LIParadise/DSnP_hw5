@@ -242,7 +242,6 @@ DList<T>::sort() const {
     return;
   // we'll implement merge_sort.
 
-  cerr << "entering merge sort..." << endl;
   my_merge_sort( begin(), end() );
 }
 
@@ -339,10 +338,11 @@ DList<T>::my_merge_sort( const DList<T>::iterator& start_it,
   --start_it_bak;
 
   my_merge_sort( start_it, mid_it );
-  --my_mid_it_bak1;
-  my_merge_sort( my_mid_it_bak1, end_it );
+  DList<T>::iterator mid_it_bak2 = --mid_it_bak1;
+  --mid_it_bak2;
+  my_merge_sort( mid_it_bak1, end_it );
 
-  my_merge( ++start_it_bak, /*TODO*/ , end_it );
+  my_merge( ++start_it_bak, ++mid_it_bak2 , end_it );
 }
 
 template <typename T>
@@ -366,15 +366,6 @@ DList<T>::my_merge( const DList<T>::iterator& start_it,
     const DList<T>::iterator& end_it ) const { 
 
   auto my_mid_it = mid_it;
-  size_t i = 0;
-  for( auto it = begin(); it != start_it; ++it, ++i );
-  cerr << "start_it  is at " << i << endl;
-  size_t j = 0;
-  for( auto it = begin(); it != my_mid_it; ++it, ++j );
-  cerr << "my_mid_it is at " << j << endl;
-  size_t k = 0;
-  for( auto it = begin(); it != end_it; ++it, ++k );
-  cerr << "end_it    is at " << k << endl;
 
   auto it1 = start_it;
   auto it2 = my_mid_it;

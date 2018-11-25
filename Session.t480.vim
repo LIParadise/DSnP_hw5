@@ -42,7 +42,7 @@ badd +1 src/util/dlist.h
 badd +1 src/util/bst.h
 badd +1 src/util/interface.txt
 badd +1 ~/test/cpp_test/test_mergesort.cc
-badd +0 src/main/main.cpp
+badd +1 src/main/main.cpp
 argglobal
 silent! argdel *
 argadd src/util/array.h
@@ -679,12 +679,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 335 - ((0 * winheight(0) + 9) / 19)
+let s:l = 334 - ((0 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-335
-normal! 045|
+334
+normal! 042|
 wincmd w
 argglobal
 edit ~/test/cpp_test/test_mergesort.cc
@@ -919,12 +919,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 345 - ((22 * winheight(0) + 19) / 39)
+let s:l = 372 - ((20 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-345
-normal! 036|
+372
+normal! 0
 wincmd w
 3wincmd w
 exe '1resize ' . ((&lines * 19 + 21) / 42)
