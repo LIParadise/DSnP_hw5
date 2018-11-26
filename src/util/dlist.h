@@ -161,11 +161,7 @@ DList<T>::pop_front() {
     return;
 
   // list is non-empty;
-#ifdef DEBUG
-  assert( erase( begin() ) && "pop_front error in dlist" );
-#else
   erase( begin() );
-#endif
 }
 
 template <class T>
@@ -174,11 +170,7 @@ DList<T>::pop_back() {
   if( empty() )
     return;
 
-#ifdef DEBUG
-  assert( erase( --end() ) && "pop_back error in dlist" );
-#else
   erase( --end() );
-#endif
 
 }
 
@@ -370,7 +362,7 @@ DList<T>::my_merge( const DList<T>::iterator& start_it,
   auto it1 = start_it;
   auto it2 = my_mid_it;
 
-  while( it2 != end_it && it1 != my_mid_it && my_mid_it != end_it){
+  while( it2 != end_it && it1 != my_mid_it ){
     if( *it1 > *it2 ){
       // O o o o o X x x x x _
       // ^         ^         ^

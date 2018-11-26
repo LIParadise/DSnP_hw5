@@ -679,11 +679,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 334 - ((0 * winheight(0) + 9) / 19)
+let s:l = 326 - ((0 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-334
+326
 normal! 042|
 wincmd w
 argglobal
@@ -919,11 +919,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 372 - ((20 * winheight(0) + 19) / 39)
+let s:l = 174 - ((29 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-372
+174
 normal! 0
 wincmd w
 3wincmd w
