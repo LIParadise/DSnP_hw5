@@ -87,7 +87,7 @@ class BSTree
     iterator       begin() const;
 
     void insert( const T& );
-    void print() const { /* TODO print black height and data*/};
+    void print() const ;
   private:
     static const int RED   = 0;
     static const int BLACK = 1;
@@ -100,6 +100,7 @@ class BSTree
     void left__rot ( BSTreeNode<T>* );
     void check_sort( BSTreeNode<T>* ) const;
     void transplant( BSTreeNode<T>*, BSTreeNode<T>* );
+    void print     ( BSTreeNode<T>*, size_t ) const;
     BSTreeNode<T>* max () const;
     BSTreeNode<T>* min () const;
     size_t _size;
@@ -516,6 +517,8 @@ BSTree<T>::insert_fix( BSTreeNode<T>* ptr ){
       ptr -> _parent -> _color = BLACK;
       GParent_ptr -> _color    = RED;
       right_rot( GParent_ptr );
+      if( GParent_ptr == _root )
+        _root = ptr -> _parent;
     } /* end of (ptr's parent is a left child) */
     else if ( ptr->_parent == GParent_ptr->_child_R){
       // case II, parent of ptr is a right child.
@@ -541,6 +544,8 @@ BSTree<T>::insert_fix( BSTreeNode<T>* ptr ){
       ptr -> _parent -> _color = BLACK;
       GParent_ptr -> _color    = RED;
       left__rot( GParent_ptr );
+      if( GParent_ptr == _root )
+        _root = ptr -> _parent;
     }else{
       assert( 0 && "wtf, parent is not child of grandparent" );
     }
@@ -738,6 +743,40 @@ BSTree<T>::transplant( BSTreeNode<T>* ptr1, BSTreeNode<T>* ptr2 ){
     assert( 0 && "wtf in transplant????" );
   if( ptr2 != nullptr )
     ptr2 -> _parent = ptr1 -> _parent;
+}
+
+template<typename T>
+void
+BSTree<T>::print() const {
+  size_t L_black_height = 1;
+  size_t R_black_height = 1;
+  for( auto* ptr = _root; ptr != nullptr; ptr = ptr -> _child_L ){
+    ++ L_black_height;
+  }
+  for( auto* ptr = _root; ptr != nullptr; ptr = ptr -> _child_R ){
+    ++ R_black_height;
+  }
+  cout << "left  black height: " << L_black_height << endl;
+  cout << "right black height: " << R_black_height << endl;
+  print( _root , 0);
+}
+
+template<typename T>
+void 
+BSTree<T>::print( BSTreeNode<T>* ptr, size_t indent ) const {
+  if( ptr != nullptr ){
+    print( ptr -> _child_L, indent+1 );
+    for( size_t i = 0; i < indent; ++i ){
+      cout << '\t';
+    }
+    cout << ptr -> _data << endl;
+    print( ptr -> _child_R, indent+1 );
+  }else{
+    for( size_t i = 0; i < indent; ++i ){
+      cout << '\t';
+    }
+    cout << "\033[7;33mNULLPTR\033[0m" << endl;
+  }
 }
 
 #endif // BST_H

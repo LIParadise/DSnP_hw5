@@ -206,7 +206,8 @@ pop_front	util/dlist.h	/^DList<T>::pop_front() {$/;"	f	class:DList
 predecessor	util/bst.h	/^BSTree<T>::predecessor( BSTreeNode<T>* ptr ) {$/;"	f	class:BSTree
 predecessor	util/bst.h	/^BSTree<T>::predecessor( const iterator& it ){$/;"	f	class:BSTree
 print	main/adtTest.h	/^   void print(bool reverse = false, bool verbose = false) const {$/;"	f	class:AdtTest
-print	util/bst.h	/^    void print() const { \/* TODO print black height and data*\/};$/;"	f	class:BSTree
+print	util/bst.h	/^BSTree<T>::print( BSTreeNode<T>* ptr, size_t indent ) const {$/;"	f	class:BSTree
+print	util/bst.h	/^BSTree<T>::print() const {$/;"	f	class:BSTree
 printBackward	main/adtTest.h	/^   void printBackward() const {$/;"	f	class:AdtTest
 printData	main/adtTest.h	/^   void printData(size_t idx, AdtType<AdtTestObj>::iterator li,$/;"	f	class:AdtTest
 printData	main/adtTest.h	/^   void printData(size_t index) const {$/;"	f	class:AdtTest
