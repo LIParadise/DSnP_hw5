@@ -11,6 +11,8 @@ unlet s:cpo_save
 set autoindent
 set background=dark
 set backspace=indent,eol,start
+set backupdir=~/.backup/,/tmp//
+set directory=~/.swp/,/tmp//
 set expandtab
 set fileencodings=ucs-bom,utf-8,default,latin1
 set helplang=en
@@ -28,6 +30,7 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 set tabline=%!Tabline()
 set tabstop=2
 set tags=./tags;/
+set undodir=~/.undo/,/tmp//
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -1056,12 +1059,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 154 - ((21 * winheight(0) + 19) / 39)
+let s:l = 237 - ((32 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-154
-normal! 07|
+237
+normal! 031|
 wincmd w
 argglobal
 edit src/util/bst.h
@@ -1176,13 +1179,39 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 91 - ((23 * winheight(0) + 19) / 39)
+130,134fold
+130,197fold
+130,197fold
+203,278fold
+203,278fold
+201,278fold
+201,278fold
+130
+normal! zo
+130
+normal! zo
+130
+normal! zo
+130
+normal! zc
+130
+normal! zc
+201
+normal! zo
+201
+normal! zo
+203
+normal! zo
+201
+normal! zc
+let s:l = 130 - ((19 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-91
-normal! 015|
+130
+normal! 0
 wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 73 + 73) / 146)
 exe 'vert 2resize ' . ((&columns * 72 + 73) / 146)
 tabedit src/util/interface.txt

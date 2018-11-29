@@ -201,8 +201,8 @@ void
 BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
     BSTreeNode<T>* my_parent,
     bool is_left_ch){
-  while( (ptr == nullptr || ptr -> _color == BLACK ) &&
-      (ptr != _root )) {
+  while( ptr != _root && 
+      ( ptr == nullptr || ptr -> _color == BLACK ) ){
     if( is_left_ch ){
       // left child.
       if( my_parent -> _child_R != nullptr &&
@@ -212,24 +212,152 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
         left__rot( my_parent);
       }
       if( my_parent -> _child_R != nullptr ){
-        if( my_parent->_child_R->_child_L == nullptr ||
-            my_parent->_child_R->_child_L -> _color == BLACK ){
-          if( my_parent->_child_R->_child_R == nullptr ||
-              my_parent->_child_R->_child_R -> _color == BLACK ){
-            // too many black in both side.
-            my_parent -> _child_R -> _color = RED;
-            ptr = my_parent;
-            my_parent = ptr->_parent;
-            // valid operation
-            // since ptr is never root before this two line.
-          }
+        if( ( my_parent->_child_R->_child_L == nullptr ||
+              my_parent->_child_R->_child_L -> _color == BLACK ) &&
+            ( my_parent->_child_R->_child_R == nullptr ||
+              my_parent->_child_R->_child_R -> _color == BLACK )) {
+          // too many black in both side.
+          my_parent -> _child_R -> _color = RED;
+          ptr = my_parent;
+          my_parent = ptr->_parent;
+          continue;
         }
       }
-
+      if( my_parent -> _child_R != nullptr &&
+         (my_parent -> _child_R -> _child_R == nullptr ||
+          my_parent -> _child_R -> _child_R -> _color == BLACK ) ){
+        if( my_parent->_child_R->_child_L != nullptr ){
+          my_parent->_child_R->_child_L->_color = BLACK;
+          my_parent -> _child_R -> _color = RED;
+          right_rot( my_parent -> _child_R );
+        }
+        my_parent -> _child_R -> _color = my_parent -> _color;
+        my_parent -> _child_R -> _child_R -> _color = BLACK;
+        my_parent -> _color = BLACK;
+        left__rot( my_parent );
+        ptr = _root;
+      }
     }else{
       // right child.
+      if( my_parent -> _child_L != nullptr &&
+          my_parent -> _child_L -> _color == RED ){
+        my_parent -> _color = RED;
+        my_parent -> _child_L -> _color = BLACK;
+        left__rot( my_parent);
+      }
+      if( my_parent -> _child_L != nullptr ){
+        if( ( my_parent->_child_L->_child_L == nullptr ||
+              my_parent->_child_L->_child_L -> _color == BLACK ) &&
+            ( my_parent->_child_L->_child_R == nullptr ||
+              my_parent->_child_L->_child_R -> _color == BLACK )) {
+          // too many black in both side.
+          my_parent -> _child_L -> _color = RED;
+          ptr = my_parent;
+          my_parent = ptr->_parent;
+          continue;
+        }
+      }
+      if( my_parent -> _child_L != nullptr &&
+         (my_parent -> _child_L -> _child_L == nullptr ||
+          my_parent -> _child_L -> _child_L -> _color == BLACK ) ){
+        if( my_parent->_child_L->_child_L != nullptr ){
+          my_parent->_child_L->_child_R->_color = BLACK;
+          my_parent -> _child_L -> _color = RED;
+          left__rot( my_parent -> _child_L );
+        }
+        my_parent -> _child_L -> _color = my_parent -> _color;
+        my_parent -> _child_L -> _child_L -> _color = BLACK;
+        my_parent -> _color = BLACK;
+        right_rot( my_parent );
+        ptr = _root;
+      }
     }
   }
+  if( ptr != nullptr )
+    ptr -> _color = BLACK;
+}
+
+template<typename T>
+void
+BSTree<T>::right_rot( BSTreeNode<T>* ptr ){
+
+#ifdef DEBUG
+  assert( ptr->_child_L != nullptr && "right rot error" );
+#endif // DEBUG
+  // suppose we right_rot( A );
+  // assume A._child_L != nullptr.
+  // =======before======
+  //        A
+  //       / \
+  //      B   C
+  //     / \
+  //    D   E                   
+  // =======after=======
+  //        B
+  //       / \
+  //      D   A
+  //         / \
+  //        E   C                
+  //
+  auto* B_ptr = ptr->_child_L;
+  B_ptr -> _parent = A -> _parent;
+
+  if( ptr == ptr->_parent->_child_L )
+    ptr->_parent->_child_L = B_ptr;
+  else if( ptr == ptr->_parent -> _child_R )
+    ptr->_parent->_child_R = B_ptr;
+  else
+    assert( 0 && "right rot bizzare error" );
+
+  // set parent of E to A.
+  B_ptr -> _child_R -> _parent = ptr;
+
+  // set _child_L of A to E.
+  ptr -> _child_L = B_ptr -> _child_R;
+
+  ptr -> _parent = B_ptr;
+  B_ptr -> _child_R = ptr;
+}
+
+template<typename T>
+void
+BSTree<T>::left__rot( BSTreeNode<T>* ptr ){
+#ifdef DEBUG
+  assert( ptr->_child_R != nullptr && "right rot error" );
+#endif // DEBUG
+  // suppose we left__rot( A );
+  // assume A._child_R != nullptr.
+  // =======before======
+  //        A
+  //       / \
+  //      B   C
+  //         / \
+  //        D   E                   
+  // =======after=======
+  //        C
+  //       / \
+  //      A   E
+  //     / \
+  //    B   D                    
+  //
+  auto* C_ptr = ptr->_child_R;
+  C_ptr -> _parent = A -> _parent;
+
+  if( ptr == ptr->_parent->_child_L )
+    ptr->_parent->_child_L = C_ptr;
+  else if( ptr == ptr->_parent -> _child_R )
+    ptr->_parent->_child_R = C_ptr;
+  else
+    assert( 0 && "right rot bizzare error" );
+
+  // set parent of D to A.
+  C_ptr -> _child_L -> _parent = ptr;
+
+  // set _child_R of A to E.
+  ptr -> _child_R = C_ptr -> _child_L;
+
+  ptr -> _parent = C_ptr;
+  C_ptr -> _child_L = ptr;
 }
 
 #endif // BST_H
