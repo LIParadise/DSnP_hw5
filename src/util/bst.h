@@ -30,14 +30,10 @@ class BSTreeNode
     BSTreeNode( const T& t, BSTreeNode<T>* ptrP = nullptr, 
         BSTreeNode<T>* ptrR = nullptr,
         BSTreeNode<T>* ptrL = nullptr):
-      _data(t), _parent(ptrP), _child_R(ptrR), _child_L(ptrL), _color(0){}
+      _data(t), _color(0), _parent(ptrP), 
+      _child_R(ptrR), _child_L(ptrL){}
     T              _data;
-    enum color {
-      RED           = 0;
-      BLACK         = 1;
-      RED_N_BLACK = 2;
-      DOUBLY_BLACK  = 3;
-    } _color;
+    int            _color;
     BSTreeNode<T>* _parent;
     BSTreeNode<T>* _child_R;
     BSTreeNode<T>* _child_L;
@@ -84,11 +80,17 @@ class BSTree
     void insert( const T& );
     void print() const;
   private:
+    enum color {
+      RED           = 0,
+      BLACK         = 1,
+      RED_N_BLACK   = 2,
+      DOUBLY_BLACK  = 3 
+    };
     BSTreeNode<T>* _root;
-    void insert_fix( BSTreeNode<T>* const ptr );
-    void delete_fix( BSTreeNode<T>* const ptr );
-    void right_rot ( const ptr );
-    void left__rot ( const ptr );
+    void insert_fix( BSTreeNode<T>* );
+    void delete_fix( BSTreeNode<T>* );
+    void right_rot ( BSTreeNode<T>* );
+    void left__rot ( BSTreeNode<T>* );
     size_t _size;
 };
 
@@ -127,7 +129,7 @@ BSTree<T>::insert( const T& other ){
 
 template<typename T>
 void
-BSTree<T>::insert_fix( BSTreeNode<T>* const ptr ){
+BSTree<T>::insert_fix( BSTreeNode<T>* ptr ){
   // ptr must have RED;
   if( ptr == _root ){
     assert( 0 && "WTF, insert_fix met root??" );

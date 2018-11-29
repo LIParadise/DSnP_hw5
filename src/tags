@@ -21,7 +21,7 @@ AdtTestObj	main/adtTest.h	/^class AdtTestObj$/;"	c
 AdtType	main/adtTest.h	29;"	d
 Array	util/array.h	/^   Array() : _data(0), _size(0), _capacity(0) {}$/;"	f	class:Array
 Array	util/array.h	/^class Array$/;"	c
-BLACK	util/bst.h	/^      BLACK         = 1;$/;"	e	enum:BSTreeNode::color
+BLACK	util/bst.h	/^      BLACK         = 1,$/;"	e	enum:BSTree::color
 BST_H	util/bst.h	10;"	d
 BSTree	util/bst.h	/^    BSTree(): _root( nullptr ), _size(0) {}$/;"	f	class:BSTree
 BSTree	util/bst.h	/^class BSTree$/;"	c
@@ -32,7 +32,7 @@ DList	util/dlist.h	/^   DList() {$/;"	f	class:DList
 DList	util/dlist.h	/^class DList$/;"	c
 DListNode	util/dlist.h	/^   DListNode(const T& d, DListNode<T>* p = 0, DListNode<T>* n = 0):$/;"	f	class:DListNode
 DListNode	util/dlist.h	/^class DListNode$/;"	c
-DOUBLY_BLACK	util/bst.h	/^      DOUBLY_BLACK  = 3;$/;"	e	enum:BSTreeNode::color
+DOUBLY_BLACK	util/bst.h	/^      DOUBLY_BLACK  = 3 $/;"	e	enum:BSTree::color
 MYCLK_TCK	util/myUsage.h	21;"	d
 MYCLK_TCK	util/myUsage.h	22;"	d
 MY_USAGE_H	util/myUsage.h	10;"	d
@@ -40,8 +40,8 @@ MyUsage	util/myUsage.h	/^   MyUsage() { reset(); }$/;"	f	class:MyUsage
 MyUsage	util/myUsage.h	/^class MyUsage$/;"	c
 N	main/adtTest.h	88;"	d
 RANDOM_ACCESS	main/adtTest.h	26;"	d
-RED	util/bst.h	/^      RED           = 0;$/;"	e	enum:BSTreeNode::color
-RED_N_BLACK	util/bst.h	/^      RED_N_BLACK = 2;$/;"	e	enum:BSTreeNode::color
+RED	util/bst.h	/^      RED           = 0,$/;"	e	enum:BSTree::color
+RED_N_BLACK	util/bst.h	/^      RED_N_BLACK   = 2,$/;"	e	enum:BSTree::color
 RN_GEN_H	util/rnGen.h	9;"	d
 RandomNumGen	util/rnGen.h	/^      RandomNumGen() { my_srandom(getpid()); }$/;"	f	class:RandomNumGen
 RandomNumGen	util/rnGen.h	/^      RandomNumGen(unsigned seed) { my_srandom(seed); }$/;"	f	class:RandomNumGen
@@ -52,7 +52,7 @@ UTIL_H	util/util.h	9;"	d
 _capacity	util/array.h	/^   size_t        _capacity;   \/\/ max number of elements$/;"	m	class:Array
 _child_L	util/bst.h	/^    BSTreeNode<T>* _child_L;$/;"	m	class:BSTreeNode
 _child_R	util/bst.h	/^    BSTreeNode<T>* _child_R;$/;"	m	class:BSTreeNode
-_color	util/bst.h	/^    } _color;$/;"	m	class:BSTreeNode	typeref:enum:BSTreeNode::color
+_color	util/bst.h	/^    int            _color;$/;"	m	class:BSTreeNode
 _container	main/adtTest.h	/^   AdtType<AdtTestObj>   _container;$/;"	m	class:AdtTest
 _currentMem	util/myUsage.h	/^   double     _currentMem;$/;"	m	class:MyUsage
 _currentTick	util/myUsage.h	/^   double     _currentTick;$/;"	m	class:MyUsage
@@ -86,7 +86,7 @@ checkTick	util/myUsage.h	/^   double checkTick() const {$/;"	f	class:MyUsage
 clear	util/array.h	/^void Array<T>::clear() {$/;"	f	class:Array
 clear	util/dlist.h	/^DList<T>::clear() {$/;"	f	class:DList
 clearList	util/util.h	/^void clearList(T& l)$/;"	f
-color	util/bst.h	/^    enum color {$/;"	g	class:BSTreeNode
+color	util/bst.h	/^    enum color {$/;"	g	class:BSTree
 deleteAll	main/adtTest.h	/^   void deleteAll() { _container.clear(); }$/;"	f	class:AdtTest
 deleteBack	main/adtTest.h	/^   void deleteBack(size_t repeat = 1) {$/;"	f	class:AdtTest
 deleteFront	main/adtTest.h	/^   void deleteFront(size_t repeat = 1) {$/;"	f	class:AdtTest
@@ -120,7 +120,7 @@ help	main/adtTest.cpp	/^AdtResetCmd::help() const$/;"	f	class:AdtResetCmd
 help	main/adtTest.cpp	/^AdtSortCmd::help() const$/;"	f	class:AdtSortCmd
 initAdtCmd	main/adtTest.cpp	/^initAdtCmd()$/;"	f
 insert	util/bst.h	/^BSTree<T>::insert( const T& other ){$/;"	f	class:BSTree
-insert_fix	util/bst.h	/^BSTree<T>::insert_fix( BSTreeNode<T>* const ptr ){$/;"	f	class:BSTree
+insert_fix	util/bst.h	/^BSTree<T>::insert_fix( BSTreeNode<T>* ptr ){$/;"	f	class:BSTree
 isValidVarName	util/myString.cpp	/^isValidVarName(const string& str)$/;"	f
 iterator	util/array.h	/^      iterator(T* n= 0): _node(n) {}$/;"	f	class:Array::iterator
 iterator	util/array.h	/^      iterator(const iterator& i): _node(i._node) {}$/;"	f	class:Array::iterator
