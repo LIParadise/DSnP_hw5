@@ -88,7 +88,9 @@ class BSTree
     };
     BSTreeNode<T>* _root;
     void insert_fix( BSTreeNode<T>* );
-    void delete_fix( BSTreeNode<T>* );
+    void delete_fix( BSTreeNode<T>*, BSTreeNode<T>*, bool);
+    // false mean _child_R;
+    // true  mean _child_L;
     void right_rot ( BSTreeNode<T>* );
     void left__rot ( BSTreeNode<T>* );
     size_t _size;
@@ -196,6 +198,28 @@ BSTree<T>::insert_fix( BSTreeNode<T>* ptr ){
     }
   }
   _root -> _color = BLACK;
+}
+
+template<typename T>
+void
+BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
+    BSTreeNode<T>* my_parent,
+    bool is_left_ch){
+  while( (ptr == nullptr || ptr -> _color == BLACK ) &&
+      (ptr != _root )) {
+    if( is_left_ch ){
+      // left child.
+      if( my_parent -> _child_R != nullptr &&
+          my_parent -> _child_R -> _color == RED ){
+        my_parent -> _child_R -> _color = BLACK;
+        my_parent -> _color = RED;
+        left__rot( my_parent );
+      }
+      if( ){}
+    }else{
+      // right child.
+    }
+  }
 }
 
 #endif // BST_H

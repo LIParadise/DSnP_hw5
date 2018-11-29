@@ -92,6 +92,7 @@ deleteBack	main/adtTest.h	/^   void deleteBack(size_t repeat = 1) {$/;"	f	class:
 deleteFront	main/adtTest.h	/^   void deleteFront(size_t repeat = 1) {$/;"	f	class:AdtTest
 deleteObj	main/adtTest.h	/^   bool deleteObj(const AdtTestObj& o) { return _container.erase(o); }$/;"	f	class:AdtTest
 deleteRandom	main/adtTest.h	/^   void deleteRandom(size_t repeat = 1) {$/;"	f	class:AdtTest
+delete_fix	util/bst.h	/^BSTree<T>::delete_fix( BSTreeNode<T>* ptr,$/;"	f	class:BSTree
 empty	util/array.h	/^bool Array<T>::empty() const {$/;"	f	class:Array
 empty	util/dlist.h	/^DList<T>::empty() const {$/;"	f	class:DList
 end	util/array.h	/^class Array<T>::iterator Array<T>::end() const {$/;"	f	class:Array
