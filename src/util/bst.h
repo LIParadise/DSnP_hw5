@@ -82,8 +82,9 @@ class BSTree
     static BSTreeNode<T>* predecessor( const iterator&  ) ;
     static BSTreeNode<T>* predecessor( BSTreeNode<T>*   ) ;
     iterator find(const T&);
-    iterator end()   const;
-    iterator begin() const;
+    BSTreeNode<T>* find(const T&, BSTreeNode<T>* );
+    iterator       end()   const;
+    iterator       begin() const;
 
     void insert( const T& );
     void print() const { /* TODO print black height and data*/};
@@ -117,7 +118,7 @@ BSTree<T>::iterator::operator * () {
 }
 
 template<typename T>
-class BSTree<T>::iterator&
+typename BSTree<T>::iterator&
 BSTree<T>::iterator::operator ++ () {
   // pre-increment operator ++;
   ptr = BSTree<T>::successor( ptr );
@@ -125,7 +126,7 @@ BSTree<T>::iterator::operator ++ () {
 }
 
 template<typename T>
-class BSTree<T>::iterator
+typename BSTree<T>::iterator
 BSTree<T>::iterator::operator ++ (int dummy ){
   // post-increment operator ++;
   auto* ret = ptr;
@@ -134,7 +135,7 @@ BSTree<T>::iterator::operator ++ (int dummy ){
 }
 
 template<typename T>
-class BSTree<T>::iterator&
+typename BSTree<T>::iterator&
 BSTree<T>::iterator::operator -- () {
   // pre-increment operator --;
   ptr = BSTree<T>::predecessor( ptr );
@@ -142,7 +143,7 @@ BSTree<T>::iterator::operator -- () {
 }
 
 template<typename T>
-class BSTree<T>::iterator
+typename BSTree<T>::iterator
 BSTree<T>::iterator::operator -- (int dummy ){
   // post-increment operator --;
   auto* ret = ptr;
@@ -151,7 +152,7 @@ BSTree<T>::iterator::operator -- (int dummy ){
 }
 
 template<typename T>
-class BSTree<T>::iterator&
+typename BSTree<T>::iterator&
 BSTree<T>::iterator::operator = (const iterator& i ){
   ptr = i.ptr;
 }
@@ -270,15 +271,17 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
   if( ptr -> _child_R == nullptr ){
     successor_ptr = ptr -> _child_L;
     transplant( ptr, successor_ptr );
+    delete_fix( nullptr, ptr, false );
   }else if( ptr -> _child_L == nullptr ){
     successor_ptr = ptr -> _child_R;
     transplant( ptr, successor_ptr );
+    delete_fix( nullptr, ptr, true );
   }else{
     auto* successor_ptr = successor( ptr->_child_R );
-    if( successor_ptr == nullptr )
-      color_bak = BLACK;
-    else
-      color_bak = successor_ptr -> _color;
+    if( successor_ptr == nullptr ){
+      assert( 0 && "wtf in successor(ptr)" );
+    }
+    color_bak = successor_ptr -> _color;
     if( successor_ptr -> _parent != ptr ){
       transplant( successor_ptr, successor_ptr -> _child_R );
       successor_ptr -> _child_R = ptr -> _child_R;
@@ -288,11 +291,31 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
     successor_ptr -> _child_L = ptr -> _child_L;
     successor_ptr -> _child_L -> _parent = ptr;
     successor_ptr -> _color = ptr -> _color;
+    if( successor_ptr == successor_ptr -> _parent -> _child_R &&
+        color_bak == BLACK ){
+      delete_fix( successor_ptr, ptr, false );
+    }else if( successor_ptr==successor_ptr->_parent->_child_L &&
+        color_bak == BLACK ){
+      delete_fix( successor_ptr, ptr, true );
+    }else if( color_bak == BLACK ){
+      assert( 0 && "erase error" );
+    }else{}
   }
-  if( color_bak == BLACK )
-    delete_fix( successor_ptr );
+  delete ptr;
+  return _root -> _color == BLACK;
 }
 
+template<typename T>
+bool
+BSTree<T>::erase( const T& other){
+  return erase ( find( other ) );
+}
+
+template<typename T>
+bool
+BSTree<T>::erase( iterator pos ){
+  return ( erase( pos.ptr ) );
+}
 
 template<typename T>
 BSTreeNode<T>*
@@ -348,6 +371,78 @@ BSTree<T>::predecessor( BSTreeNode<T>* ptr ) {
 }
 
 template<typename T>
+BSTreeNode<T>*
+BSTree<T>::predecessor( const iterator& it ){
+  return predecessor( it.ptr );
+}
+
+template<typename T>
+BSTreeNode<T>*
+BSTree<T>::successor( const iterator& it ){
+  return successor( it.ptr );
+}
+
+template<typename T>
+typename BSTree<T>::iterator
+BSTree<T>::find( const T& other ) {
+  return find( other, _root );
+}
+
+template<typename T>
+BSTreeNode<T>*
+BSTree<T>::find( const T& other, BSTreeNode<T>* ptr ){
+  BSTreeNode<T>* tmp_ptr = nullptr;
+  if( ptr -> _child_L != nullptr ){
+    tmp_ptr = find( other, ptr -> _child_L );
+    if( tmp_ptr != nullptr )
+      return tmp_ptr;
+  }
+  if( ptr -> _data == other ){
+    return ptr;
+  }
+  if( ptr -> _child_R != nullptr ){
+    tmp_ptr = find( other, ptr -> _child_R );
+    if( tmp_ptr != nullptr )
+      return tmp_ptr;
+  }
+  return nullptr;
+}
+
+template<typename T>
+BSTreeNode<T>*
+BSTree<T>::max() const {
+  if( empty() )
+    return nullptr;
+  auto* ptr = _root;
+  while( ptr -> _child_R != nullptr )
+    ptr = ptr -> _child_R;
+  return ptr;
+}
+
+template<typename T>
+BSTreeNode<T>*
+BSTree<T>::min() const {
+  if( empty() )
+    return nullptr;
+  auto* ptr = _root;
+  while( ptr -> _child_L != nullptr )
+    ptr = ptr -> _child_L;
+  return ptr;
+}
+
+template<typename T>
+typename BSTree<T>::iterator
+BSTree<T>::end() const {
+  return nullptr;
+}
+
+template<typename T>
+typename BSTree<T>::iterator
+BSTree<T>::begin() const {
+  return _root;
+}
+
+template<typename T>
 void
 BSTree<T>::insert( const T& other ){
   if( empty() ){
@@ -360,6 +455,7 @@ BSTree<T>::insert( const T& other ){
       if( other > ptr->_data ){
         if( ptr->_child_R == nullptr ){
           ptr->_child_R = new BSTreeNode<T>( other, ptr);
+          ptr = ptr->_child_R;
           done = true;
         }else{
           ptr = ptr->_child_R;
@@ -368,6 +464,7 @@ BSTree<T>::insert( const T& other ){
       }else{
         if( ptr->_child_L == nullptr ){
           ptr->_child_L = new BSTreeNode<T>( other, ptr);
+          ptr = ptr -> _child_L;
           done = true;
         }else{
           ptr = ptr->_child_L;
@@ -558,15 +655,18 @@ BSTree<T>::right_rot( BSTreeNode<T>* ptr ){
   auto* B_ptr = ptr->_child_L;
   B_ptr -> _parent = ptr -> _parent;
 
-  if( ptr == ptr->_parent->_child_L )
-    ptr->_parent->_child_L = B_ptr;
-  else if( ptr == ptr->_parent -> _child_R )
-    ptr->_parent->_child_R = B_ptr;
-  else
-    assert( 0 && "right rot bizzare error" );
+  if( ptr != _root ){
+    if( ptr == ptr->_parent->_child_L )
+      ptr->_parent->_child_L = B_ptr;
+    else if( ptr == ptr->_parent -> _child_R )
+      ptr->_parent->_child_R = B_ptr;
+    else
+      assert( 0 && "right rot bizzare error" );
+  }
 
   // set parent of E to A.
-  B_ptr -> _child_R -> _parent = ptr;
+  if( B_ptr -> _child_R != nullptr )
+    B_ptr -> _child_R -> _parent = ptr;
 
   // set _child_L of A to E.
   ptr -> _child_L = B_ptr -> _child_R;
@@ -600,21 +700,44 @@ BSTree<T>::left__rot( BSTreeNode<T>* ptr ){
   auto* C_ptr = ptr->_child_R;
   C_ptr -> _parent = ptr -> _parent;
 
-  if( ptr == ptr->_parent->_child_L )
-    ptr->_parent->_child_L = C_ptr;
-  else if( ptr == ptr->_parent -> _child_R )
-    ptr->_parent->_child_R = C_ptr;
-  else
-    assert( 0 && "left rot bizzare error" );
+  if( ptr != _root ){
+    if( ptr == ptr->_parent->_child_L )
+      ptr->_parent->_child_L = C_ptr;
+    else if( ptr == ptr->_parent -> _child_R )
+      ptr->_parent->_child_R = C_ptr;
+    else
+      assert( 0 && "left rot bizzare error" );
+  }
 
   // set parent of D to A.
-  C_ptr -> _child_L -> _parent = ptr;
+  if( C_ptr -> _child_L != nullptr )
+    C_ptr -> _child_L -> _parent = ptr;
 
-  // set _child_R of A to E.
+  // set _child_R of A to D.
   ptr -> _child_R = C_ptr -> _child_L;
 
   ptr -> _parent = C_ptr;
   C_ptr -> _child_L = ptr;
+}
+
+template<typename T>
+void
+BSTree<T>::transplant( BSTreeNode<T>* ptr1, BSTreeNode<T>* ptr2 ){
+  // attach ptr2 to ptr1.
+  // don't care what ptr1 would be.
+#ifdef DEBUG
+  assert( ptr1 != nullptr && "wtf in transplant?" );
+#endif // DEBUG
+  if( ptr1 == _root )
+    _root = ptr2;
+  else if( ptr1 == ptr1 -> _parent -> _child_R )
+    ptr1 -> _parent -> _child_R = ptr2;
+  else if( ptr1 == ptr1 -> _parent -> _child_L )
+    ptr1 -> _parent -> _child_L = ptr2;
+  else
+    assert( 0 && "wtf in transplant????" );
+  if( ptr2 != nullptr )
+    ptr2 -> _parent = ptr1 -> _parent;
 }
 
 #endif // BST_H

@@ -78,6 +78,7 @@ add	main/adtTest.h	/^   void add() { add(AdtTestObj()); }$/;"	f	class:AdtTest
 add	main/adtTest.h	/^   void add(const AdtTestObj& o) {$/;"	f	class:AdtTest
 adtTest	main/adtTest.cpp	/^AdtTest adtTest;$/;"	v
 begin	util/array.h	/^class Array<T>::iterator Array<T>::begin() const {$/;"	f	class:Array
+begin	util/bst.h	/^BSTree<T>::begin() const {$/;"	f	class:BSTree
 begin	util/dlist.h	/^DList<T>::begin() const {$/;"	f	class:DList
 checkMem	util/myUsage.h	/^   double checkMem() const {$/;"	f	class:MyUsage
 checkTick	util/myUsage.h	/^   double checkTick() const {$/;"	f	class:MyUsage
@@ -97,10 +98,13 @@ empty	util/array.h	/^bool Array<T>::empty() const {$/;"	f	class:Array
 empty	util/bst.h	/^BSTree<T>::empty() const {$/;"	f	class:BSTree
 empty	util/dlist.h	/^DList<T>::empty() const {$/;"	f	class:DList
 end	util/array.h	/^class Array<T>::iterator Array<T>::end() const {$/;"	f	class:Array
+end	util/bst.h	/^BSTree<T>::end() const {$/;"	f	class:BSTree
 end	util/dlist.h	/^DList<T>::end() const {$/;"	f	class:DList
 erase	util/array.h	/^bool Array<T>::erase( Array<T>::iterator it ){$/;"	f	class:Array
 erase	util/array.h	/^bool Array<T>::erase( const T& other ){$/;"	f	class:Array
 erase	util/bst.h	/^BSTree<T>::erase( BSTreeNode<T>* ptr ) {$/;"	f	class:BSTree
+erase	util/bst.h	/^BSTree<T>::erase( const T& other){$/;"	f	class:BSTree
+erase	util/bst.h	/^BSTree<T>::erase( iterator pos ){$/;"	f	class:BSTree
 erase	util/dlist.h	/^DList<T>::erase( DList<T>::iterator pos ){$/;"	f	class:DList
 erase	util/dlist.h	/^DList<T>::erase( const T& other ){$/;"	f	class:DList
 exec	main/adtTest.cpp	/^AdtAddCmd::exec(const string& option)$/;"	f	class:AdtAddCmd
@@ -111,6 +115,8 @@ exec	main/adtTest.cpp	/^AdtResetCmd::exec(const string& option)$/;"	f	class:AdtR
 exec	main/adtTest.cpp	/^AdtSortCmd::exec(const string& option)$/;"	f	class:AdtSortCmd
 find	main/adtTest.h	/^   bool find(const AdtTestObj& n) {$/;"	f	class:AdtTest
 find	util/array.h	/^class Array<T>::iterator Array<T>::find ( const T& other){$/;"	f	class:Array
+find	util/bst.h	/^BSTree<T>::find( const T& other ) {$/;"	f	class:BSTree
+find	util/bst.h	/^BSTree<T>::find( const T& other, BSTreeNode<T>* ptr ){$/;"	f	class:BSTree
 find	util/dlist.h	/^DList<T>::find( const T& other ){$/;"	f	class:DList
 getHashSize	util/util.cpp	/^size_t getHashSize(size_t s) {$/;"	f
 getLen	main/adtTest.h	/^   static int getLen() { return _strLen; }$/;"	f	class:AdtTestObj
@@ -137,6 +143,8 @@ iterator	util/dlist.h	/^   class iterator$/;"	c	class:DList
 left__rot	util/bst.h	/^BSTree<T>::left__rot( BSTreeNode<T>* ptr ){$/;"	f	class:BSTree
 listDir	util/util.cpp	/^int listDir$/;"	f
 main	main/main.cpp	/^main(int argc, char** argv)$/;"	f
+max	util/bst.h	/^BSTree<T>::max() const {$/;"	f	class:BSTree
+min	util/bst.h	/^BSTree<T>::min() const {$/;"	f	class:BSTree
 myGetChar	util/myGetChar.cpp	/^char myGetChar()$/;"	f
 myGetChar	util/myGetChar.cpp	/^char myGetChar(istream& istr)$/;"	f
 myStr2Int	util/myString.cpp	/^myStr2Int(const string& str, int& num)$/;"	f
@@ -196,6 +204,7 @@ pop_front	util/array.h	/^void Array<T>::pop_front() {$/;"	f	class:Array
 pop_front	util/bst.h	/^BSTree<T>::pop_front () {$/;"	f	class:BSTree
 pop_front	util/dlist.h	/^DList<T>::pop_front() {$/;"	f	class:DList
 predecessor	util/bst.h	/^BSTree<T>::predecessor( BSTreeNode<T>* ptr ) {$/;"	f	class:BSTree
+predecessor	util/bst.h	/^BSTree<T>::predecessor( const iterator& it ){$/;"	f	class:BSTree
 print	main/adtTest.h	/^   void print(bool reverse = false, bool verbose = false) const {$/;"	f	class:AdtTest
 print	util/bst.h	/^    void print() const { \/* TODO print black height and data*\/};$/;"	f	class:BSTree
 printBackward	main/adtTest.h	/^   void printBackward() const {$/;"	f	class:AdtTest
@@ -225,6 +234,8 @@ sort	util/bst.h	/^BSTree<T>::sort() const {$/;"	f	class:BSTree
 sort	util/dlist.h	/^DList<T>::sort() const {$/;"	f	class:DList
 stored_settings	util/myGetChar.cpp	/^static struct termios stored_settings;$/;"	v	typeref:struct:termios	file:
 successor	util/bst.h	/^BSTree<T>::successor( BSTreeNode<T>* ptr ){$/;"	f	class:BSTree
+successor	util/bst.h	/^BSTree<T>::successor( const iterator& it ){$/;"	f	class:BSTree
+transplant	util/bst.h	/^BSTree<T>::transplant( BSTreeNode<T>* ptr1, BSTreeNode<T>* ptr2 ){$/;"	f	class:BSTree
 usage	main/adtTest.cpp	/^AdtAddCmd::usage(ostream& os) const$/;"	f	class:AdtAddCmd
 usage	main/adtTest.cpp	/^AdtDeleteCmd::usage(ostream& os) const$/;"	f	class:AdtDeleteCmd
 usage	main/adtTest.cpp	/^AdtPrintCmd::usage(ostream& os) const$/;"	f	class:AdtPrintCmd
