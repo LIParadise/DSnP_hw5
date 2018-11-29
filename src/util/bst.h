@@ -32,11 +32,11 @@ class BSTreeNode
         BSTreeNode<T>* ptrL = nullptr):
       _data(t), _color(0), _parent(ptrP), 
       _child_R(ptrR), _child_L(ptrL){}
-    T              _data;
-    int            _color;
-    BSTreeNode<T>* _parent;
-    BSTreeNode<T>* _child_R;
-    BSTreeNode<T>* _child_L;
+    T                 _data;
+    char              _color;
+    BSTreeNode<T>*    _parent;
+    BSTreeNode<T>*    _child_R;
+    BSTreeNode<T>*    _child_L;
 };
 
 
@@ -80,12 +80,8 @@ class BSTree
     void insert( const T& );
     void print() const;
   private:
-    enum color {
-      RED           = 0,
-      BLACK         = 1,
-      RED_N_BLACK   = 2,
-      DOUBLY_BLACK  = 3 
-    };
+    static const int RED   = 0;
+    static const int BLACK = 1;
     BSTreeNode<T>* _root;
     void insert_fix( BSTreeNode<T>* );
     void delete_fix( BSTreeNode<T>*, BSTreeNode<T>*, bool);
@@ -211,11 +207,25 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
       // left child.
       if( my_parent -> _child_R != nullptr &&
           my_parent -> _child_R -> _color == RED ){
-        my_parent -> _child_R -> _color = BLACK;
         my_parent -> _color = RED;
-        left__rot( my_parent );
+        my_parent -> _child_R -> _color = BLACK;
+        left__rot( my_parent);
       }
-      if( ){}
+      if( my_parent -> _child_R != nullptr ){
+        if( my_parent->_child_R->_child_L == nullptr ||
+            my_parent->_child_R->_child_L -> _color == BLACK ){
+          if( my_parent->_child_R->_child_R == nullptr ||
+              my_parent->_child_R->_child_R -> _color == BLACK ){
+            // too many black in both side.
+            my_parent -> _child_R -> _color = RED;
+            ptr = my_parent;
+            my_parent = ptr->_parent;
+            // valid operation
+            // since ptr is never root before this two line.
+          }
+        }
+      }
+
     }else{
       // right child.
     }
