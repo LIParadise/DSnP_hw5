@@ -98,6 +98,7 @@ class BSTree
     void right_rot ( BSTreeNode<T>* );
     void left__rot ( BSTreeNode<T>* );
     void check_sort( BSTreeNode<T>* ) const;
+    void transplant( BSTreeNode<T>*, BSTreeNode<T>* );
     BSTreeNode<T>* max () const;
     BSTreeNode<T>* min () const;
     size_t _size;
@@ -177,6 +178,7 @@ BSTree<T>::pop_front () {
 #else
   erase( min() );
 #endif // DEBUG
+  _size --;
 }
       
 template<typename T>
@@ -189,6 +191,7 @@ BSTree<T>::pop_back() {
 #else
   erase( max() );
 #endif // DEBUG
+  _size --;
 }
 
 template<typename T>
@@ -196,6 +199,7 @@ void
 BSTree<T>::clear() {
   clear( _root );
   _root = nullptr;
+  _size = 0;
 }
 
 template<typename T>
@@ -232,6 +236,63 @@ BSTree<T>::check_sort ( BSTreeNode<T>* ptr ) const{
     assert(ptr->_child_R->_data >= ptr->_data && "sort err");
   }
 }
+
+template<typename T>
+size_t
+BSTree<T>::size() const {
+  return _size;
+}
+
+template<typename T>
+bool
+BSTree<T>::empty() const {
+#ifdef DEBUG
+  if( _size == 0 ){
+    assert( _root == nullptr && "empty  error" );
+    return true;
+  }else{
+    assert( _root != nullptr && "!empty error" );
+    return false;
+  }
+#else
+  return _size == 0;
+#endif // DEBUG
+}
+
+template<typename T>
+bool
+BSTree<T>::erase( BSTreeNode<T>* ptr ) {
+  if( ptr == nullptr )
+    return false;
+
+  char color_bak = ptr -> _color;
+  auto* successor_ptr = ptr;
+  if( ptr -> _child_R == nullptr ){
+    successor_ptr = ptr -> _child_L;
+    transplant( ptr, successor_ptr );
+  }else if( ptr -> _child_L == nullptr ){
+    successor_ptr = ptr -> _child_R;
+    transplant( ptr, successor_ptr );
+  }else{
+    auto* successor_ptr = successor( ptr->_child_R );
+    if( successor_ptr == nullptr )
+      color_bak = BLACK;
+    else
+      color_bak = successor_ptr -> _color;
+    if( successor_ptr -> _parent != ptr ){
+      transplant( successor_ptr, successor_ptr -> _child_R );
+      successor_ptr -> _child_R = ptr -> _child_R;
+      successor_ptr -> _parent  = ptr;
+    }
+    transplant( ptr, successor_ptr );
+    successor_ptr -> _child_L = ptr -> _child_L;
+    successor_ptr -> _child_L -> _parent = ptr;
+    successor_ptr -> _color = ptr -> _color;
+  }
+  if( color_bak == BLACK )
+    delete_fix( successor_ptr );
+}
+
 
 template<typename T>
 BSTreeNode<T>*

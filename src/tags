@@ -94,11 +94,13 @@ deleteObj	main/adtTest.h	/^   bool deleteObj(const AdtTestObj& o) { return _cont
 deleteRandom	main/adtTest.h	/^   void deleteRandom(size_t repeat = 1) {$/;"	f	class:AdtTest
 delete_fix	util/bst.h	/^BSTree<T>::delete_fix( BSTreeNode<T>* ptr,$/;"	f	class:BSTree
 empty	util/array.h	/^bool Array<T>::empty() const {$/;"	f	class:Array
+empty	util/bst.h	/^BSTree<T>::empty() const {$/;"	f	class:BSTree
 empty	util/dlist.h	/^DList<T>::empty() const {$/;"	f	class:DList
 end	util/array.h	/^class Array<T>::iterator Array<T>::end() const {$/;"	f	class:Array
 end	util/dlist.h	/^DList<T>::end() const {$/;"	f	class:DList
 erase	util/array.h	/^bool Array<T>::erase( Array<T>::iterator it ){$/;"	f	class:Array
 erase	util/array.h	/^bool Array<T>::erase( const T& other ){$/;"	f	class:Array
+erase	util/bst.h	/^BSTree<T>::erase( BSTreeNode<T>* ptr ) {$/;"	f	class:BSTree
 erase	util/dlist.h	/^DList<T>::erase( DList<T>::iterator pos ){$/;"	f	class:DList
 erase	util/dlist.h	/^DList<T>::erase( const T& other ){$/;"	f	class:DList
 exec	main/adtTest.cpp	/^AdtAddCmd::exec(const string& option)$/;"	f	class:AdtAddCmd
@@ -215,6 +217,7 @@ setTimeUsage	util/myUsage.h	/^   void setTimeUsage() {$/;"	f	class:MyUsage
 set_keypress	util/myGetChar.cpp	/^static void set_keypress(void)$/;"	f	file:
 size	main/adtTest.h	/^   size_t size() const { return _container.size(); }$/;"	f	class:AdtTest
 size	util/array.h	/^size_t Array<T>::size() const {$/;"	f	class:Array
+size	util/bst.h	/^BSTree<T>::size() const {$/;"	f	class:BSTree
 size	util/dlist.h	/^DList<T>::size() const {$/;"	f	class:DList
 sort	main/adtTest.h	/^   void sort() { _container.sort(); }$/;"	f	class:AdtTest
 sort	util/array.h	/^   void sort() const { if (!empty()) ::sort(_data, _data+_size); }$/;"	f	class:Array
