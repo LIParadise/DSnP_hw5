@@ -49,6 +49,8 @@ class BSTree
     class iterator {
       public:
         friend class BSTree;
+        iterator():ptr(nullptr) {}
+        iterator(BSTreeNode<T>* p):ptr(p) {}
         const T&  operator *   () const             ;
         T&        operator *   ()                   ;
         iterator& operator ++  ()                   ;
@@ -73,12 +75,16 @@ class BSTree
     bool    erase( iterator pos );
     // pos would be valid except when ADT.empty() in this homework.
     // pos invalid iff ADT is empty, return false in this case.
+    static BSTreeNode<T>* successor  ( const iterator&  ) ;
+    static BSTreeNode<T>* successor  ( BSTreeNode<T>*   ) ;
+    static BSTreeNode<T>* predecessor( const iterator&  ) ;
+    static BSTreeNode<T>* predecessor( BSTreeNode<T>*   ) ;
     iterator find(const T&);
     iterator end()   const;
     iterator begin() const;
 
     void insert( const T& );
-    void print() const;
+    void print() const { /* TODO print black height and data*/};
   private:
     static const int RED   = 0;
     static const int BLACK = 1;
@@ -91,6 +97,105 @@ class BSTree
     void left__rot ( BSTreeNode<T>* );
     size_t _size;
 };
+
+template<typename T>
+const T&
+BSTree<T>::iterator::operator * () const {
+  return ptr -> _data;
+}
+
+template<typename T>
+T&
+BSTree<T>::iterator::operator * () {
+  return ptr -> _data;
+}
+
+template<typename T>
+class BSTree<T>::iterator&
+BSTree<T>::iterator::operator ++ () {
+  // pre-increment operator ++;
+  ptr = BSTree<T>::successor( ptr );
+  return *this;
+}
+
+template<typename T>
+class BSTree<T>::iterator
+BSTree<T>::iterator::operator ++ (int dummy ){
+  // post-increment operator ++;
+  auto* ret = ptr;
+  this->operator ++();
+  return ret;
+}
+
+template<typename T>
+class BSTree<T>::iterator&
+BSTree<T>::iterator::operator -- () {
+  // pre-increment operator --;
+  ptr = BSTree<T>::predecessor( ptr );
+  return *this;
+}
+
+template<typename T>
+class BSTree<T>::iterator
+BSTree<T>::iterator::operator -- (int dummy ){
+  // post-increment operator --;
+  auto* ret = ptr;
+  this->operator --();
+  return ret;
+}
+
+template<typename T>
+BSTreeNode<T>*
+BSTree<T>::successor( BSTreeNode<T>* ptr ){
+  if( ptr == nullptr )
+    return nullptr;
+  else if( ptr -> _child_R == nullptr ){
+    if( ptr -> _parent == nullptr ){
+#ifdef DEBUG
+      assert ( ptr == _root );
+#endif // DEBUG
+      return nullptr;
+    }
+    auto* ptr_bak = ptr;
+    do{
+      ptr_bak = ptr;
+      ptr     = ptr -> _parent;
+    }while( ptr != nullptr && ptr_bak != ptr -> _child_L );
+  }else {
+    ptr = ptr -> _child_R;
+    while( ptr -> _child_L != nullptr ){
+      ptr = ptr -> _child_L;
+    }
+  }
+  return ptr;
+}
+
+template<typename T>
+BSTreeNode<T>*
+BSTree<T>::predecessor( BSTreeNode<T>* ptr ) {
+  if( ptr == nullptr )
+    // nil
+    return nullptr;
+  else if( ptr -> _child_L == nullptr ){
+    if( ptr -> _parent == nullptr ){
+#ifdef DEBUG
+      assert ( ptr == _root );
+#endif // DEBUG
+      return nullptr;
+    }
+    auto* ptr_bak = ptr;
+    do{
+      ptr_bak = ptr;
+      ptr     = ptr -> _parent;
+    }while( ptr != nullptr && ptr_bak != ptr -> _child_R );
+  }else {
+    ptr = ptr -> _child_L;
+    while( ptr -> _child_R != nullptr ){
+      ptr = ptr -> _child_R;
+    }
+  }
+  return ptr;
+}
 
 template<typename T>
 void
@@ -224,8 +329,8 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
         }
       }
       if( my_parent -> _child_R != nullptr &&
-         (my_parent -> _child_R -> _child_R == nullptr ||
-          my_parent -> _child_R -> _child_R -> _color == BLACK ) ){
+          (my_parent -> _child_R -> _child_R == nullptr ||
+           my_parent -> _child_R -> _child_R -> _color == BLACK ) ){
         if( my_parent->_child_R->_child_L != nullptr ){
           my_parent->_child_R->_child_L->_color = BLACK;
           my_parent -> _child_R -> _color = RED;
@@ -258,8 +363,8 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
         }
       }
       if( my_parent -> _child_L != nullptr &&
-         (my_parent -> _child_L -> _child_L == nullptr ||
-          my_parent -> _child_L -> _child_L -> _color == BLACK ) ){
+          (my_parent -> _child_L -> _child_L == nullptr ||
+           my_parent -> _child_L -> _child_L -> _color == BLACK ) ){
         if( my_parent->_child_L->_child_L != nullptr ){
           my_parent->_child_L->_child_R->_color = BLACK;
           my_parent -> _child_L -> _color = RED;
@@ -284,23 +389,24 @@ BSTree<T>::right_rot( BSTreeNode<T>* ptr ){
 #ifdef DEBUG
   assert( ptr->_child_L != nullptr && "right rot error" );
 #endif // DEBUG
-  // suppose we right_rot( A );
-  // assume A._child_L != nullptr.
-  // =======before======
-  //        A
-  //       / \
-  //      B   C
-  //     / \
-  //    D   E                   
-  // =======after=======
-  //        B
-  //       / \
-  //      D   A
-  //         / \
-  //        E   C                
-  //
+  /*  suppose we right_rot( A );
+  /// assume A._child_L != nullptr.
+  /// =======before======
+  ///        A
+  ///       / \
+  ///      B   C
+  ///     / \
+  ///    D   E                   
+  /// =======after=======
+  ///        B
+  ///       / \
+  ///      D   A
+  ///         / \
+  ///        E   C                
+  ///
+   */
   auto* B_ptr = ptr->_child_L;
-  B_ptr -> _parent = A -> _parent;
+  B_ptr -> _parent = ptr -> _parent;
 
   if( ptr == ptr->_parent->_child_L )
     ptr->_parent->_child_L = B_ptr;
@@ -325,30 +431,31 @@ BSTree<T>::left__rot( BSTreeNode<T>* ptr ){
 #ifdef DEBUG
   assert( ptr->_child_R != nullptr && "right rot error" );
 #endif // DEBUG
-  // suppose we left__rot( A );
-  // assume A._child_R != nullptr.
-  // =======before======
-  //        A
-  //       / \
-  //      B   C
-  //         / \
-  //        D   E                   
-  // =======after=======
-  //        C
-  //       / \
-  //      A   E
-  //     / \
-  //    B   D                    
-  //
+  /*  suppose we left__rot( A );
+  /// assume A._child_R != nullptr.
+  /// =======before======
+  ///        A
+  ///       / \
+  ///      B   C
+  ///         / \
+  ///        D   E                   
+  /// =======after=======
+  ///        C
+  ///       / \
+  ///      A   E
+  ///     / \
+  ///    B   D                    
+  ///
+   */
   auto* C_ptr = ptr->_child_R;
-  C_ptr -> _parent = A -> _parent;
+  C_ptr -> _parent = ptr -> _parent;
 
   if( ptr == ptr->_parent->_child_L )
     ptr->_parent->_child_L = C_ptr;
   else if( ptr == ptr->_parent -> _child_R )
     ptr->_parent->_child_R = C_ptr;
   else
-    assert( 0 && "right rot bizzare error" );
+    assert( 0 && "left rot bizzare error" );
 
   // set parent of D to A.
   C_ptr -> _child_L -> _parent = ptr;

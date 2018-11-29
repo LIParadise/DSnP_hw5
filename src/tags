@@ -123,6 +123,8 @@ isValidVarName	util/myString.cpp	/^isValidVarName(const string& str)$/;"	f
 iterator	util/array.h	/^      iterator(T* n= 0): _node(n) {}$/;"	f	class:Array::iterator
 iterator	util/array.h	/^      iterator(const iterator& i): _node(i._node) {}$/;"	f	class:Array::iterator
 iterator	util/array.h	/^   class iterator$/;"	c	class:Array
+iterator	util/bst.h	/^        iterator():ptr(nullptr) {}$/;"	f	class:BSTree::iterator
+iterator	util/bst.h	/^        iterator(BSTreeNode<T>* p):ptr(p) {}$/;"	f	class:BSTree::iterator
 iterator	util/bst.h	/^    class iterator {$/;"	c	class:BSTree
 iterator	util/dlist.h	/^      iterator(DListNode<T>* n= 0): _node(n) {}$/;"	f	class:DList::iterator
 iterator	util/dlist.h	/^      iterator(const iterator& i) : _node(i._node) {}$/;"	f	class:DList::iterator
@@ -149,16 +151,22 @@ operator !=	util/dlist.h	/^DList<T>::iterator::operator != ( $/;"	f	class:DList:
 operator ()	util/rnGen.h	/^      const int operator() (const int range) const {$/;"	f	class:RandomNumGen
 operator *	util/array.h	/^T& Array<T>::iterator::operator * () {$/;"	f	class:Array::iterator
 operator *	util/array.h	/^const T& Array<T>::iterator::operator * () const {$/;"	f	class:Array::iterator
+operator *	util/bst.h	/^BSTree<T>::iterator::operator * () const {$/;"	f	class:BSTree::iterator
+operator *	util/bst.h	/^BSTree<T>::iterator::operator * () {$/;"	f	class:BSTree::iterator
 operator *	util/dlist.h	/^DList<T>::iterator::operator * () const {$/;"	f	class:DList::iterator
 operator *	util/dlist.h	/^DList<T>::iterator::operator * () {$/;"	f	class:DList::iterator
 operator +	util/array.h	/^Array<T>::iterator::operator + (int i ) const{$/;"	f	class:Array::iterator
 operator ++	util/array.h	/^class Array<T>::iterator Array<T>::iterator::operator ++ (int i) {$/;"	f	class:Array::iterator
 operator ++	util/array.h	/^class Array<T>::iterator& Array<T>::iterator::operator ++ () {$/;"	f	class:Array::iterator
+operator ++	util/bst.h	/^BSTree<T>::iterator::operator ++ () {$/;"	f	class:BSTree::iterator
+operator ++	util/bst.h	/^BSTree<T>::iterator::operator ++ (int dummy ){$/;"	f	class:BSTree::iterator
 operator ++	util/dlist.h	/^DList<T>::iterator::operator ++ () {$/;"	f	class:DList::iterator
 operator ++	util/dlist.h	/^DList<T>::iterator::operator ++ (int dummy ) {$/;"	f	class:DList::iterator
 operator +=	util/array.h	/^Array<T>::iterator::operator += ( int i ){$/;"	f	class:Array::iterator
 operator --	util/array.h	/^class Array<T>::iterator Array<T>::iterator::operator -- (int i) {$/;"	f	class:Array::iterator
 operator --	util/array.h	/^class Array<T>::iterator& Array<T>::iterator::operator -- () {$/;"	f	class:Array::iterator
+operator --	util/bst.h	/^BSTree<T>::iterator::operator -- () {$/;"	f	class:BSTree::iterator
+operator --	util/bst.h	/^BSTree<T>::iterator::operator -- (int dummy ){$/;"	f	class:BSTree::iterator
 operator --	util/dlist.h	/^DList<T>::iterator::operator -- () {$/;"	f	class:DList::iterator
 operator --	util/dlist.h	/^DList<T>::iterator::operator -- (int dummy ) {$/;"	f	class:DList::iterator
 operator <	main/adtTest.h	/^   bool operator < (const AdtTestObj& o) const { return (_str < o._str); }$/;"	f	class:AdtTestObj
@@ -177,7 +185,9 @@ pop_back	util/array.h	/^void Array<T>::pop_back() {$/;"	f	class:Array
 pop_back	util/dlist.h	/^DList<T>::pop_back() {$/;"	f	class:DList
 pop_front	util/array.h	/^void Array<T>::pop_front() {$/;"	f	class:Array
 pop_front	util/dlist.h	/^DList<T>::pop_front() {$/;"	f	class:DList
+predecessor	util/bst.h	/^BSTree<T>::predecessor( BSTreeNode<T>* ptr ) {$/;"	f	class:BSTree
 print	main/adtTest.h	/^   void print(bool reverse = false, bool verbose = false) const {$/;"	f	class:AdtTest
+print	util/bst.h	/^    void print() const { \/* TODO print black height and data*\/};$/;"	f	class:BSTree
 printBackward	main/adtTest.h	/^   void printBackward() const {$/;"	f	class:AdtTest
 printData	main/adtTest.h	/^   void printData(size_t idx, AdtType<AdtTestObj>::iterator li,$/;"	f	class:AdtTest
 printData	main/adtTest.h	/^   void printData(size_t index) const {$/;"	f	class:AdtTest
@@ -202,6 +212,7 @@ sort	main/adtTest.h	/^   void sort() { _container.sort(); }$/;"	f	class:AdtTest
 sort	util/array.h	/^   void sort() const { if (!empty()) ::sort(_data, _data+_size); }$/;"	f	class:Array
 sort	util/dlist.h	/^DList<T>::sort() const {$/;"	f	class:DList
 stored_settings	util/myGetChar.cpp	/^static struct termios stored_settings;$/;"	v	typeref:struct:termios	file:
+successor	util/bst.h	/^BSTree<T>::successor( BSTreeNode<T>* ptr ){$/;"	f	class:BSTree
 usage	main/adtTest.cpp	/^AdtAddCmd::usage(ostream& os) const$/;"	f	class:AdtAddCmd
 usage	main/adtTest.cpp	/^AdtDeleteCmd::usage(ostream& os) const$/;"	f	class:AdtDeleteCmd
 usage	main/adtTest.cpp	/^AdtPrintCmd::usage(ostream& os) const$/;"	f	class:AdtPrintCmd
