@@ -66,9 +66,11 @@ class BSTree
     void    pop_front();
     void    pop_back();
     void    clear();
+    void    clear( BSTreeNode<T>* );
     void    sort() const;
     size_t  size() const;
     bool    empty() const;
+    bool    erase( BSTreeNode<T>* );
     bool    erase( const T& );
     // just erase first encountered.
     // return false iff not found.
@@ -95,6 +97,9 @@ class BSTree
     // true  mean _child_L;
     void right_rot ( BSTreeNode<T>* );
     void left__rot ( BSTreeNode<T>* );
+    void check_sort( BSTreeNode<T>* ) const;
+    BSTreeNode<T>* max () const;
+    BSTreeNode<T>* min () const;
     size_t _size;
 };
 
@@ -160,6 +165,72 @@ template<typename T>
 bool
 BSTree<T>::iterator::operator != (const iterator&i ) const {
   return !(this->operator == (i));
+}
+
+template<typename T>
+void
+BSTree<T>::pop_front () {
+  if( empty() )
+    return;
+#ifdef DEBUG
+  assert( erase( min() ) && "pop_front error" );
+#else
+  erase( min() );
+#endif // DEBUG
+}
+      
+template<typename T>
+void
+BSTree<T>::pop_back() {
+  if( empty() )
+    return;
+#ifdef DEBUG
+  assert( erase( max() ) && "pop_back error" );
+#else
+  erase( max() );
+#endif // DEBUG
+}
+
+template<typename T>
+void 
+BSTree<T>::clear() {
+  clear( _root );
+  _root = nullptr;
+}
+
+template<typename T>
+void
+BSTree<T>::clear( BSTreeNode<T>* ptr ){
+  if( ptr == nullptr )
+    return;
+  else {
+    if( ptr -> _child_L != nullptr )
+      clear( ptr -> _child_L );
+    if( ptr -> _child_R != nullptr )
+      clear( ptr -> _child_R );
+    delete ptr;
+  }
+}
+
+template<typename T>
+void
+BSTree<T>::sort() const {
+#ifdef DEBUG
+  check_sort( _root );
+#endif // DEBUG
+}
+
+template<typename T>
+void 
+BSTree<T>::check_sort ( BSTreeNode<T>* ptr ) const{
+  if( ptr -> _child_L != nullptr ){
+    check_sort( ptr -> _child_L );
+    assert(ptr->_child_L->_data <= ptr->_data && "sort err");
+  }
+  if( ptr -> _child_R != nullptr ){
+    check_sort( ptr -> _child_R );
+    assert(ptr->_child_R->_data >= ptr->_data && "sort err");
+  }
 }
 
 template<typename T>

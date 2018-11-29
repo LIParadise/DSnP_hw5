@@ -81,7 +81,10 @@ begin	util/array.h	/^class Array<T>::iterator Array<T>::begin() const {$/;"	f	cl
 begin	util/dlist.h	/^DList<T>::begin() const {$/;"	f	class:DList
 checkMem	util/myUsage.h	/^   double checkMem() const {$/;"	f	class:MyUsage
 checkTick	util/myUsage.h	/^   double checkTick() const {$/;"	f	class:MyUsage
+check_sort	util/bst.h	/^BSTree<T>::check_sort ( BSTreeNode<T>* ptr ) const{$/;"	f	class:BSTree
 clear	util/array.h	/^void Array<T>::clear() {$/;"	f	class:Array
+clear	util/bst.h	/^BSTree<T>::clear( BSTreeNode<T>* ptr ){$/;"	f	class:BSTree
+clear	util/bst.h	/^BSTree<T>::clear() {$/;"	f	class:BSTree
 clear	util/dlist.h	/^DList<T>::clear() {$/;"	f	class:DList
 clearList	util/util.h	/^void clearList(T& l)$/;"	f
 deleteAll	main/adtTest.h	/^   void deleteAll() { _container.clear(); }$/;"	f	class:AdtTest
@@ -185,8 +188,10 @@ operator >=	main/adtTest.h	/^   bool operator >= (const AdtTestObj& o) const { r
 operator []	util/array.h	/^T& Array<T>::operator [] (size_t i) {$/;"	f	class:Array
 operator []	util/array.h	/^const T& Array<T>::operator [] (size_t i) const {$/;"	f	class:Array
 pop_back	util/array.h	/^void Array<T>::pop_back() {$/;"	f	class:Array
+pop_back	util/bst.h	/^BSTree<T>::pop_back() {$/;"	f	class:BSTree
 pop_back	util/dlist.h	/^DList<T>::pop_back() {$/;"	f	class:DList
 pop_front	util/array.h	/^void Array<T>::pop_front() {$/;"	f	class:Array
+pop_front	util/bst.h	/^BSTree<T>::pop_front () {$/;"	f	class:BSTree
 pop_front	util/dlist.h	/^DList<T>::pop_front() {$/;"	f	class:DList
 predecessor	util/bst.h	/^BSTree<T>::predecessor( BSTreeNode<T>* ptr ) {$/;"	f	class:BSTree
 print	main/adtTest.h	/^   void print(bool reverse = false, bool verbose = false) const {$/;"	f	class:AdtTest
@@ -213,6 +218,7 @@ size	util/array.h	/^size_t Array<T>::size() const {$/;"	f	class:Array
 size	util/dlist.h	/^DList<T>::size() const {$/;"	f	class:DList
 sort	main/adtTest.h	/^   void sort() { _container.sort(); }$/;"	f	class:AdtTest
 sort	util/array.h	/^   void sort() const { if (!empty()) ::sort(_data, _data+_size); }$/;"	f	class:Array
+sort	util/bst.h	/^BSTree<T>::sort() const {$/;"	f	class:BSTree
 sort	util/dlist.h	/^DList<T>::sort() const {$/;"	f	class:DList
 stored_settings	util/myGetChar.cpp	/^static struct termios stored_settings;$/;"	v	typeref:struct:termios	file:
 successor	util/bst.h	/^BSTree<T>::successor( BSTreeNode<T>* ptr ){$/;"	f	class:BSTree
