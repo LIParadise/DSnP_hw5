@@ -145,6 +145,24 @@ BSTree<T>::iterator::operator -- (int dummy ){
 }
 
 template<typename T>
+class BSTree<T>::iterator&
+BSTree<T>::iterator::operator = (const iterator& i ){
+  ptr = i.ptr;
+}
+
+template<typename T>
+bool
+BSTree<T>::iterator::operator == (const iterator&i ) const {
+  return ( ptr == (i.ptr) );
+}
+
+template<typename T>
+bool
+BSTree<T>::iterator::operator != (const iterator&i ) const {
+  return !(this->operator == (i));
+}
+
+template<typename T>
 BSTreeNode<T>*
 BSTree<T>::successor( BSTreeNode<T>* ptr ){
   if( ptr == nullptr )

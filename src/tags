@@ -147,6 +147,7 @@ my_srandom	util/rnGen.h	16;"	d
 myexit	main/main.cpp	/^myexit()$/;"	f	file:
 operator !=	main/adtTest.h	/^   bool operator != (const AdtTestObj& o) const { return (_str != o._str); }$/;"	f	class:AdtTestObj
 operator !=	util/array.h	/^Array<T>::iterator::operator != (const iterator& other ) const{$/;"	f	class:Array::iterator
+operator !=	util/bst.h	/^BSTree<T>::iterator::operator != (const iterator&i ) const {$/;"	f	class:BSTree::iterator
 operator !=	util/dlist.h	/^DList<T>::iterator::operator != ( $/;"	f	class:DList::iterator
 operator ()	util/rnGen.h	/^      const int operator() (const int range) const {$/;"	f	class:RandomNumGen
 operator *	util/array.h	/^T& Array<T>::iterator::operator * () {$/;"	f	class:Array::iterator
@@ -173,9 +174,11 @@ operator <	main/adtTest.h	/^   bool operator < (const AdtTestObj& o) const { ret
 operator <<	main/adtTest.cpp	/^ostream& operator << (ostream& os, const AdtTestObj& o)$/;"	f
 operator <=	main/adtTest.h	/^   bool operator <= (const AdtTestObj& o) const { return (_str <= o._str); }$/;"	f	class:AdtTestObj
 operator =	util/array.h	/^Array<T>::iterator::operator = (const iterator& other ){$/;"	f	class:Array::iterator
+operator =	util/bst.h	/^BSTree<T>::iterator::operator = (const iterator& i ){$/;"	f	class:BSTree::iterator
 operator =	util/dlist.h	/^DList<T>::iterator::operator = ( const iterator& i ) {$/;"	f	class:DList::iterator
 operator ==	main/adtTest.h	/^   bool operator == (const AdtTestObj& o) const { return (_str == o._str); }$/;"	f	class:AdtTestObj
 operator ==	util/array.h	/^Array<T>::iterator::operator == (const iterator& other ) const{$/;"	f	class:Array::iterator
+operator ==	util/bst.h	/^BSTree<T>::iterator::operator == (const iterator&i ) const {$/;"	f	class:BSTree::iterator
 operator ==	util/dlist.h	/^DList<T>::iterator::operator == ( $/;"	f	class:DList::iterator
 operator >	main/adtTest.h	/^   bool operator > (const AdtTestObj& o) const { return (_str > o._str); }$/;"	f	class:AdtTestObj
 operator >=	main/adtTest.h	/^   bool operator >= (const AdtTestObj& o) const { return (_str >= o._str); }$/;"	f	class:AdtTestObj
