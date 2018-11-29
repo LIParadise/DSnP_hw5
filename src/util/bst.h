@@ -25,8 +25,15 @@ class BSTreeNode
 {
    // TODO: design your own class!!
   private:
-
-    char color;
+    friend class BSTree<T>;
+    friend class BSTree<T>::iterator;
+    BSTreeNode(): parent( nullptr ), Rchild( nullptr),
+    Lchild( nullptr ), data
+    BSTreeNode<T>* parent;
+    BSTreeNode<T>* Rchild;
+    BSTreeNode<T>* Lchild;
+    T              data;
+    char           color;
 };
 
 
