@@ -30,16 +30,17 @@ class BSTreeNode
     BSTreeNode( const T& t, BSTreeNode<T>* ptrP = nullptr, 
         BSTreeNode<T>* ptrR = nullptr,
         BSTreeNode<T>* ptrL = nullptr):
-      data(t), parent(ptrP), child_R(ptrR), child_L(ptrL), color(0){}
-    T              data;
-    char           color;
-    BSTreeNode<T>* parent;
-    BSTreeNode<T>* child_R;
-    BSTreeNode<T>* child_L;
-    // 0 for red.
-    // 1 for black.
-    // 2 for red-and-black, used in deletion.
-    // 3 for doubly-black, used in deletion.
+      _data(t), _parent(ptrP), _child_R(ptrR), _child_L(ptrL), _color(0){}
+    T              _data;
+    enum color {
+      RED           = 0;
+      BLACK         = 1;
+      RED_N_BLACK = 2;
+      DOUBLY_BLACK  = 3;
+    } _color;
+    BSTreeNode<T>* _parent;
+    BSTreeNode<T>* _child_R;
+    BSTreeNode<T>* _child_L;
 };
 
 
@@ -48,68 +49,109 @@ class BSTree
 {
   public:
     // TODO: design your own class!!
-    BSTree(): root( nullptr ) {}
+    BSTree(): _root( nullptr ), _size(0) {}
     class iterator {
-      friend class BSTree;
-      const T&  operator *   () const             ;
-      T&        operator *   ()                   ;
-      iterator& operator ++  ()                   ;
-      iterator  operator ++  (int)                ;
-      iterator& operator --  ()                   ;
-      iterator  operator --  (int)                ;
-      iterator& operator = (const iterator& i)    ;
-      bool operator != (const iterator& i) const  ;
-      bool operator == (const iterator& i) const  ;
+      public:
+        friend class BSTree;
+        const T&  operator *   () const             ;
+        T&        operator *   ()                   ;
+        iterator& operator ++  ()                   ;
+        iterator  operator ++  (int)                ;
+        iterator& operator --  ()                   ;
+        iterator  operator --  (int)                ;
+        iterator& operator = (const iterator& i)    ;
+        bool operator != (const iterator& i) const  ;
+        bool operator == (const iterator& i) const  ;
+      private:
+        BSTreeNode<T>* ptr;
     };
     void    pop_front();
     void    pop_back();
-    void    sort();
-    size_t  size();
-    bool    empty();
-    bool    erase( const AdtTestObj& );
+    void    clear();
+    void    sort() const;
+    size_t  size() const;
+    bool    empty() const;
+    bool    erase( const T& );
     // just erase first encountered.
     // return false iff not found.
     bool    erase( iterator pos );
     // pos would be valid except when ADT.empty() in this homework.
     // pos invalid iff ADT is empty, return false in this case.
-    iterator find();
-    iterator end();
-    iterator begin();
+    iterator find(const T&);
+    iterator end()   const;
+    iterator begin() const;
 
     void insert( const T& );
-    void print();
+    void print() const;
   private:
-    BSTreeNode<T>* root;
+    BSTreeNode<T>* _root;
+    void insert_fix( BSTreeNode<T>* const ptr );
+    void delete_fix( BSTreeNode<T>* const ptr );
+    void right_rot ( const ptr );
+    void left__rot ( const ptr );
+    size_t _size;
 };
 
 template<typename T>
 void
 BSTree<T>::insert( const T& other ){
-  if( empty() )
-    root = new BSTreeNode( other );
-  else{
+  if( empty() ){
+    _root = new BSTreeNode<T>( other );
+    _root -> _color = BLACK;
+  }else{
     bool done = false;
-    auto* ptr = root;
+    auto* ptr = _root;
     while( !done ){
-      if( other > ptr->data ){
-        if( ptr->child_R == nullptr ){
-          ptr->child_R = new BSTreeNode( other, ptr);
+      if( other > ptr->_data ){
+        if( ptr->_child_R == nullptr ){
+          ptr->_child_R = new BSTreeNode<T>( other, ptr);
           done = true;
         }else{
-          ptr = ptr->child_R;
+          ptr = ptr->_child_R;
           continue;
         }
       }else{
-        if( ptr->child_L == nullptr ){
-          ptr->child_L = new BSTreeNode( other, ptr);
+        if( ptr->_child_L == nullptr ){
+          ptr->_child_L = new BSTreeNode<T>( other, ptr);
           done = true;
         }else{
-          ptr = ptr->child_L;
+          ptr = ptr->_child_L;
           continue;
         }
       }
     }
+    insert_fix( ptr );
   }
+  _size += 1;
+}
+
+template<typename T>
+void
+BSTree<T>::insert_fix( BSTreeNode<T>* const ptr ){
+  // ptr must have RED;
+  if( ptr == _root ){
+    assert( 0 && "WTF, insert_fix met root??" );
+  }else if( ptr -> _parent == _root ){
+    return;
+  }
+  
+  // ptr must have grandparent.
+  while( ptr->_color == RED ){
+    auto* GParent_ptr = ptr->_parent->_parent;
+    auto* uncle_ptr   = GParent_ptr;
+    // case I, parent of ptr is a left-child.
+    if( ptr->_parent == ptr->_parent->_parent->_child_L ){
+      
+      uncle_ptr   = ptr->_parent->_parent->_child_R;
+      // check uncle color.
+      if( uncle_ptr != nullptr ){
+        if( uncle_ptr -> _color == RED ){
+          GParent_ptr->_color  = RED;
+          uncle_ptr->_color    = BLACK;
+          ptr->_parent->_color = BLACK;
+          ptr = GParent_ptr;
+        }
+      }
 }
 
 #endif // BST_H

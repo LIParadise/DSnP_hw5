@@ -420,12 +420,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 85 - ((7 * winheight(0) + 19) / 39)
+let s:l = 129 - ((21 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-85
-normal! 04|
+129
+normal! 07|
 wincmd w
 argglobal
 edit src/main/adtTest.h
@@ -540,12 +540,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 138 - ((0 * winheight(0) + 19) / 39)
+let s:l = 129 - ((7 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-138
-normal! 07|
+129
+normal! 010|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 73 + 73) / 146)
 exe 'vert 2resize ' . ((&columns * 72 + 73) / 146)
@@ -920,12 +920,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 85 - ((19 * winheight(0) + 19) / 39)
+let s:l = 94 - ((27 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-85
-normal! 09|
+94
+normal! 0
 wincmd w
 exe '1resize ' . ((&lines * 19 + 21) / 42)
 exe 'vert 1resize ' . ((&columns * 73 + 73) / 146)
@@ -1056,12 +1056,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 96 - ((14 * winheight(0) + 19) / 39)
+let s:l = 154 - ((21 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-96
-normal! 022|
+154
+normal! 07|
 wincmd w
 argglobal
 edit src/util/bst.h
@@ -1176,14 +1176,13 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 58 - ((37 * winheight(0) + 19) / 39)
+let s:l = 91 - ((23 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-58
-normal! 0
+91
+normal! 015|
 wincmd w
-2wincmd w
 exe 'vert 1resize ' . ((&columns * 73 + 73) / 146)
 exe 'vert 2resize ' . ((&columns * 72 + 73) / 146)
 tabedit src/util/interface.txt
@@ -1304,12 +1303,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 6 - ((5 * winheight(0) + 19) / 39)
+let s:l = 3 - ((2 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-6
-normal! 0
+3
+normal! 011|
 tabnext 5
 set stal=1
 if exists('s:wipebuf')

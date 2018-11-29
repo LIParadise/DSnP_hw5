@@ -21,14 +21,18 @@ AdtTestObj	main/adtTest.h	/^class AdtTestObj$/;"	c
 AdtType	main/adtTest.h	29;"	d
 Array	util/array.h	/^   Array() : _data(0), _size(0), _capacity(0) {}$/;"	f	class:Array
 Array	util/array.h	/^class Array$/;"	c
+BLACK	util/bst.h	/^      BLACK         = 1;$/;"	e	enum:BSTreeNode::color
 BST_H	util/bst.h	10;"	d
+BSTree	util/bst.h	/^    BSTree(): _root( nullptr ), _size(0) {}$/;"	f	class:BSTree
 BSTree	util/bst.h	/^class BSTree$/;"	c
+BSTreeNode	util/bst.h	/^    BSTreeNode( const T& t, BSTreeNode<T>* ptrP = nullptr, $/;"	f	class:BSTreeNode
 BSTreeNode	util/bst.h	/^class BSTreeNode$/;"	c
 DLIST_H	util/dlist.h	10;"	d
 DList	util/dlist.h	/^   DList() {$/;"	f	class:DList
 DList	util/dlist.h	/^class DList$/;"	c
 DListNode	util/dlist.h	/^   DListNode(const T& d, DListNode<T>* p = 0, DListNode<T>* n = 0):$/;"	f	class:DListNode
 DListNode	util/dlist.h	/^class DListNode$/;"	c
+DOUBLY_BLACK	util/bst.h	/^      DOUBLY_BLACK  = 3;$/;"	e	enum:BSTreeNode::color
 MYCLK_TCK	util/myUsage.h	21;"	d
 MYCLK_TCK	util/myUsage.h	22;"	d
 MY_USAGE_H	util/myUsage.h	10;"	d
@@ -36,6 +40,8 @@ MyUsage	util/myUsage.h	/^   MyUsage() { reset(); }$/;"	f	class:MyUsage
 MyUsage	util/myUsage.h	/^class MyUsage$/;"	c
 N	main/adtTest.h	88;"	d
 RANDOM_ACCESS	main/adtTest.h	26;"	d
+RED	util/bst.h	/^      RED           = 0;$/;"	e	enum:BSTreeNode::color
+RED_N_BLACK	util/bst.h	/^      RED_N_BLACK = 2;$/;"	e	enum:BSTreeNode::color
 RN_GEN_H	util/rnGen.h	9;"	d
 RandomNumGen	util/rnGen.h	/^      RandomNumGen() { my_srandom(getpid()); }$/;"	f	class:RandomNumGen
 RandomNumGen	util/rnGen.h	/^      RandomNumGen(unsigned seed) { my_srandom(seed); }$/;"	f	class:RandomNumGen
@@ -44,10 +50,14 @@ TEST_ARRAY	main/adtTest.h	24;"	d
 TEST_BST	main/adtTest.h	25;"	d
 UTIL_H	util/util.h	9;"	d
 _capacity	util/array.h	/^   size_t        _capacity;   \/\/ max number of elements$/;"	m	class:Array
+_child_L	util/bst.h	/^    BSTreeNode<T>* _child_L;$/;"	m	class:BSTreeNode
+_child_R	util/bst.h	/^    BSTreeNode<T>* _child_R;$/;"	m	class:BSTreeNode
+_color	util/bst.h	/^    } _color;$/;"	m	class:BSTreeNode	typeref:enum:BSTreeNode::color
 _container	main/adtTest.h	/^   AdtType<AdtTestObj>   _container;$/;"	m	class:AdtTest
 _currentMem	util/myUsage.h	/^   double     _currentMem;$/;"	m	class:MyUsage
 _currentTick	util/myUsage.h	/^   double     _currentTick;$/;"	m	class:MyUsage
 _data	util/array.h	/^   T*            _data;$/;"	m	class:Array
+_data	util/bst.h	/^    T              _data;$/;"	m	class:BSTreeNode
 _data	util/dlist.h	/^   T              _data;$/;"	m	class:DListNode
 _head	util/dlist.h	/^   DListNode<T>*  _head;     \/\/ = dummy node if list is empty$/;"	m	class:DList
 _initMem	util/myUsage.h	/^   double     _initMem;$/;"	m	class:MyUsage
@@ -56,9 +66,12 @@ _isSorted	util/dlist.h	/^   mutable bool   _isSorted; \/\/ (optionally) to indic
 _next	util/dlist.h	/^   DListNode<T>*  _next;$/;"	m	class:DListNode
 _node	util/array.h	/^      T*    _node;$/;"	m	class:Array::iterator
 _node	util/dlist.h	/^      DListNode<T>* _node;$/;"	m	class:DList::iterator
+_parent	util/bst.h	/^    BSTreeNode<T>* _parent;$/;"	m	class:BSTreeNode
 _periodUsedTime	util/myUsage.h	/^   double     _periodUsedTime;$/;"	m	class:MyUsage
 _prev	util/dlist.h	/^   DListNode<T>*  _prev;$/;"	m	class:DListNode
+_root	util/bst.h	/^    BSTreeNode<T>* _root;$/;"	m	class:BSTree
 _size	util/array.h	/^   size_t        _size;       \/\/ number of valid elements$/;"	m	class:Array
+_size	util/bst.h	/^    size_t _size;$/;"	m	class:BSTree
 _str	main/adtTest.h	/^   string      _str;  \/\/ _str.length() should alywas <= _strLen$/;"	m	class:AdtTestObj
 _strLen	main/adtTest.cpp	/^int AdtTestObj::_strLen = 6;$/;"	m	class:AdtTestObj	file:
 _strLen	main/adtTest.h	/^   static int  _strLen;$/;"	m	class:AdtTestObj
@@ -73,6 +86,7 @@ checkTick	util/myUsage.h	/^   double checkTick() const {$/;"	f	class:MyUsage
 clear	util/array.h	/^void Array<T>::clear() {$/;"	f	class:Array
 clear	util/dlist.h	/^DList<T>::clear() {$/;"	f	class:DList
 clearList	util/util.h	/^void clearList(T& l)$/;"	f
+color	util/bst.h	/^    enum color {$/;"	g	class:BSTreeNode
 deleteAll	main/adtTest.h	/^   void deleteAll() { _container.clear(); }$/;"	f	class:AdtTest
 deleteBack	main/adtTest.h	/^   void deleteBack(size_t repeat = 1) {$/;"	f	class:AdtTest
 deleteFront	main/adtTest.h	/^   void deleteFront(size_t repeat = 1) {$/;"	f	class:AdtTest
@@ -105,11 +119,13 @@ help	main/adtTest.cpp	/^AdtQueryCmd::help() const$/;"	f	class:AdtQueryCmd
 help	main/adtTest.cpp	/^AdtResetCmd::help() const$/;"	f	class:AdtResetCmd
 help	main/adtTest.cpp	/^AdtSortCmd::help() const$/;"	f	class:AdtSortCmd
 initAdtCmd	main/adtTest.cpp	/^initAdtCmd()$/;"	f
+insert	util/bst.h	/^BSTree<T>::insert( const T& other ){$/;"	f	class:BSTree
+insert_fix	util/bst.h	/^BSTree<T>::insert_fix( BSTreeNode<T>* const ptr ){$/;"	f	class:BSTree
 isValidVarName	util/myString.cpp	/^isValidVarName(const string& str)$/;"	f
 iterator	util/array.h	/^      iterator(T* n= 0): _node(n) {}$/;"	f	class:Array::iterator
 iterator	util/array.h	/^      iterator(const iterator& i): _node(i._node) {}$/;"	f	class:Array::iterator
 iterator	util/array.h	/^   class iterator$/;"	c	class:Array
-iterator	util/bst.h	/^   class iterator { };$/;"	c	class:BSTree
+iterator	util/bst.h	/^    class iterator {$/;"	c	class:BSTree
 iterator	util/dlist.h	/^      iterator(DListNode<T>* n= 0): _node(n) {}$/;"	f	class:DList::iterator
 iterator	util/dlist.h	/^      iterator(const iterator& i) : _node(i._node) {}$/;"	f	class:DList::iterator
 iterator	util/dlist.h	/^   class iterator$/;"	c	class:DList
@@ -167,6 +183,7 @@ printBackward	main/adtTest.h	/^   void printBackward() const {$/;"	f	class:AdtTe
 printData	main/adtTest.h	/^   void printData(size_t idx, AdtType<AdtTestObj>::iterator li,$/;"	f	class:AdtTest
 printData	main/adtTest.h	/^   void printData(size_t index) const {$/;"	f	class:AdtTest
 printForward	main/adtTest.h	/^   void printForward() const {$/;"	f	class:AdtTest
+ptr	util/bst.h	/^        BSTreeNode<T>* ptr;$/;"	m	class:BSTree::iterator
 push_back	util/array.h	/^void Array<T>::push_back( const T& other){$/;"	f	class:Array
 push_back	util/dlist.h	/^DList<T>::push_back( const T& other) {$/;"	f	class:DList
 removeData	util/util.h	/^void removeData(T& l, const D& d)$/;"	f
