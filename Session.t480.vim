@@ -683,11 +683,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 324 - ((0 * winheight(0) + 9) / 19)
+let s:l = 326 - ((2 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-324
+326
 normal! 030|
 wincmd w
 argglobal
@@ -923,11 +923,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 94 - ((27 * winheight(0) + 19) / 39)
+let s:l = 72 - ((38 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-94
+72
 normal! 0
 wincmd w
 exe '1resize ' . ((&lines * 19 + 21) / 42)
@@ -1059,12 +1059,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 368 - ((18 * winheight(0) + 19) / 39)
+let s:l = 103 - ((32 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-368
-normal! 012|
+103
+normal! 043|
 wincmd w
 argglobal
 edit src/util/bst.h
@@ -1179,33 +1179,33 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-385,389fold
-385,452fold
-385,452fold
-458,533fold
-458,533fold
-456,533fold
-456,533fold
-385
+483,487fold
+483,554fold
+483,554fold
+560,635fold
+560,635fold
+558,635fold
+558,635fold
+483
 normal! zo
-385
+483
 normal! zo
-385
-normal! zc
-456
+483
 normal! zo
-456
+558
 normal! zo
-458
+558
 normal! zo
-456
-normal! zc
-let s:l = 362 - ((16 * winheight(0) + 19) / 39)
+560
+normal! zo
+560
+normal! zo
+let s:l = 771 - ((26 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-362
-normal! 011|
+771
+normal! 05|
 wincmd w
 2wincmd w
 exe 'vert 1resize ' . ((&columns * 73 + 73) / 146)
