@@ -4,7 +4,7 @@
   Synopsis     [ Define binary search tree package ]
   Author       [ Chung-Yang (Ric) Huang ]
   Copyright    [ Copyleft(c) 2005-present LaDs(III), GIEE, NTU, Taiwan ]
-****************************************************************************/
+ ****************************************************************************/
 
 #ifndef BST_H
 #define BST_H
@@ -23,7 +23,7 @@ template <class T> class BSTree;
 template <class T>
 class BSTreeNode
 {
-   // TODO: design your own class!!
+  // TODO: design your own class!!
   private:
     friend class BSTree<T>;
     friend class BSTree<T>::iterator;
@@ -134,15 +134,14 @@ BSTree<T>::insert_fix( BSTreeNode<T>* const ptr ){
   }else if( ptr -> _parent == _root ){
     return;
   }
-  
+
   // ptr must have grandparent.
-  while( ptr->_color == RED ){
+  while( ptr->_parent->_color == RED ){
     auto* GParent_ptr = ptr->_parent->_parent;
     auto* uncle_ptr   = GParent_ptr;
-    // case I, parent of ptr is a left-child.
-    if( ptr->_parent == ptr->_parent->_parent->_child_L ){
-      
-      uncle_ptr   = ptr->_parent->_parent->_child_R;
+    if( ptr->_parent == GParent_ptr->_child_L ){
+      // case I, parent of ptr is a left-child.
+      uncle_ptr = GParent_ptr->_child_R;
       // check uncle color.
       if( uncle_ptr != nullptr ){
         if( uncle_ptr -> _color == RED ){
@@ -150,8 +149,51 @@ BSTree<T>::insert_fix( BSTreeNode<T>* const ptr ){
           uncle_ptr->_color    = BLACK;
           ptr->_parent->_color = BLACK;
           ptr = GParent_ptr;
+          continue;
         }
       }
+      // uncle is (nil == nullptr) or BLACK
+      if( ptr == ptr->_parent->_child_R ){
+        // inner-node.
+        ptr = ptr->_parent;
+        left__rot( ptr );
+        // GParent_ptr shall still be valid grandparent;
+      }
+      // ptr is now outer-node.
+      // uncle_ptr is now broken.
+      ptr -> _parent -> _color = BLACK;
+      GParent_ptr -> _color    = RED;
+      right_rot( GParent_ptr );
+    } /* end of (ptr's parent is a left child) */
+    else if ( ptr->_parent == GParent_ptr->_child_R){
+      // case II, parent of ptr is a right child.
+      uncle_ptr = GParent_ptr->_child_L;
+      // check uncle color.
+      if( uncle_ptr != nullptr ){
+        if( uncle_ptr -> _color == RED ){
+          GParent_ptr->_color  = RED;
+          uncle_ptr->_color    = BLACK;
+          ptr->_parent->_color = BLACK;
+          ptr = GParent_ptr;
+          continue;
+        }
+      }
+      // uncle is (nil == nullptr) or BLACK
+      if( ptr == ptr->_parent->_child_L ){
+        // inner-node.
+        ptr = ptr->_parent;
+        right_rot( ptr );
+      }
+      // ptr is now outer-node.
+      // uncle_ptr is now broken.
+      ptr -> _parent -> _color = BLACK;
+      GParent_ptr -> _color    = RED;
+      left__rot( GParent_ptr );
+    }else{
+      assert( 0 && "wtf, parent is not child of grandparent" );
+    }
+  }
+  _root -> _color = BLACK;
 }
 
 #endif // BST_H
