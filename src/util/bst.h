@@ -24,14 +24,46 @@ template <class T>
 class BSTreeNode
 {
    // TODO: design your own class!!
+  private:
+
+    char color;
 };
 
 
 template <class T>
 class BSTree
 {
+  public:
    // TODO: design your own class!!
-   class iterator { };
+   class iterator {
+     friend class BSTree;
+      const T&  operator *   () const             ;
+      T&        operator *   ()                   ;
+      iterator& operator ++  ()                   ;
+      iterator  operator ++  (int)                ;
+      iterator& operator --  ()                   ;
+      iterator  operator --  (int)                ;
+      iterator& operator = (const iterator& i)    ;
+      bool operator != (const iterator& i) const  ;
+      bool operator == (const iterator& i) const  ;
+   };
+  void    pop_front();
+  void    pop_back();
+  void    sort();
+  size_t  size();
+  bool    empty();
+  bool    erase( const AdtTestObj& );
+  // just erase first encountered.
+  // return false iff not found.
+  bool    erase( iterator pos );
+  // pos would be valid except when ADT.empty() in this homework.
+  // pos invalid iff ADT is empty, return false in this case.
+  iterator find();
+  iterator end();
+  iterator begin();
+
+  void insert( const AdtTestObj& );
+  void print();
 };
 
 #endif // BST_H
