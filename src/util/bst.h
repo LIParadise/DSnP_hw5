@@ -93,7 +93,7 @@ class BSTree
     static const int BLACK = 1;
     BSTreeNode<T>* _root;
     void insert_fix( BSTreeNode<T>*& );
-    void delete_fix( BSTreeNode<T>*, BSTreeNode<T>*, bool);
+    void delete_fix( BSTreeNode<T>*, BSTreeNode<T>*);
     // false mean _child_R;
     // true  mean _child_L;
     void right_rot ( BSTreeNode<T>* );
@@ -184,7 +184,7 @@ BSTree<T>::pop_front () {
 #endif // DEBUG
   _size --;
 }
-      
+
 template<typename T>
 void
 BSTree<T>::pop_back() {
@@ -276,11 +276,13 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
   if( ptr -> _child_R == nullptr ){
     successor_ptr = ptr -> _child_L;
     transplant( ptr, successor_ptr );
-    delete_fix( successor_ptr, ptr -> _parent, true  );
+    if( color_bak == BLACK )
+      delete_fix( successor_ptr, ptr -> _parent );
   }else if( ptr -> _child_L == nullptr ){
     successor_ptr = ptr -> _child_R;
     transplant( ptr, successor_ptr );
-    delete_fix( successor_ptr, ptr -> _parent, false );
+    if( color_bak == BLACK )
+      delete_fix( successor_ptr, ptr -> _parent );
   }else{
     successor_ptr = min_sub( ptr -> _child_R );
 #ifdef DEBUG
@@ -301,7 +303,7 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
     // safe, since ptr have two children
     // and successor_ptr._child_L  shall be nullptr;
     if( color_bak == BLACK ){
-      delete_fix( successor_ptr -> _child_R, successor_ptr, false );
+      delete_fix( successor_ptr -> _child_R, successor_ptr );
     }
   }
   if( _root == nullptr || _root -> _color == BLACK ){
@@ -584,11 +586,13 @@ BSTree<T>::insert_fix( BSTreeNode<T>*& ptr ){
 template<typename T>
 void
 BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
-    BSTreeNode<T>* my_parent,
-    bool is_left_ch){
-  while( ptr != _root && 
+    BSTreeNode<T>* my_parent) {
+  while( ptr != _root &&  
       ( ptr == nullptr || ptr -> _color == BLACK ) ){
-    if( is_left_ch ){
+#ifdef DEBUG
+    assert( my_parent != nullptr && "wait wut..., delete_fix" );
+#endif // DEBUG
+    if( ptr == my_parent -> _child_L ){
       // left child.
       if( my_parent -> _child_R != nullptr &&
           my_parent -> _child_R -> _color == RED ){
@@ -605,26 +609,39 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
           my_parent -> _child_R -> _color = RED;
           ptr = my_parent;
           my_parent = ptr->_parent;
+          // my_parent may be broken now.
           continue;
         }
       }
-      if( my_parent -> _child_R != nullptr &&
-          (my_parent -> _child_R -> _child_R == nullptr ||
-           my_parent -> _child_R -> _child_R -> _color == BLACK ) ){
-        
-        if( my_parent->_child_R->_child_L != nullptr ){
-          my_parent->_child_R->_child_L->_color = BLACK;
-          my_parent -> _child_R -> _color = RED;
-          right_rot( my_parent -> _child_R );
+      if( my_parent != nullptr ){
+        if( my_parent -> _child_R != nullptr ) {
+          if( (my_parent -> _child_R -> _child_R == nullptr ||
+                my_parent -> _child_R -> _child_R -> _color == BLACK ) ){
+
+            my_parent->_child_R->_child_L->_color = BLACK;
+            my_parent -> _child_R -> _color = RED;
+            right_rot( my_parent -> _child_R );
+            // shall be valid
+            // since we have ( my_parent -> _child_R -> _child_L != nullptr )
+#ifdef DEBUG
+            assert( my_parent->_child_R->_child_L != nullptr &&
+                "WTF in delete_fix case III?!" );
+#endif // DEBUG
+          }
+          my_parent -> _child_R -> _color = my_parent -> _color;
+          if( my_parent -> _child_R -> _child_R != nullptr )
+            my_parent -> _child_R -> _child_R -> _color = BLACK;
+          my_parent -> _color = BLACK;
+          left__rot( my_parent );
+          ptr = _root;
+          my_parent = nullptr;
         }
-        my_parent -> _child_R -> _color = my_parent -> _color;
-        my_parent -> _child_R -> _child_R -> _color = BLACK;
-        my_parent -> _color = BLACK;
-        left__rot( my_parent );
-        ptr = _root;
       }
     }else{
       // right child.
+#ifdef DEBUG
+      assert( ptr == my_parent -> _child_R );
+#endif // DEBUG
       if( my_parent -> _child_L != nullptr &&
           my_parent -> _child_L -> _color == RED ){
         my_parent -> _color = RED;
@@ -640,23 +657,33 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
           my_parent -> _child_L -> _color = RED;
           ptr = my_parent;
           my_parent = ptr->_parent;
+          // my_parent may be broken now.
           continue;
         }
       }
-      if( my_parent -> _child_L != nullptr &&
-          (my_parent -> _child_L -> _child_L == nullptr ||
-           my_parent -> _child_L -> _child_L -> _color == BLACK ) ){
+      if( my_parent != nullptr ){
+        if( my_parent -> _child_L != nullptr ) {
+          if ( (my_parent -> _child_L -> _child_L == nullptr ||
+                my_parent -> _child_L -> _child_L -> _color == BLACK ) ){
 
-        if( my_parent->_child_L->_child_R != nullptr ){
-          my_parent->_child_L->_child_R->_color = BLACK;
-          my_parent -> _child_L -> _color = RED;
-          left__rot( my_parent -> _child_L );
+            my_parent->_child_L->_child_R->_color = BLACK;
+            my_parent -> _child_L -> _color = RED;
+            left__rot( my_parent -> _child_L );
+            // shall be valid
+            // since we have ( my_parent -> _child_R -> _child_L != nullptr )
+#ifdef DEBUG
+            assert( my_parent->_child_R->_child_L != nullptr &&
+                "WTF in delete_fix case III?!" );
+#endif // DEBUG
+          }
+          my_parent -> _child_L -> _color = my_parent -> _color;
+          if( my_parent -> _child_L -> _child_L != nullptr )
+            my_parent -> _child_L -> _child_L -> _color = BLACK;
+          my_parent -> _color = BLACK;
+          right_rot( my_parent );
+          ptr = _root;
+          my_parent = nullptr;
         }
-        my_parent -> _child_L -> _color = my_parent -> _color;
-        my_parent -> _child_L -> _child_L -> _color = BLACK;
-        my_parent -> _color = BLACK;
-        right_rot( my_parent );
-        ptr = _root;
       }
     }
   }
@@ -792,9 +819,9 @@ BSTree<T>::print() const {
   }
   cout << "left  black height: " << L_black_height << endl;
   cout << "right black height: " << R_black_height << endl;
+  cout << "true size is: " << _size << endl;
   for( auto it = begin(); it != end(); ++it )
     s ++;
-  cout << "true size is: " << _size << endl;
   cout << "now size is : " << s << endl;
 }
 
