@@ -278,7 +278,7 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
     transplant( ptr, successor_ptr );
     delete_fix( successor_ptr, ptr -> _parent, true );
   }else{
-    auto* successor_ptr = successor( ptr->_child_R );
+    auto* successor_ptr = successor( ptr );
     if( successor_ptr == nullptr ){
       assert( 0 && "wtf in successor(ptr)" );
     }
@@ -311,7 +311,8 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
   }else {
     assert( 0 && "WTF in erase????" );
   }
-    
+
+  _size --;
 }
 
 template<typename T>
