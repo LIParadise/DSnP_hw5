@@ -209,7 +209,7 @@ pop_front	util/dlist.h	/^DList<T>::pop_front() {$/;"	f	class:DList	typeref:typen
 predecessor	util/bst.h	/^BSTree<T>::predecessor( BSTreeNode<T>* ptr ) {$/;"	f	class:BSTree	typeref:typename:BSTreeNode<T> *
 predecessor	util/bst.h	/^BSTree<T>::predecessor( const iterator& it ){$/;"	f	class:BSTree	typeref:typename:BSTreeNode<T> *
 print	main/adtTest.h	/^   void print(bool reverse = false, bool verbose = false) const {$/;"	f	class:AdtTest	typeref:typename:void
-print	util/bst.h	/^BSTree<T>::print( BSTreeNode<T>* ptr, size_t indent ) const {$/;"	f	class:BSTree	typeref:typename:void
+print	util/bst.h	/^BSTree<T>::print( BSTreeNode<T>* ptr, size_t indent, char type ) const {$/;"	f	class:BSTree	typeref:typename:void
 print	util/bst.h	/^BSTree<T>::print() const {$/;"	f	class:BSTree	typeref:typename:void
 printBackward	main/adtTest.h	/^   void printBackward() const {$/;"	f	class:AdtTest	typeref:typename:void
 printData	main/adtTest.h	/^   void printData(size_t idx, AdtType<AdtTestObj>::iterator li,$/;"	f	class:AdtTest	typeref:typename:void

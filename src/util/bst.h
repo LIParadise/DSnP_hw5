@@ -100,7 +100,7 @@ class BSTree
     void left__rot ( BSTreeNode<T>* );
     void check_sort( BSTreeNode<T>* ) const;
     void transplant( BSTreeNode<T>*, BSTreeNode<T>* );
-    void print     ( BSTreeNode<T>*, size_t ) const;
+    void print     ( BSTreeNode<T>*, size_t, char = 0 ) const;
     BSTreeNode<T>* max () const;
     BSTreeNode<T>* min () const;
     BSTreeNode<T>* min_sub ( BSTreeNode<T>* ) const;
@@ -268,6 +268,12 @@ bool
 BSTree<T>::erase( BSTreeNode<T>* ptr ) {
   if( ptr == nullptr )
     return false;
+  if( ptr == _root && _size == 1 ){
+    _size = 0;
+    delete _root;
+    _root = nullptr;
+    return true;
+  }
 
   char color_bak = ptr -> _color;
   BSTreeNode<T>* successor_ptr = nullptr;
@@ -291,6 +297,8 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
     }
 #endif // DEBUG
     color_bak = successor_ptr -> _color;
+    auto* need_fix        = successor_ptr -> _child_R;
+    auto* need_fix_parent = successor_ptr;
     if( successor_ptr -> _parent != ptr ){
       transplant( successor_ptr, successor_ptr -> _child_R );
       successor_ptr -> _child_R = ptr -> _child_R;
@@ -298,12 +306,12 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
     }
     transplant( ptr, successor_ptr );
     successor_ptr -> _child_L = ptr -> _child_L;
-    successor_ptr -> _child_L -> _parent = ptr;
+    successor_ptr -> _child_L -> _parent = successor_ptr;
     successor_ptr -> _color = ptr -> _color;
     // safe, since ptr have two children
     // and successor_ptr._child_L  shall be nullptr;
     if( color_bak == BLACK ){
-      delete_fix( successor_ptr -> _child_R, successor_ptr );
+      delete_fix( need_fix, need_fix_parent);
     }
   }
   if( _root == nullptr || _root -> _color == BLACK ){
@@ -315,7 +323,6 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
   }else {
     assert( 0 && "WTF in erase????" );
   }
-
 }
 
 template<typename T>
@@ -600,7 +607,7 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
         my_parent -> _child_R -> _color = BLACK;
         left__rot( my_parent);
       }
-      if( my_parent -> _child_R != nullptr ){
+      if( my_parent -> _child_R != nullptr && my_parent -> _color == BLACK){
         if( ( my_parent->_child_R->_child_L == nullptr ||
               my_parent->_child_R->_child_L -> _color == BLACK ) &&
             ( my_parent->_child_R->_child_R == nullptr ||
@@ -618,7 +625,8 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
           if( (my_parent -> _child_R -> _child_R == nullptr ||
                 my_parent -> _child_R -> _child_R -> _color == BLACK ) ){
 
-            my_parent->_child_R->_child_L->_color = BLACK;
+            if( my_parent -> _child_R -> _child_L != nullptr )
+              my_parent->_child_R->_child_L->_color = BLACK;
             my_parent -> _child_R -> _color = RED;
             right_rot( my_parent -> _child_R );
             // shall be valid
@@ -648,7 +656,7 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
         my_parent -> _child_L -> _color = BLACK;
         right_rot( my_parent);
       }
-      if( my_parent -> _child_L != nullptr ){
+      if( my_parent -> _child_L != nullptr && my_parent -> _color == BLACK){
         if( ( my_parent->_child_L->_child_L == nullptr ||
               my_parent->_child_L->_child_L -> _color == BLACK ) &&
             ( my_parent->_child_L->_child_R == nullptr ||
@@ -666,7 +674,8 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
           if ( (my_parent -> _child_L -> _child_L == nullptr ||
                 my_parent -> _child_L -> _child_L -> _color == BLACK ) ){
 
-            my_parent->_child_L->_child_R->_color = BLACK;
+            if( my_parent -> _child_L -> _child_R != nullptr )
+              my_parent->_child_L->_child_R->_color = BLACK;
             my_parent -> _child_L -> _color = RED;
             left__rot( my_parent -> _child_L );
             // shall be valid
@@ -819,19 +828,30 @@ BSTree<T>::print() const {
   }
   cout << "left  black height: " << L_black_height << endl;
   cout << "right black height: " << R_black_height << endl;
-  cout << "true size is: " << _size << endl;
+  cout << "stored size is :    " << _size << endl;
   for( auto it = begin(); it != end(); ++it )
     s ++;
-  cout << "now size is : " << s << endl;
+  cout << "reach-able size is: " << s << endl;
 }
 
 template<typename T>
 void 
-BSTree<T>::print( BSTreeNode<T>* ptr, size_t indent ) const {
+BSTree<T>::print( BSTreeNode<T>* ptr, size_t indent, char type ) const {
   if( ptr != nullptr ){
-    print( ptr -> _child_L, indent+1 );
+    print( ptr -> _child_L, indent+1, 'L');
     for( size_t i = 0; i < indent; ++i ){
       cout << '\t';
+    }
+    switch( type ){
+      case 'R' :
+        cout << "\033[0mRch";
+        break;
+      case 'L' :
+        cout << "\033[0mLch";
+        break;
+      default:
+        cout << "\033[0mRut";
+        break;
     }
     if( ptr -> _color == RED )
       cout << "\033[1;31m"  << ptr -> _data << "\033[0m" << endl;
@@ -839,10 +859,21 @@ BSTree<T>::print( BSTreeNode<T>* ptr, size_t indent ) const {
       cout << "\033[30;47m" << ptr -> _data << "\033[0m" << endl;
     else
       assert( 0 && "wtf in printing??" );
-    print( ptr -> _child_R, indent+1 );
+    print( ptr -> _child_R, indent+1, 'R' );
   }else{
     for( size_t i = 0; i < indent; ++i ){
       cout << "\033[0m" << '\t';
+    }
+    switch( type ){
+      case 'R' :
+        cout << "\033[0mRch";
+        break;
+      case 'L' :
+        cout << "\033[0mLch";
+        break;
+      default:
+        cout << "\033[0mRut";
+        break;
     }
     cout << "\033[30;43mNULLPTR\033[0m" << endl;
   }
