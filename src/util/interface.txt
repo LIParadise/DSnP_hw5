@@ -1,3 +1,5 @@
+83412 76509
+3986
 template<class T>
 class AdtType{
   void    clear();
