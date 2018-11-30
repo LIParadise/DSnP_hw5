@@ -93,7 +93,7 @@ class BSTree
     static const int BLACK = 1;
     BSTreeNode<T>* _root;
     void insert_fix( BSTreeNode<T>*& );
-    void delete_fix( BSTreeNode<T>*, BSTreeNode<T>*);
+    void delete_fix( BSTreeNode<T>*, BSTreeNode<T>*, char);
     // false mean _child_R;
     // true  mean _child_L;
     void right_rot ( BSTreeNode<T>* );
@@ -278,17 +278,24 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
   char color_bak = ptr -> _color;
   BSTreeNode<T>* successor_ptr = nullptr;
   _size --;
+  char ch = 0;
+  if( ptr == ptr -> _parent -> _child_L )
+    ch = 'L';
+  else if( ptr == ptr -> _parent -> _child_R )
+    ch = 'R';
+  else
+    assert( 0 && "WTF in erase(ptr)" );
 
   if( ptr -> _child_R == nullptr ){
     successor_ptr = ptr -> _child_L;
     transplant( ptr, successor_ptr );
     if( color_bak == BLACK )
-      delete_fix( successor_ptr, ptr -> _parent );
+      delete_fix( successor_ptr, ptr -> _parent, ch );
   }else if( ptr -> _child_L == nullptr ){
     successor_ptr = ptr -> _child_R;
     transplant( ptr, successor_ptr );
     if( color_bak == BLACK )
-      delete_fix( successor_ptr, ptr -> _parent );
+      delete_fix( successor_ptr, ptr -> _parent, ch );
   }else{
     successor_ptr = min_sub( ptr -> _child_R );
 #ifdef DEBUG
@@ -299,7 +306,9 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
     color_bak = successor_ptr -> _color;
     auto* need_fix        = successor_ptr -> _child_R;
     auto* need_fix_parent = successor_ptr;
+    char  ch              = 0;
     if( successor_ptr -> _parent != ptr ){
+      need_fix_parent = successor_ptr -> _parent;
       transplant( successor_ptr, successor_ptr -> _child_R );
       successor_ptr -> _child_R = ptr -> _child_R;
       successor_ptr -> _parent  = ptr;
@@ -310,8 +319,14 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
     successor_ptr -> _color = ptr -> _color;
     // safe, since ptr have two children
     // and successor_ptr._child_L  shall be nullptr;
+    if( need_fix == need_fix_parent -> _child_L )
+      ch = 'L';
+    else if( need_fix == need_fix_parent -> _child_R )
+      ch = 'R';
+    else
+      assert( 0 && "WTF in erase(ptr)" );
     if( color_bak == BLACK ){
-      delete_fix( need_fix, need_fix_parent);
+      delete_fix( need_fix, need_fix_parent, ch);
     }
   }
   if( _root == nullptr || _root -> _color == BLACK ){
@@ -593,13 +608,13 @@ BSTree<T>::insert_fix( BSTreeNode<T>*& ptr ){
 template<typename T>
 void
 BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
-    BSTreeNode<T>* my_parent) {
+    BSTreeNode<T>* my_parent, char which ){
   while( ptr != _root &&  
       ( ptr == nullptr || ptr -> _color == BLACK ) ){
 #ifdef DEBUG
     assert( my_parent != nullptr && "wait wut..., delete_fix" );
 #endif // DEBUG
-    if( ptr == my_parent -> _child_L ){
+    if( which == 'L' ){
       // left child.
       if( my_parent -> _child_R != nullptr &&
           my_parent -> _child_R -> _color == RED ){
@@ -617,6 +632,14 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
           ptr = my_parent;
           my_parent = ptr->_parent;
           // my_parent may be broken now.
+          if( my_parent != nullptr ){
+            if( ptr == my_parent -> _child_R )
+              which = 'R';
+            else if( ptr == my_parent -> _child_L )
+              which = 'L';
+            else
+              assert( 0 && "WTF in case II of rb-delete-fix" );
+          }
           continue;
         }
       }
@@ -648,7 +671,7 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
     }else{
       // right child.
 #ifdef DEBUG
-      assert( ptr == my_parent -> _child_R );
+      assert( which == 'R' );
 #endif // DEBUG
       if( my_parent -> _child_L != nullptr &&
           my_parent -> _child_L -> _color == RED ){
@@ -666,6 +689,14 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
           ptr = my_parent;
           my_parent = ptr->_parent;
           // my_parent may be broken now.
+          if( my_parent != nullptr ){
+            if( ptr == my_parent -> _child_R )
+              which = 'R';
+            else if( ptr == my_parent -> _child_L )
+              which = 'L';
+            else
+              assert( 0 && "WTF in case II of rb-delete-fix" );
+          }
           continue;
         }
       }
