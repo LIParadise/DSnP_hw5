@@ -592,6 +592,7 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
       if( my_parent -> _child_R != nullptr &&
           (my_parent -> _child_R -> _child_R == nullptr ||
            my_parent -> _child_R -> _child_R -> _color == BLACK ) ){
+        
         if( my_parent->_child_R->_child_L != nullptr ){
           my_parent->_child_R->_child_L->_color = BLACK;
           my_parent -> _child_R -> _color = RED;
@@ -609,7 +610,7 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
           my_parent -> _child_L -> _color == RED ){
         my_parent -> _color = RED;
         my_parent -> _child_L -> _color = BLACK;
-        left__rot( my_parent);
+        right_rot( my_parent);
       }
       if( my_parent -> _child_L != nullptr ){
         if( ( my_parent->_child_L->_child_L == nullptr ||
@@ -626,7 +627,8 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
       if( my_parent -> _child_L != nullptr &&
           (my_parent -> _child_L -> _child_L == nullptr ||
            my_parent -> _child_L -> _child_L -> _color == BLACK ) ){
-        if( my_parent->_child_L->_child_L != nullptr ){
+
+        if( my_parent->_child_L->_child_R != nullptr ){
           my_parent->_child_L->_child_R->_color = BLACK;
           my_parent -> _child_L -> _color = RED;
           left__rot( my_parent -> _child_L );
@@ -760,6 +762,7 @@ BSTree<T>::print() const {
   print( _root , 0);
   size_t L_black_height = 1;
   size_t R_black_height = 1;
+  size_t s              = 0;
   for( auto* ptr = _root; ptr != nullptr; ptr = ptr -> _child_L ){
     if( ptr == nullptr || ptr -> _color == BLACK )
       ++ L_black_height;
@@ -770,6 +773,10 @@ BSTree<T>::print() const {
   }
   cout << "left  black height: " << L_black_height << endl;
   cout << "right black height: " << R_black_height << endl;
+  for( auto it = begin(); it != end(); ++it )
+    s ++;
+  cout << "true size is: " << _size << endl;
+  cout << "now size is:  " << s << endl;
 }
 
 template<typename T>
@@ -781,17 +788,17 @@ BSTree<T>::print( BSTreeNode<T>* ptr, size_t indent ) const {
       cout << '\t';
     }
     if( ptr -> _color == RED )
-      cout << "\033[31m" << ptr -> _data << "\033[0m" << endl;
+      cout << "\033[1;31m"  << ptr -> _data << "\033[0m" << endl;
     else if( ptr -> _color == BLACK )
-      cout << "\033[7m"  << ptr -> _data << "\033[0m" << endl;
+      cout << "\033[30;47m" << ptr -> _data << "\033[0m" << endl;
     else
       assert( 0 && "wtf in printing??" );
     print( ptr -> _child_R, indent+1 );
   }else{
     for( size_t i = 0; i < indent; ++i ){
-      cout << '\t';
+      cout << "\033[0m" << '\t';
     }
-    cout << "\033[7;33mNULLPTR\033[0m" << endl;
+    cout << "\033[30;43mNULLPTR\033[0m" << endl;
   }
 }
 

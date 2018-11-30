@@ -36,10 +36,10 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 src/util/bst.h
-badd +0 src/main/adtTest.cpp
-badd +0 src/main/adtTest.h
-badd +0 src/main/main.cpp
+badd +1 src/util/bst.h
+badd +1 src/main/adtTest.cpp
+badd +1 src/main/adtTest.h
+badd +1 src/main/main.cpp
 argglobal
 silent! argdel *
 $argadd src/util/bst.h
@@ -181,12 +181,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 271 - ((21 * winheight(0) + 21) / 42)
+let s:l = 266 - ((6 * winheight(0) + 21) / 42)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-271
-normal! 03|
+266
+normal! 0
 wincmd w
 argglobal
 if bufexists('src/util/bst.h') | buffer src/util/bst.h | else | edit src/util/bst.h | endif
@@ -308,14 +308,13 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 570 - ((23 * winheight(0) + 21) / 42)
+let s:l = 266 - ((0 * winheight(0) + 21) / 42)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-570
-normal! 05|
+266
+normal! 0
 wincmd w
-2wincmd w
 exe 'vert 1resize ' . ((&columns * 86 + 86) / 172)
 exe 'vert 2resize ' . ((&columns * 85 + 86) / 172)
 tabnext
