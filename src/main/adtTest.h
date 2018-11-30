@@ -124,14 +124,14 @@ public:
    void sort() { _container.sort(); }
 
    void print(bool reverse = false, bool verbose = false) const {
-      #ifdef TEST_BST
-      if (verbose)
-         _container.print();  // for BST only
-      #endif
       cout << "=== ADT (" << ADT << ") ===" << endl;
       if (reverse) printBackward();
       else printForward();
       cout << endl;
+      #ifdef TEST_BST
+      if (verbose)
+         _container.print();  // for BST only
+      #endif
    }
 
    // DO nothing if index is invalid

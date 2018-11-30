@@ -272,11 +272,11 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
   if( ptr -> _child_R == nullptr ){
     successor_ptr = ptr -> _child_L;
     transplant( ptr, successor_ptr );
-    delete_fix( nullptr, ptr, false );
+    delete_fix( ptr, successor_ptr, false );
   }else if( ptr -> _child_L == nullptr ){
     successor_ptr = ptr -> _child_R;
     transplant( ptr, successor_ptr );
-    delete_fix( nullptr, ptr, true );
+    delete_fix( ptr, successor_ptr, true );
   }else{
     auto* successor_ptr = successor( ptr->_child_R );
     if( successor_ptr == nullptr ){
@@ -302,8 +302,16 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
       assert( 0 && "erase error" );
     }else{}
   }
-  delete ptr;
-  return _root -> _color == BLACK;
+  if( _root == nullptr || _root -> _color == BLACK ){
+    delete ptr;
+    return true;
+  }else if( _root -> _color == RED ){
+    delete ptr;
+    return false;
+  }else {
+    assert( 0 && "WTF in erase????" );
+  }
+    
 }
 
 template<typename T>
@@ -748,17 +756,19 @@ BSTree<T>::transplant( BSTreeNode<T>* ptr1, BSTreeNode<T>* ptr2 ){
 template<typename T>
 void
 BSTree<T>::print() const {
+  print( _root , 0);
   size_t L_black_height = 1;
   size_t R_black_height = 1;
   for( auto* ptr = _root; ptr != nullptr; ptr = ptr -> _child_L ){
-    ++ L_black_height;
+    if( ptr == nullptr || ptr -> _color == BLACK )
+      ++ L_black_height;
   }
   for( auto* ptr = _root; ptr != nullptr; ptr = ptr -> _child_R ){
-    ++ R_black_height;
+    if( ptr == nullptr || ptr -> _color == BLACK )
+      ++ R_black_height;
   }
   cout << "left  black height: " << L_black_height << endl;
   cout << "right black height: " << R_black_height << endl;
-  print( _root , 0);
 }
 
 template<typename T>
