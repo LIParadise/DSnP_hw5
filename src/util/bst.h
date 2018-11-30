@@ -440,7 +440,7 @@ BSTree<T>::end() const {
 template<typename T>
 typename BSTree<T>::iterator
 BSTree<T>::begin() const {
-  return _root;
+  return min();
 }
 
 template<typename T>
@@ -769,7 +769,12 @@ BSTree<T>::print( BSTreeNode<T>* ptr, size_t indent ) const {
     for( size_t i = 0; i < indent; ++i ){
       cout << '\t';
     }
-    cout << ptr -> _data << endl;
+    if( ptr -> _color == RED )
+      cout << "\033[31m" << ptr -> _data << "\033[0m" << endl;
+    else if( ptr -> _color == BLACK )
+      cout << "\033[7m"  << ptr -> _data << "\033[0m" << endl;
+    else
+      assert( 0 && "wtf in printing??" );
     print( ptr -> _child_R, indent+1 );
   }else{
     for( size_t i = 0; i < indent; ++i ){
