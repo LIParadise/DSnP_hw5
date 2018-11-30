@@ -92,7 +92,7 @@ class BSTree
     static const int RED   = 0;
     static const int BLACK = 1;
     BSTreeNode<T>* _root;
-    void insert_fix( BSTreeNode<T>* );
+    void insert_fix( BSTreeNode<T>*& );
     void delete_fix( BSTreeNode<T>*, BSTreeNode<T>*, bool);
     // false mean _child_R;
     // true  mean _child_L;
@@ -480,7 +480,7 @@ BSTree<T>::insert( const T& other ){
 
 template<typename T>
 void
-BSTree<T>::insert_fix( BSTreeNode<T>* ptr ){
+BSTree<T>::insert_fix( BSTreeNode<T>*& ptr ){
   // ptr must have RED;
   if( ptr == _root ){
     assert( 0 && "WTF, insert_fix met root??" );
@@ -489,7 +489,7 @@ BSTree<T>::insert_fix( BSTreeNode<T>* ptr ){
   }
 
   // ptr must have grandparent.
-  while( ptr->_parent->_color == RED ){
+  while( ptr != _root && ptr->_parent->_color == RED ){
     auto* GParent_ptr = ptr->_parent->_parent;
     auto* uncle_ptr   = GParent_ptr;
     if( ptr->_parent == GParent_ptr->_child_L ){

@@ -169,7 +169,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 80 - ((0 * winheight(0) + 21) / 42)
+let s:l = 80 - ((0 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -293,7 +293,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 43 - ((0 * winheight(0) + 21) / 42)
+let s:l = 43 - ((0 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -309,8 +309,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 86 + 86) / 172)
-exe 'vert 2resize ' . ((&columns * 85 + 86) / 172)
+exe 'vert 1resize ' . ((&columns * 73 + 73) / 146)
+exe 'vert 2resize ' . ((&columns * 72 + 73) / 146)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -423,7 +423,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 291 - ((36 * winheight(0) + 21) / 42)
+let s:l = 291 - ((33 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -543,15 +543,15 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 161 - ((22 * winheight(0) + 21) / 42)
+let s:l = 161 - ((20 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 161
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 86 + 86) / 172)
-exe 'vert 2resize ' . ((&columns * 85 + 86) / 172)
+exe 'vert 1resize ' . ((&columns * 73 + 73) / 146)
+exe 'vert 2resize ' . ((&columns * 72 + 73) / 146)
 tabedit src/util/bst.h
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -562,8 +562,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 86 + 86) / 172)
-exe 'vert 2resize ' . ((&columns * 85 + 86) / 172)
+exe 'vert 1resize ' . ((&columns * 73 + 73) / 146)
+exe 'vert 2resize ' . ((&columns * 72 + 73) / 146)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -676,12 +676,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 485 - ((8 * winheight(0) + 21) / 42)
+let s:l = 524 - ((0 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-485
-normal! 03|
+524
+normal! 025|
 wincmd w
 argglobal
 edit src/util/bst.h
@@ -817,15 +817,15 @@ normal! zo
 normal! zo
 560
 normal! zo
-let s:l = 447 - ((25 * winheight(0) + 21) / 42)
+let s:l = 450 - ((6 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-447
-normal! 04|
+450
+normal! 05|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 86 + 86) / 172)
-exe 'vert 2resize ' . ((&columns * 85 + 86) / 172)
+exe 'vert 1resize ' . ((&columns * 73 + 73) / 146)
+exe 'vert 2resize ' . ((&columns * 72 + 73) / 146)
 tabedit src/util/interface.txt
 set splitbelow splitright
 set nosplitbelow
@@ -944,7 +944,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 3 - ((2 * winheight(0) + 21) / 42)
+let s:l = 3 - ((2 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt

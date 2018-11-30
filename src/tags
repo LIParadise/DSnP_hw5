@@ -129,7 +129,7 @@ help	main/adtTest.cpp	/^AdtResetCmd::help() const$/;"	f	class:AdtResetCmd
 help	main/adtTest.cpp	/^AdtSortCmd::help() const$/;"	f	class:AdtSortCmd
 initAdtCmd	main/adtTest.cpp	/^initAdtCmd()$/;"	f
 insert	util/bst.h	/^BSTree<T>::insert( const T& other ){$/;"	f	class:BSTree
-insert_fix	util/bst.h	/^BSTree<T>::insert_fix( BSTreeNode<T>* ptr ){$/;"	f	class:BSTree
+insert_fix	util/bst.h	/^BSTree<T>::insert_fix( BSTreeNode<T>*& ptr ){$/;"	f	class:BSTree
 isValidVarName	util/myString.cpp	/^isValidVarName(const string& str)$/;"	f
 iterator	util/array.h	/^      iterator(T* n= 0): _node(n) {}$/;"	f	class:Array::iterator
 iterator	util/array.h	/^      iterator(const iterator& i): _node(i._node) {}$/;"	f	class:Array::iterator
