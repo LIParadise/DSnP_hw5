@@ -152,7 +152,9 @@ left__rot	util/bst.h	/^BSTree<T>::left__rot( BSTreeNode<T>* ptr ){$/;"	f	class:B
 listDir	util/util.cpp	/^int listDir$/;"	f	typeref:typename:int
 main	main/main.cpp	/^main(int argc, char** argv)$/;"	f	typeref:typename:int
 max	util/bst.h	/^BSTree<T>::max() const {$/;"	f	class:BSTree	typeref:typename:BSTreeNode<T> *
+max_sub	util/bst.h	/^BSTree<T>::max_sub( BSTreeNode<T>* ptr ) const {$/;"	f	class:BSTree	typeref:typename:BSTreeNode<T> *
 min	util/bst.h	/^BSTree<T>::min() const {$/;"	f	class:BSTree	typeref:typename:BSTreeNode<T> *
+min_sub	util/bst.h	/^BSTree<T>::min_sub( BSTreeNode<T>* ptr ) const {$/;"	f	class:BSTree	typeref:typename:BSTreeNode<T> *
 myGetChar	util/myGetChar.cpp	/^char myGetChar()$/;"	f	typeref:typename:char
 myGetChar	util/myGetChar.cpp	/^char myGetChar(istream& istr)$/;"	f	typeref:typename:char
 myStr2Int	util/myString.cpp	/^myStr2Int(const string& str, int& num)$/;"	f	typeref:typename:bool

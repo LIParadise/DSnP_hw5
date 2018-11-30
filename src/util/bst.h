@@ -103,6 +103,8 @@ class BSTree
     void print     ( BSTreeNode<T>*, size_t ) const;
     BSTreeNode<T>* max () const;
     BSTreeNode<T>* min () const;
+    BSTreeNode<T>* min_sub ( BSTreeNode<T>* ) const;
+    BSTreeNode<T>* max_sub ( BSTreeNode<T>* ) const;
     size_t _size;
 };
 
@@ -268,20 +270,24 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
     return false;
 
   char color_bak = ptr -> _color;
-  auto* successor_ptr = ptr;
+  BSTreeNode<T>* successor_ptr = nullptr;
+  _size --;
+
   if( ptr -> _child_R == nullptr ){
     successor_ptr = ptr -> _child_L;
     transplant( ptr, successor_ptr );
-    delete_fix( successor_ptr, ptr -> _parent, false );
+    delete_fix( successor_ptr, ptr -> _parent, true  );
   }else if( ptr -> _child_L == nullptr ){
     successor_ptr = ptr -> _child_R;
     transplant( ptr, successor_ptr );
-    delete_fix( successor_ptr, ptr -> _parent, true );
+    delete_fix( successor_ptr, ptr -> _parent, false );
   }else{
-    auto* successor_ptr = successor( ptr );
+    successor_ptr = min_sub( ptr -> _child_R );
+#ifdef DEBUG
     if( successor_ptr == nullptr ){
       assert( 0 && "wtf in successor(ptr)" );
     }
+#endif // DEBUG
     color_bak = successor_ptr -> _color;
     if( successor_ptr -> _parent != ptr ){
       transplant( successor_ptr, successor_ptr -> _child_R );
@@ -292,15 +298,11 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
     successor_ptr -> _child_L = ptr -> _child_L;
     successor_ptr -> _child_L -> _parent = ptr;
     successor_ptr -> _color = ptr -> _color;
-    if( successor_ptr == successor_ptr -> _parent -> _child_R &&
-        color_bak == BLACK ){
-      delete_fix( successor_ptr, successor_ptr -> _parent, false );
-    }else if( successor_ptr==successor_ptr->_parent->_child_L &&
-        color_bak == BLACK ){
-      delete_fix( successor_ptr, successor_ptr -> _parent, true );
-    }else if( color_bak == BLACK ){
-      assert( 0 && "erase error" );
-    }else{}
+    // safe, since ptr have two children
+    // and successor_ptr._child_L  shall be nullptr;
+    if( color_bak == BLACK ){
+      delete_fix( successor_ptr -> _child_R, successor_ptr, false );
+    }
   }
   if( _root == nullptr || _root -> _color == BLACK ){
     delete ptr;
@@ -312,7 +314,6 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
     assert( 0 && "WTF in erase????" );
   }
 
-  _size --;
 }
 
 template<typename T>
@@ -334,9 +335,6 @@ BSTree<T>::successor( BSTreeNode<T>* ptr ){
     return nullptr;
   else if( ptr -> _child_R == nullptr ){
     if( ptr -> _parent == nullptr ){
-#ifdef DEBUG
-      assert ( ptr == _root );
-#endif // DEBUG
       return nullptr;
     }
     auto* ptr_bak = ptr;
@@ -361,9 +359,6 @@ BSTree<T>::predecessor( BSTreeNode<T>* ptr ) {
     return nullptr;
   else if( ptr -> _child_L == nullptr ){
     if( ptr -> _parent == nullptr ){
-#ifdef DEBUG
-      assert ( ptr == _root );
-#endif // DEBUG
       return nullptr;
     }
     auto* ptr_bak = ptr;
@@ -438,6 +433,30 @@ BSTree<T>::min() const {
   while( ptr -> _child_L != nullptr )
     ptr = ptr -> _child_L;
   return ptr;
+}
+
+template<typename T>
+BSTreeNode<T>*
+BSTree<T>::min_sub( BSTreeNode<T>* ptr ) const {
+  if( ptr == nullptr )
+    return nullptr;
+  else{
+    while( ptr -> _child_L != nullptr )
+      ptr = ptr -> _child_L;
+    return ptr;
+  }
+}
+
+template<typename T>
+BSTreeNode<T>*
+BSTree<T>::max_sub( BSTreeNode<T>* ptr ) const {
+  if( ptr == nullptr )
+    return nullptr;
+  else{
+    while( ptr -> _child_R != nullptr )
+      ptr = ptr -> _child_R;
+    return ptr;
+  }
 }
 
 template<typename T>
@@ -776,7 +795,7 @@ BSTree<T>::print() const {
   for( auto it = begin(); it != end(); ++it )
     s ++;
   cout << "true size is: " << _size << endl;
-  cout << "now size is:  " << s << endl;
+  cout << "now size is : " << s << endl;
 }
 
 template<typename T>
