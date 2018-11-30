@@ -40,7 +40,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +1 src/util/array.h
-badd +1 src/main/adtTest.h
+badd +105 src/main/adtTest.h
 badd +1 src/main/adtTest.cpp
 badd +72 src/util/dlist.h
 badd +1 src/util/bst.h
@@ -423,15 +423,15 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 291 - ((33 * winheight(0) + 19) / 39)
+let s:l = 266 - ((14 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-291
+266
 normal! 04|
 wincmd w
 argglobal
-edit src/main/adtTest.h
+edit src/util/bst.h
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -543,11 +543,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 161 - ((20 * winheight(0) + 19) / 39)
+let s:l = 266 - ((4 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-161
+266
 normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 73 + 73) / 146)
@@ -676,12 +676,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 524 - ((0 * winheight(0) + 19) / 39)
+let s:l = 262 - ((0 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-524
-normal! 025|
+262
+normal! 0
 wincmd w
 argglobal
 edit src/util/bst.h
@@ -796,33 +796,33 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-483,487fold
-483,554fold
-483,554fold
-560,635fold
-560,635fold
-558,635fold
-558,635fold
-483
+491,495fold
+491,562fold
+491,562fold
+568,643fold
+568,643fold
+566,643fold
+566,643fold
+491
 normal! zo
-483
+491
 normal! zo
-483
+491
 normal! zo
-558
+566
 normal! zo
-558
+566
 normal! zo
-560
+568
 normal! zo
-560
+568
 normal! zo
-let s:l = 450 - ((6 * winheight(0) + 19) / 39)
+let s:l = 568 - ((5 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-450
-normal! 05|
+568
+normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 73 + 73) / 146)
 exe 'vert 2resize ' . ((&columns * 72 + 73) / 146)

@@ -272,11 +272,11 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
   if( ptr -> _child_R == nullptr ){
     successor_ptr = ptr -> _child_L;
     transplant( ptr, successor_ptr );
-    delete_fix( ptr, successor_ptr, false );
+    delete_fix( successor_ptr, ptr -> _parent, false );
   }else if( ptr -> _child_L == nullptr ){
     successor_ptr = ptr -> _child_R;
     transplant( ptr, successor_ptr );
-    delete_fix( ptr, successor_ptr, true );
+    delete_fix( successor_ptr, ptr -> _parent, true );
   }else{
     auto* successor_ptr = successor( ptr->_child_R );
     if( successor_ptr == nullptr ){
@@ -294,10 +294,10 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
     successor_ptr -> _color = ptr -> _color;
     if( successor_ptr == successor_ptr -> _parent -> _child_R &&
         color_bak == BLACK ){
-      delete_fix( successor_ptr, ptr, false );
+      delete_fix( successor_ptr, successor_ptr -> _parent, false );
     }else if( successor_ptr==successor_ptr->_parent->_child_L &&
         color_bak == BLACK ){
-      delete_fix( successor_ptr, ptr, true );
+      delete_fix( successor_ptr, successor_ptr -> _parent, true );
     }else if( color_bak == BLACK ){
       assert( 0 && "erase error" );
     }else{}
