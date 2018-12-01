@@ -2,33 +2,33 @@ adta -s 123
 adta -s 456
 adta -s 123
 adta -s 001
-adtp
+adtp -v
 adtd -s 123
-adtp
+adtp -v
 adtd -s 001
-adtp
+adtp -v
 adtd -s 123
-adtp
+adtp -v
 adtd -s 456
-adtp
+adtp -v
 adtd -s 123
-adtp
+adtp -v
 usage
 adta -s 123
 adta -s 456
 adta -s 123
 adta -s 001
 adts
-adtp
+adtp -v
 adtd -s 123
-adtp
+adtp -v
 adtd -s 001
-adtp
+adtp -v
 adtd -s 123
-adtp
+adtp -v
 adtd -s 456
-adtp
+adtp -v
 adtd -s 123
-adtp
+adtp -v
 usage
 q -f

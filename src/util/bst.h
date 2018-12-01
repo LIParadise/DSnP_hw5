@@ -45,7 +45,6 @@ class BSTree
 {
   public:
     // TODO: design your own class!!
-    BSTree(): _root( nullptr ), _size(0) {}
     class iterator {
       public:
         friend class BSTree;
@@ -63,6 +62,8 @@ class BSTree
       private:
         BSTreeNode<T>* _ptr;
     };
+    friend class iterator;
+    BSTree(): _root( nullptr ), _size(0) {}
     void    pop_front();
     void    pop_back();
     void    clear();
@@ -182,7 +183,6 @@ BSTree<T>::pop_front () {
 #else
   erase( min() );
 #endif // DEBUG
-  _size --;
 }
 
 template<typename T>
@@ -195,7 +195,6 @@ BSTree<T>::pop_back() {
 #else
   erase( max() );
 #endif // DEBUG
-  _size --;
 }
 
 template<typename T>
@@ -768,7 +767,6 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
 template<typename T>
 void
 BSTree<T>::right_rot( BSTreeNode<T>* ptr ){
-
 #ifdef DEBUG
   assert( ptr->_child_L != nullptr && "right rot error" );
 #endif // DEBUG
@@ -798,6 +796,8 @@ BSTree<T>::right_rot( BSTreeNode<T>* ptr ){
       ptr->_parent->_child_R = B_ptr;
     else
       assert( 0 && "right rot bizzare error" );
+  }else{
+    _root = B_ptr;
   }
 
   // set parent of E to A.
@@ -815,7 +815,7 @@ template<typename T>
 void
 BSTree<T>::left__rot( BSTreeNode<T>* ptr ){
 #ifdef DEBUG
-  assert( ptr->_child_R != nullptr && "right rot error" );
+  assert( ptr->_child_R != nullptr && "left rot error" );
 #endif // DEBUG
   /*  suppose we left__rot( A );
   /// assume A._child_R != nullptr.
@@ -843,6 +843,8 @@ BSTree<T>::left__rot( BSTreeNode<T>* ptr ){
       ptr->_parent->_child_R = C_ptr;
     else
       assert( 0 && "left rot bizzare error" );
+  }else{
+    _root = C_ptr;
   }
 
   // set parent of D to A.
