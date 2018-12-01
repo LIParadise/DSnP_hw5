@@ -279,12 +279,16 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
   BSTreeNode<T>* successor_ptr = nullptr;
   _size --;
   char ch = 0;
-  if( ptr == ptr -> _parent -> _child_L )
-    ch = 'L';
-  else if( ptr == ptr -> _parent -> _child_R )
-    ch = 'R';
-  else
-    assert( 0 && "WTF in erase(ptr)" );
+  if( ptr != _root ){
+    // if ptr == _root, we won't care about first two cases.
+    // thus position is determined later.
+    if( ptr == ptr -> _parent -> _child_L )
+      ch = 'L';
+    else if( ptr == ptr -> _parent -> _child_R )
+      ch = 'R';
+    else
+      assert( 0 && "WTF in erase(ptr)" );
+  }
 
   if( ptr -> _child_R == nullptr ){
     successor_ptr = ptr -> _child_L;
@@ -306,7 +310,7 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
     color_bak = successor_ptr -> _color;
     auto* need_fix        = successor_ptr -> _child_R;
     auto* need_fix_parent = successor_ptr;
-    char  ch              = 0;
+    ch                    = 0;
     if( successor_ptr -> _parent != ptr ){
       need_fix_parent = successor_ptr -> _parent;
       transplant( successor_ptr, successor_ptr -> _child_R );
@@ -611,120 +615,154 @@ BSTree<T>::delete_fix( BSTreeNode<T>* ptr,
     BSTreeNode<T>* my_parent, char which ){
   while( ptr != _root &&  
       ( ptr == nullptr || ptr -> _color == BLACK ) ){
-#ifdef DEBUG
-    assert( my_parent != nullptr && "wait wut..., delete_fix" );
-#endif // DEBUG
+    // we shall always have sibling.
+    // we shall have parent when entering the loop.
     if( which == 'L' ){
+#ifdef DEBUG
+      assert( my_parent != nullptr && "wait wut..., delete_fix" );
+      assert( my_parent -> _child_R != nullptr && "wait wut..., delete_fix" );
+#endif // DEBUG
       // left child.
-      if( my_parent -> _child_R != nullptr &&
-          my_parent -> _child_R -> _color == RED ){
+      if( my_parent -> _child_R -> _color == RED ){
+        // case I.
         my_parent -> _color = RED;
         my_parent -> _child_R -> _color = BLACK;
         left__rot( my_parent);
       }
-      if( my_parent -> _child_R != nullptr && my_parent -> _color == BLACK){
-        if( ( my_parent->_child_R->_child_L == nullptr ||
-              my_parent->_child_R->_child_L -> _color == BLACK ) &&
-            ( my_parent->_child_R->_child_R == nullptr ||
-              my_parent->_child_R->_child_R -> _color == BLACK )) {
-          // too many black in both side.
-          my_parent -> _child_R -> _color = RED;
-          ptr = my_parent;
-          my_parent = ptr->_parent;
-          // my_parent may be broken now.
-          if( my_parent != nullptr ){
-            if( ptr == my_parent -> _child_R )
-              which = 'R';
-            else if( ptr == my_parent -> _child_L )
-              which = 'L';
-            else
-              assert( 0 && "WTF in case II of rb-delete-fix" );
-          }
-          continue;
+      if( ( my_parent->_child_R->_child_L == nullptr ||
+            my_parent->_child_R->_child_L -> _color == BLACK ) &&
+          ( my_parent->_child_R->_child_R == nullptr ||
+            my_parent->_child_R->_child_R -> _color == BLACK )) {
+        // case II.
+        // too many black in both side.
+        my_parent -> _child_R -> _color = RED;
+        ptr = my_parent;
+        my_parent = my_parent->_parent;
+        // my_parent may be broken now.
+        if( my_parent != nullptr ){
+          if( ptr == my_parent -> _child_R )
+            which = 'R';
+          else if( ptr == my_parent -> _child_L )
+            which = 'L';
+          else
+            assert( 0 && "WTF in case II of rb-delete-fix" );
         }
+        continue;
       }
       if( my_parent != nullptr ){
         if( my_parent -> _child_R != nullptr ) {
           if( (my_parent -> _child_R -> _child_R == nullptr ||
                 my_parent -> _child_R -> _child_R -> _color == BLACK ) ){
 
-            if( my_parent -> _child_R -> _child_L != nullptr )
-              my_parent->_child_R->_child_L->_color = BLACK;
+#ifdef DEBUG
+            assert( my_parent -> _child_R -> _child_L != nullptr  &&
+                "my both nephew are BLACK... WTF dude?!" );
+#endif // DEBUG
+            my_parent->_child_R->_child_L->_color = BLACK;
             my_parent -> _child_R -> _color = RED;
             right_rot( my_parent -> _child_R );
             // shall be valid
-            // since we have ( my_parent -> _child_R -> _child_L != nullptr )
-#ifdef DEBUG
-            assert( my_parent->_child_R->_child_L != nullptr &&
-                "WTF in delete_fix case III?!" );
-#endif // DEBUG
+            // since we have ( my_parent -> _child_R -> _child_L being RED. )
           }
+#ifdef DEBUG
+          assert( my_parent -> _child_R -> _child_R != nullptr &&
+              my_parent -> _child_R -> _child_R -> _color == RED &&
+              "my opposite nephew have color BLACK in case IV, weird." );
+#endif
           my_parent -> _child_R -> _color = my_parent -> _color;
-          if( my_parent -> _child_R -> _child_R != nullptr )
-            my_parent -> _child_R -> _child_R -> _color = BLACK;
+          my_parent -> _child_R -> _child_R -> _color = BLACK;
           my_parent -> _color = BLACK;
           left__rot( my_parent );
           ptr = _root;
           my_parent = nullptr;
-        }
-      }
-    }else{
-      // right child.
+        }else {
+          // dummy;
 #ifdef DEBUG
-      assert( which == 'R' );
+          assert( 0 && "case III and case IV have NIL sibling?!" );
+#endif // debug
+        }
+      } else {
+        // my_parent is nullptr in case III and case IV;
+#ifdef DEBUG
+        assert( 0 && "case III and case IV have NIL parent?!" );
+        cerr << (( _root == ptr )? "I'm root" : "I'm not root....") << endl;
 #endif // DEBUG
-      if( my_parent -> _child_L != nullptr &&
-          my_parent -> _child_L -> _color == RED ){
-        my_parent -> _color = RED;
+      }
+    }else if( which == 'R' ){
+      // right child
+#ifdef DEBUG
+      assert( my_parent != nullptr && "wait wut..., delete_fix" );
+      assert( my_parent -> _child_L != nullptr && "wait wut..., delete_fix" );
+#endif // DEBUG
+      if( my_parent -> _child_L -> _color == RED ){
+        // case I.
         my_parent -> _child_L -> _color = BLACK;
+        my_parent -> _color = RED;
         right_rot( my_parent);
       }
-      if( my_parent -> _child_L != nullptr && my_parent -> _color == BLACK){
-        if( ( my_parent->_child_L->_child_L == nullptr ||
-              my_parent->_child_L->_child_L -> _color == BLACK ) &&
-            ( my_parent->_child_L->_child_R == nullptr ||
-              my_parent->_child_L->_child_R -> _color == BLACK )) {
-          // too many black in both side.
-          my_parent -> _child_L -> _color = RED;
-          ptr = my_parent;
-          my_parent = ptr->_parent;
-          // my_parent may be broken now.
-          if( my_parent != nullptr ){
-            if( ptr == my_parent -> _child_R )
-              which = 'R';
-            else if( ptr == my_parent -> _child_L )
-              which = 'L';
-            else
-              assert( 0 && "WTF in case II of rb-delete-fix" );
-          }
-          continue;
+      if( ( my_parent->_child_L->_child_L == nullptr ||
+            my_parent->_child_L->_child_L -> _color == BLACK ) &&
+          ( my_parent->_child_L->_child_R == nullptr ||
+            my_parent->_child_L->_child_R -> _color == BLACK )) {
+        // case II.
+        // too many black in both side.
+        my_parent -> _child_L -> _color = RED;
+        ptr = my_parent;
+        my_parent = my_parent->_parent;
+        // my_parent may be broken now.
+        if( my_parent != nullptr ){
+          if( ptr == my_parent -> _child_R )
+            which = 'R';
+          else if( ptr == my_parent -> _child_L )
+            which = 'L';
+          else
+            assert( 0 && "WTF in case II of rb-delete-fix" );
         }
+        continue;
       }
       if( my_parent != nullptr ){
         if( my_parent -> _child_L != nullptr ) {
-          if ( (my_parent -> _child_L -> _child_L == nullptr ||
+          if( (my_parent -> _child_L -> _child_L == nullptr ||
                 my_parent -> _child_L -> _child_L -> _color == BLACK ) ){
 
-            if( my_parent -> _child_L -> _child_R != nullptr )
-              my_parent->_child_L->_child_R->_color = BLACK;
+#ifdef DEBUG
+            assert( my_parent -> _child_L -> _child_R != nullptr  &&
+                "my both nephew are BLACK... WTF dude?!" );
+#endif // DEBUG
+            my_parent->_child_L->_child_R->_color = BLACK;
             my_parent -> _child_L -> _color = RED;
             left__rot( my_parent -> _child_L );
             // shall be valid
-            // since we have ( my_parent -> _child_R -> _child_L != nullptr )
-#ifdef DEBUG
-            assert( my_parent->_child_R->_child_L != nullptr &&
-                "WTF in delete_fix case III?!" );
-#endif // DEBUG
+            // since we have ( my_parent -> _child_L -> _child_R being RED. )
           }
+#ifdef DEBUG
+          assert( my_parent -> _child_L -> _child_L != nullptr &&
+              my_parent -> _child_L -> _child_L -> _color == RED &&
+              "my opposite nephew have color BLACK in case IV, weird." );
+#endif
           my_parent -> _child_L -> _color = my_parent -> _color;
-          if( my_parent -> _child_L -> _child_L != nullptr )
-            my_parent -> _child_L -> _child_L -> _color = BLACK;
+          my_parent -> _child_L -> _child_L -> _color = BLACK;
           my_parent -> _color = BLACK;
           right_rot( my_parent );
           ptr = _root;
           my_parent = nullptr;
+        }else {
+          // dummy;
+#ifdef DEBUG
+          assert( 0 && "case III and case IV have NIL sibling?!" );
+#endif // debug
         }
+      } else {
+        // my_parent is nullptr in case III and case IV;
+#ifdef DEBUG
+        assert( 0 && "case III and case IV have NIL parent?!" );
+        cerr << (( _root == ptr )? "I'm root" : "I'm not root....") << endl;
+#endif // DEBUG
       }
+    }else {
+#ifdef DEBUG
+      assert( 0 && "color wrong in delete-fix" );
+#endif // DEBUG
     }
   }
   if( ptr != nullptr )
