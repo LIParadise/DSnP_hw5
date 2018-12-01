@@ -309,12 +309,13 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
     color_bak = successor_ptr -> _color;
     auto* need_fix        = successor_ptr -> _child_R;
     auto* need_fix_parent = successor_ptr;
-    ch                    = 0;
+    ch = 'R';
     if( successor_ptr -> _parent != ptr ){
+      ch = 'L';
       need_fix_parent = successor_ptr -> _parent;
       transplant( successor_ptr, successor_ptr -> _child_R );
       successor_ptr -> _child_R = ptr -> _child_R;
-      successor_ptr -> _parent  = ptr;
+      successor_ptr -> _child_R -> _parent  = successor_ptr;
     }
     transplant( ptr, successor_ptr );
     successor_ptr -> _child_L = ptr -> _child_L;
@@ -322,12 +323,6 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
     successor_ptr -> _color = ptr -> _color;
     // safe, since ptr have two children
     // and successor_ptr._child_L  shall be nullptr;
-    if( need_fix == need_fix_parent -> _child_L )
-      ch = 'L';
-    else if( need_fix == need_fix_parent -> _child_R )
-      ch = 'R';
-    else
-      assert( 0 && "WTF in erase(ptr)" );
     if( color_bak == BLACK ){
       delete_fix( need_fix, need_fix_parent, ch);
     }
@@ -908,6 +903,12 @@ template<typename T>
 void 
 BSTree<T>::print( BSTreeNode<T>* ptr, size_t indent, char type ) const {
   if( ptr != nullptr ){
+    if( ptr != _root ){
+      if( ptr != ptr -> _parent -> _child_L && ptr != ptr ->_parent->_child_R )
+        cerr << "\033[30;47m" << 
+          "something wrong, parent have no this child." <<
+          "\033[0m" << endl;
+    }
     print( ptr -> _child_L, indent+1, 'L');
     for( size_t i = 0; i < indent; ++i ){
       cout << '\t';
