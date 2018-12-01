@@ -55,6 +55,7 @@ _data	util/array.h	/^   T*            _data;$/;"	m	class:Array	typeref:typename:
 _data	util/bst.h	/^    T                 _data;$/;"	m	class:BSTreeNode	typeref:typename:T
 _data	util/dlist.h	/^   T              _data;$/;"	m	class:DListNode	typeref:typename:T
 _head	util/dlist.h	/^   DListNode<T>*  _head;     \/\/ = dummy node if list is empty$/;"	m	class:DList	typeref:typename:DListNode<T> *
+_hidden_parent	util/bst.h	/^        const BSTree<T>*    _hidden_parent ;$/;"	m	class:BSTree::iterator	typeref:typename:const BSTree<T> *
 _initMem	util/myUsage.h	/^   double     _initMem;$/;"	m	class:MyUsage	typeref:typename:double
 _isSorted	util/array.h	/^   mutable bool  _isSorted;   \/\/ (optionally) to indicate the array is sorted$/;"	m	class:Array	typeref:typename:bool
 _isSorted	util/dlist.h	/^   mutable bool   _isSorted; \/\/ (optionally) to indicate the array is sorted$/;"	m	class:DList	typeref:typename:bool
@@ -141,7 +142,7 @@ iterator	util/array.h	/^Array<T>::iterator::operator = (const iterator& other ){
 iterator	util/array.h	/^class Array<T>::iterator Array<T>::iterator::operator ++ (int i) {$/;"	c	class:Array
 iterator	util/array.h	/^class Array<T>::iterator& Array<T>::iterator::operator ++ () {$/;"	c	class:Array
 iterator	util/bst.h	/^        iterator():_ptr(nullptr) {}$/;"	f	class:BSTree::iterator
-iterator	util/bst.h	/^        iterator(BSTreeNode<T>* p):_ptr(p) {}$/;"	f	class:BSTree::iterator
+iterator	util/bst.h	/^        iterator(BSTreeNode<T>* p, const BSTree<T>* hp = nullptr):$/;"	f	class:BSTree::iterator
 iterator	util/bst.h	/^    class iterator {$/;"	c	class:BSTree
 iterator	util/dlist.h	/^      iterator(DListNode<T>* n= 0): _node(n) {}$/;"	f	class:DList::iterator
 iterator	util/dlist.h	/^      iterator(const iterator& i) : _node(i._node) {}$/;"	f	class:DList::iterator

@@ -1,25 +1,25 @@
 adta -s jordan
-adtp -v
+adtp
 adta -s jordano
-adtp -v
+adtp
 adta -s jorda
-adtp -v
+adtp
 adta -s jordan
-adtp -v
+adtp
 adta -s jordana
-adtp -v
+adtp
 adtd -s jordani
-adtp -v
+adtp
 adtd -s jord
-adtp -v
+adtp
 adta -r 30
-adtp -v
+adtp
 adtd -front 5
-adtp -v
+adtp
 adtd -back 5
-adtp -v
+adtp
 adtd -r 5
-adtp -v
+adtp
 adtd -all
-adtp -v
+adtp
 q -f

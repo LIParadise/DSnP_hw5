@@ -49,7 +49,8 @@ class BSTree
       public:
         friend class BSTree;
         iterator():_ptr(nullptr) {}
-        iterator(BSTreeNode<T>* p):_ptr(p) {}
+        iterator(BSTreeNode<T>* p, const BSTree<T>* hp = nullptr):
+          _ptr(p), _hidden_parent( hp ) {}
         const T&  operator *   () const             ;
         T&        operator *   ()                   ;
         iterator& operator ++  ()                   ;
@@ -61,6 +62,7 @@ class BSTree
         bool operator == (const iterator& i) const  ;
       private:
         BSTreeNode<T>* _ptr;
+        const BSTree<T>*    _hidden_parent ;
     };
     friend class iterator;
     BSTree(): _root( nullptr ), _size(0) {}
@@ -89,6 +91,8 @@ class BSTree
 
     void insert( const T& );
     void print() const ;
+    BSTreeNode<T>* max () const;
+    BSTreeNode<T>* min () const;
   private:
     static const int RED   = 0;
     static const int BLACK = 1;
@@ -102,8 +106,6 @@ class BSTree
     void check_sort( BSTreeNode<T>* ) const;
     void transplant( BSTreeNode<T>*, BSTreeNode<T>* );
     void print     ( BSTreeNode<T>*, size_t, char = 0 ) const;
-    BSTreeNode<T>* max () const;
-    BSTreeNode<T>* min () const;
     BSTreeNode<T>* min_sub ( BSTreeNode<T>* ) const;
     BSTreeNode<T>* max_sub ( BSTreeNode<T>* ) const;
     size_t _size;
@@ -142,7 +144,10 @@ template<typename T>
 typename BSTree<T>::iterator&
 BSTree<T>::iterator::operator -- () {
   // pre-increment operator --;
-  _ptr = BSTree<T>::predecessor( _ptr );
+  if( _ptr != nullptr )
+    _ptr = BSTree<T>::predecessor( _ptr );
+  else
+    _ptr = _hidden_parent -> max() ;
   return *this;
 }
 
@@ -485,13 +490,13 @@ BSTree<T>::max_sub( BSTreeNode<T>* ptr ) const {
 template<typename T>
 typename BSTree<T>::iterator
 BSTree<T>::end() const {
-  return nullptr;
+  return iterator ( nullptr, this );
 }
 
 template<typename T>
 typename BSTree<T>::iterator
 BSTree<T>::begin() const {
-  return min();
+  return iterator( min(), this );
 }
 
 template<typename T>

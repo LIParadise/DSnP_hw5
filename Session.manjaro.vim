@@ -36,11 +36,11 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +299 src/util/bst.h
+badd +43 src/util/bst.h
 badd +1 src/main/adtTest.cpp
-badd +114 src/main/adtTest.h
+badd +1 src/main/adtTest.h
 badd +1 src/main/main.cpp
-badd +0 src/util/interface.txt
+badd +1 src/util/interface.txt
 argglobal
 silent! argdel *
 $argadd src/util/bst.h
@@ -183,12 +183,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 308 - ((41 * winheight(0) + 21) / 42)
+let s:l = 502 - ((26 * winheight(0) + 21) / 42)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-308
-normal! 0
+502
+normal! 020|
 wincmd w
 argglobal
 if bufexists('src/util/bst.h') | buffer src/util/bst.h | else | edit src/util/bst.h | endif
@@ -310,17 +310,17 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 762 - ((23 * winheight(0) + 21) / 42)
+let s:l = 81 - ((41 * winheight(0) + 21) / 42)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-762
-normal! 09|
+81
+normal! 026|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 86 + 87) / 174)
 exe 'vert 2resize ' . ((&columns * 87 + 87) / 174)
 tabnext
-edit src/util/bst.h
+edit src/main/adtTest.cpp
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -461,11 +461,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 267 - ((4 * winheight(0) + 21) / 42)
+let s:l = 11 - ((10 * winheight(0) + 21) / 42)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-267
+11
 normal! 0
 wincmd w
 argglobal
@@ -588,11 +588,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 199 - ((15 * winheight(0) + 10) / 21)
+let s:l = 152 - ((9 * winheight(0) + 10) / 21)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-199
+152
 normal! 0
 wincmd w
 argglobal
@@ -715,11 +715,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 89 - ((14 * winheight(0) + 10) / 20)
+let s:l = 74 - ((0 * winheight(0) + 10) / 20)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-89
+74
 normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 86 + 87) / 174)
@@ -997,7 +997,7 @@ exe s:l
 normal! zt
 5
 normal! 0
-tabnext 2
+tabnext 1
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
