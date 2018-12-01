@@ -886,7 +886,7 @@ BSTree<T>::transplant( BSTreeNode<T>* ptr1, BSTreeNode<T>* ptr2 ){
 template<typename T>
 void
 BSTree<T>::print() const {
-  print( _root , 0);
+  // print( _root , 0);
   size_t L_black_height = 1;
   size_t R_black_height = 1;
   size_t s              = 0;

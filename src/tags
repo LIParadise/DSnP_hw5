@@ -1,254 +1,252 @@
 !_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
 !_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
-!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
-!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
-!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
-!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
-!_TAG_PROGRAM_VERSION	0.0.0	/45968eff/
-ADT	main/adtTest.h	/^      #define  ADT /;"	d
-ADT_TEST_H	main/adtTest.h	/^#define ADT_TEST_H$/;"	d
-ARRAY_H	util/array.h	/^#define ARRAY_H$/;"	d
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ADT	main/adtTest.h	28;"	d
+ADT_TEST_H	main/adtTest.h	9;"	d
+ARRAY_H	util/array.h	10;"	d
+AdtAddCmd	main/adtTest.h	/^CmdClass(AdtAddCmd);$/;"	v
+AdtDeleteCmd	main/adtTest.h	/^CmdClass(AdtDeleteCmd);$/;"	v
+AdtPrintCmd	main/adtTest.h	/^CmdClass(AdtPrintCmd);$/;"	v
+AdtQueryCmd	main/adtTest.h	/^CmdClass(AdtQueryCmd);$/;"	v
+AdtResetCmd	main/adtTest.h	/^CmdClass(AdtResetCmd);$/;"	v
+AdtSortCmd	main/adtTest.h	/^CmdClass(AdtSortCmd);$/;"	v
 AdtTest	main/adtTest.h	/^class AdtTest$/;"	c
 AdtTestObj	main/adtTest.cpp	/^AdtTestObj::AdtTestObj()$/;"	f	class:AdtTestObj
 AdtTestObj	main/adtTest.h	/^   AdtTestObj(const AdtTestObj& o) : _str(o._str) {}$/;"	f	class:AdtTestObj
 AdtTestObj	main/adtTest.h	/^   AdtTestObj(const string& s)$/;"	f	class:AdtTestObj
 AdtTestObj	main/adtTest.h	/^class AdtTestObj$/;"	c
-AdtType	main/adtTest.h	/^      #define  AdtType /;"	d
+AdtType	main/adtTest.h	29;"	d
 Array	util/array.h	/^   Array() : _data(0), _size(0), _capacity(0) {}$/;"	f	class:Array
 Array	util/array.h	/^class Array$/;"	c
-BLACK	util/bst.h	/^    static const int BLACK = 1;$/;"	m	class:BSTree	typeref:typename:const int
-BST_H	util/bst.h	/^#define BST_H$/;"	d
+BLACK	util/bst.h	/^    static const int BLACK = 1;$/;"	m	class:BSTree
+BST_H	util/bst.h	10;"	d
 BSTree	util/bst.h	/^    BSTree(): _root( nullptr ), _size(0) {}$/;"	f	class:BSTree
 BSTree	util/bst.h	/^class BSTree$/;"	c
 BSTreeNode	util/bst.h	/^    BSTreeNode( const T& t, BSTreeNode<T>* ptrP = nullptr, $/;"	f	class:BSTreeNode
 BSTreeNode	util/bst.h	/^class BSTreeNode$/;"	c
-DLIST_H	util/dlist.h	/^#define DLIST_H$/;"	d
+DLIST_H	util/dlist.h	10;"	d
 DList	util/dlist.h	/^   DList() {$/;"	f	class:DList
 DList	util/dlist.h	/^class DList$/;"	c
 DListNode	util/dlist.h	/^   DListNode(const T& d, DListNode<T>* p = 0, DListNode<T>* n = 0):$/;"	f	class:DListNode
 DListNode	util/dlist.h	/^class DListNode$/;"	c
-DO_BACK	main/adtTest.cpp	/^      enum { DO_FRONT, DO_BACK, DO_RANDOM } delType;$/;"	e	enum:AdtDeleteCmd::exec::__anon10e0c0630103	file:
-DO_FRONT	main/adtTest.cpp	/^      enum { DO_FRONT, DO_BACK, DO_RANDOM } delType;$/;"	e	enum:AdtDeleteCmd::exec::__anon10e0c0630103	file:
-DO_RANDOM	main/adtTest.cpp	/^      enum { DO_FRONT, DO_BACK, DO_RANDOM } delType;$/;"	e	enum:AdtDeleteCmd::exec::__anon10e0c0630103	file:
-MYCLK_TCK	util/myUsage.h	/^#define MYCLK_TCK /;"	d
-MY_USAGE_H	util/myUsage.h	/^#define MY_USAGE_H$/;"	d
+MYCLK_TCK	util/myUsage.h	21;"	d
+MYCLK_TCK	util/myUsage.h	22;"	d
+MY_USAGE_H	util/myUsage.h	10;"	d
 MyUsage	util/myUsage.h	/^   MyUsage() { reset(); }$/;"	f	class:MyUsage
 MyUsage	util/myUsage.h	/^class MyUsage$/;"	c
-N	main/adtTest.h	/^#define N /;"	d
-RANDOM_ACCESS	main/adtTest.h	/^      #define  RANDOM_ACCESS$/;"	d
-RED	util/bst.h	/^    static const int RED   = 0;$/;"	m	class:BSTree	typeref:typename:const int
-RN_GEN_H	util/rnGen.h	/^#define RN_GEN_H$/;"	d
+N	main/adtTest.h	88;"	d
+RANDOM_ACCESS	main/adtTest.h	26;"	d
+RED	util/bst.h	/^    static const int RED   = 0;$/;"	m	class:BSTree
+RN_GEN_H	util/rnGen.h	9;"	d
 RandomNumGen	util/rnGen.h	/^      RandomNumGen() { my_srandom(getpid()); }$/;"	f	class:RandomNumGen
 RandomNumGen	util/rnGen.h	/^      RandomNumGen(unsigned seed) { my_srandom(seed); }$/;"	f	class:RandomNumGen
 RandomNumGen	util/rnGen.h	/^class RandomNumGen$/;"	c
-UTIL_H	util/util.h	/^#define UTIL_H$/;"	d
-__anon10e0c0630103	main/adtTest.cpp	/^      enum { DO_FRONT, DO_BACK, DO_RANDOM } delType;$/;"	g	function:AdtDeleteCmd::exec	file:
-__anon8fcd1ba70102	util/array.h	/^const T& Array<T>::operator [] (size_t i) const {$/;"	f	file:
-_capacity	util/array.h	/^   size_t        _capacity;   \/\/ max number of elements$/;"	m	class:Array	typeref:typename:size_t
-_child_L	util/bst.h	/^    BSTreeNode<T>*    _child_L;$/;"	m	class:BSTreeNode	typeref:typename:BSTreeNode<T> *
-_child_R	util/bst.h	/^    BSTreeNode<T>*    _child_R;$/;"	m	class:BSTreeNode	typeref:typename:BSTreeNode<T> *
-_color	util/bst.h	/^    char              _color;$/;"	m	class:BSTreeNode	typeref:typename:char
-_container	main/adtTest.h	/^   AdtType<AdtTestObj>   _container;$/;"	m	class:AdtTest	typeref:typename:AdtType<AdtTestObj>
-_currentMem	util/myUsage.h	/^   double     _currentMem;$/;"	m	class:MyUsage	typeref:typename:double
-_currentTick	util/myUsage.h	/^   double     _currentTick;$/;"	m	class:MyUsage	typeref:typename:double
-_data	util/array.h	/^   T*            _data;$/;"	m	class:Array	typeref:typename:T *
-_data	util/bst.h	/^    T                 _data;$/;"	m	class:BSTreeNode	typeref:typename:T
-_data	util/dlist.h	/^   T              _data;$/;"	m	class:DListNode	typeref:typename:T
-_head	util/dlist.h	/^   DListNode<T>*  _head;     \/\/ = dummy node if list is empty$/;"	m	class:DList	typeref:typename:DListNode<T> *
-_hidden_parent	util/bst.h	/^        const BSTree<T>*    _hidden_parent ;$/;"	m	class:BSTree::iterator	typeref:typename:const BSTree<T> *
-_initMem	util/myUsage.h	/^   double     _initMem;$/;"	m	class:MyUsage	typeref:typename:double
-_isSorted	util/array.h	/^   mutable bool  _isSorted;   \/\/ (optionally) to indicate the array is sorted$/;"	m	class:Array	typeref:typename:bool
-_isSorted	util/dlist.h	/^   mutable bool   _isSorted; \/\/ (optionally) to indicate the array is sorted$/;"	m	class:DList	typeref:typename:bool
-_next	util/dlist.h	/^   DListNode<T>*  _next;$/;"	m	class:DListNode	typeref:typename:DListNode<T> *
-_node	util/array.h	/^      T*    _node;$/;"	m	class:Array::iterator	typeref:typename:T *
-_node	util/dlist.h	/^      DListNode<T>* _node;$/;"	m	class:DList::iterator	typeref:typename:DListNode<T> *
-_parent	util/bst.h	/^    BSTreeNode<T>*    _parent;$/;"	m	class:BSTreeNode	typeref:typename:BSTreeNode<T> *
-_periodUsedTime	util/myUsage.h	/^   double     _periodUsedTime;$/;"	m	class:MyUsage	typeref:typename:double
-_prev	util/dlist.h	/^   DListNode<T>*  _prev;$/;"	m	class:DListNode	typeref:typename:DListNode<T> *
-_ptr	util/bst.h	/^        BSTreeNode<T>* _ptr;$/;"	m	class:BSTree::iterator	typeref:typename:BSTreeNode<T> *
-_root	util/bst.h	/^    BSTreeNode<T>* _root;$/;"	m	class:BSTree	typeref:typename:BSTreeNode<T> *
-_size	util/array.h	/^   size_t        _size;       \/\/ number of valid elements$/;"	m	class:Array	typeref:typename:size_t
-_size	util/bst.h	/^    size_t _size;$/;"	m	class:BSTree	typeref:typename:size_t
-_str	main/adtTest.h	/^   string      _str;  \/\/ _str.length() should alywas <= _strLen$/;"	m	class:AdtTestObj	typeref:typename:string
-_strLen	main/adtTest.cpp	/^int AdtTestObj::_strLen = 6;$/;"	m	class:AdtTestObj	typeref:typename:int
-_strLen	main/adtTest.h	/^   static int  _strLen;$/;"	m	class:AdtTestObj	typeref:typename:int
-_totalUsedTime	util/myUsage.h	/^   double     _totalUsedTime;$/;"	m	class:MyUsage	typeref:typename:double
-add	main/adtTest.h	/^   void add() { add(AdtTestObj()); }$/;"	f	class:AdtTest	typeref:typename:void
-add	main/adtTest.h	/^   void add(const AdtTestObj& o) {$/;"	f	class:AdtTest	typeref:typename:void
-adtTest	main/adtTest.cpp	/^AdtTest adtTest;$/;"	v	typeref:typename:AdtTest
-begin	util/array.h	/^class Array<T>::iterator Array<T>::begin() const {$/;"	c	class:Array
-begin	util/bst.h	/^BSTree<T>::begin() const {$/;"	f	class:BSTree	typeref:typename:BSTree<T>::iterator
-begin	util/dlist.h	/^DList<T>::begin() const {$/;"	c	class:DList
-checkMem	util/myUsage.h	/^   double checkMem() const {$/;"	f	class:MyUsage	typeref:typename:double
-checkTick	util/myUsage.h	/^   double checkTick() const {$/;"	f	class:MyUsage	typeref:typename:double
-check_sort	util/bst.h	/^BSTree<T>::check_sort ( BSTreeNode<T>* ptr ) const{$/;"	f	class:BSTree	typeref:typename:void
-clear	util/array.h	/^void Array<T>::clear() {$/;"	f	class:Array	typeref:class:Array::find template<class T> void
-clear	util/bst.h	/^BSTree<T>::clear( BSTreeNode<T>* ptr ){$/;"	f	class:BSTree	typeref:typename:void
-clear	util/bst.h	/^BSTree<T>::clear() {$/;"	f	class:BSTree	typeref:typename:void
-clear	util/dlist.h	/^DList<T>::clear() {$/;"	f	class:DList	typeref:class:DList::find template<class T> void
-clearList	util/util.h	/^void clearList(T& l)$/;"	f	typeref:typename:void
-cmdMgr	main/main.cpp	/^CmdParser* cmdMgr = new CmdParser("adt> ");$/;"	v	typeref:typename:CmdParser *
-deleteAll	main/adtTest.h	/^   void deleteAll() { _container.clear(); }$/;"	f	class:AdtTest	typeref:typename:void
-deleteBack	main/adtTest.h	/^   void deleteBack(size_t repeat = 1) {$/;"	f	class:AdtTest	typeref:typename:void
-deleteFront	main/adtTest.h	/^   void deleteFront(size_t repeat = 1) {$/;"	f	class:AdtTest	typeref:typename:void
-deleteObj	main/adtTest.h	/^   bool deleteObj(const AdtTestObj& o) { return _container.erase(o); }$/;"	f	class:AdtTest	typeref:typename:bool
-deleteRandom	main/adtTest.h	/^   void deleteRandom(size_t repeat = 1) {$/;"	f	class:AdtTest	typeref:typename:void
-delete_fix	util/bst.h	/^BSTree<T>::delete_fix( BSTreeNode<T>* ptr,$/;"	f	class:BSTree	typeref:typename:void
-empty	util/array.h	/^bool Array<T>::empty() const {$/;"	f	class:Array	typeref:typename:bool
-empty	util/bst.h	/^BSTree<T>::empty() const {$/;"	f	class:BSTree	typeref:typename:bool
-empty	util/dlist.h	/^DList<T>::empty() const {$/;"	f	class:DList	typeref:typename:bool
-end	util/array.h	/^class Array<T>::iterator Array<T>::end() const {$/;"	f	class:Array	typeref:class:Array::begin template<class T> class Array<T>::iterator
-end	util/bst.h	/^BSTree<T>::end() const {$/;"	f	class:BSTree	typeref:typename:BSTree<T>::iterator
-end	util/dlist.h	/^DList<T>::end() const {$/;"	f	class:DList	typeref:class:DList::begin template<class T> class DList<T>::iterator
-erase	util/array.h	/^bool Array<T>::erase( Array<T>::iterator it ){$/;"	f	class:Array	typeref:typename:bool
-erase	util/array.h	/^bool Array<T>::erase( const T& other ){$/;"	f	class:Array	typeref:typename:bool
-erase	util/bst.h	/^BSTree<T>::erase( BSTreeNode<T>* ptr ) {$/;"	f	class:BSTree	typeref:typename:bool
-erase	util/bst.h	/^BSTree<T>::erase( const T& other){$/;"	f	class:BSTree	typeref:typename:bool
-erase	util/bst.h	/^BSTree<T>::erase( iterator pos ){$/;"	f	class:BSTree	typeref:typename:bool
-erase	util/dlist.h	/^DList<T>::erase( DList<T>::iterator pos ){$/;"	f	class:DList	typeref:typename:bool
-erase	util/dlist.h	/^DList<T>::erase( const T& other ){$/;"	f	class:DList	typeref:typename:bool
-exec	main/adtTest.cpp	/^AdtAddCmd::exec(const string& option)$/;"	f	class:AdtAddCmd	typeref:typename:CmdExecStatus
-exec	main/adtTest.cpp	/^AdtDeleteCmd::exec(const string& option)$/;"	f	class:AdtDeleteCmd	typeref:typename:CmdExecStatus
-exec	main/adtTest.cpp	/^AdtPrintCmd::exec(const string& option)$/;"	f	class:AdtPrintCmd	typeref:typename:CmdExecStatus
-exec	main/adtTest.cpp	/^AdtQueryCmd::exec(const string& option)$/;"	f	class:AdtQueryCmd	typeref:typename:CmdExecStatus
-exec	main/adtTest.cpp	/^AdtResetCmd::exec(const string& option)$/;"	f	class:AdtResetCmd	typeref:typename:CmdExecStatus
-exec	main/adtTest.cpp	/^AdtSortCmd::exec(const string& option)$/;"	f	class:AdtSortCmd	typeref:typename:CmdExecStatus
-find	main/adtTest.h	/^   bool find(const AdtTestObj& n) {$/;"	f	class:AdtTest	typeref:typename:bool
-find	util/array.h	/^class Array<T>::iterator Array<T>::find ( const T& other){$/;"	c	class:Array
-find	util/bst.h	/^BSTree<T>::find( const T& other ) {$/;"	f	class:BSTree	typeref:typename:BSTree<T>::iterator
-find	util/bst.h	/^BSTree<T>::find( const T& other, BSTreeNode<T>* ptr ){$/;"	f	class:BSTree	typeref:typename:BSTreeNode<T> *
-find	util/dlist.h	/^DList<T>::find( const T& other ){$/;"	c	class:DList
-getHashSize	util/util.cpp	/^size_t getHashSize(size_t s) {$/;"	f	typeref:typename:size_t
-getLen	main/adtTest.h	/^   static int getLen() { return _strLen; }$/;"	f	class:AdtTestObj	typeref:typename:int
-getPos	main/adtTest.h	/^   AdtType<AdtTestObj>::iterator getPos(size_t pos) const {$/;"	f	class:AdtTest	typeref:typename:AdtType<AdtTestObj>::iterator
-help	main/adtTest.cpp	/^AdtAddCmd::help() const$/;"	f	class:AdtAddCmd	typeref:typename:void
-help	main/adtTest.cpp	/^AdtDeleteCmd::help() const$/;"	f	class:AdtDeleteCmd	typeref:typename:void
-help	main/adtTest.cpp	/^AdtPrintCmd::help() const$/;"	f	class:AdtPrintCmd	typeref:typename:void
-help	main/adtTest.cpp	/^AdtQueryCmd::help() const$/;"	f	class:AdtQueryCmd	typeref:typename:void
-help	main/adtTest.cpp	/^AdtResetCmd::help() const$/;"	f	class:AdtResetCmd	typeref:typename:void
-help	main/adtTest.cpp	/^AdtSortCmd::help() const$/;"	f	class:AdtSortCmd	typeref:typename:void
-i	util/array.h	/^  for( size_t i = 0; i < _size; ++i ){$/;"	m	class:Array::find	typeref:typename:size_t
-initAdtCmd	main/adtTest.cpp	/^initAdtCmd()$/;"	f	typeref:typename:bool
-insert	util/bst.h	/^BSTree<T>::insert( const T& other ){$/;"	f	class:BSTree	typeref:typename:void
-insert_fix	util/bst.h	/^BSTree<T>::insert_fix( BSTreeNode<T>*& ptr ){$/;"	f	class:BSTree	typeref:typename:void
-isValidVarName	util/myString.cpp	/^isValidVarName(const string& str)$/;"	f	typeref:typename:bool
-it	util/dlist.h	/^  auto it = *this;$/;"	m	class:DList::iterator	typeref:typename:auto
-it	util/dlist.h	/^  auto it = begin();$/;"	m	class:DList::find	typeref:typename:auto
+TEST_ARRAY	main/adtTest.h	24;"	d
+TEST_BST	main/adtTest.h	25;"	d
+UTIL_H	util/util.h	9;"	d
+_capacity	util/array.h	/^   size_t        _capacity;   \/\/ max number of elements$/;"	m	class:Array
+_child_L	util/bst.h	/^    BSTreeNode<T>*    _child_L;$/;"	m	class:BSTreeNode
+_child_R	util/bst.h	/^    BSTreeNode<T>*    _child_R;$/;"	m	class:BSTreeNode
+_color	util/bst.h	/^    char              _color;$/;"	m	class:BSTreeNode
+_container	main/adtTest.h	/^   AdtType<AdtTestObj>   _container;$/;"	m	class:AdtTest
+_currentMem	util/myUsage.h	/^   double     _currentMem;$/;"	m	class:MyUsage
+_currentTick	util/myUsage.h	/^   double     _currentTick;$/;"	m	class:MyUsage
+_data	util/array.h	/^   T*            _data;$/;"	m	class:Array
+_data	util/bst.h	/^    T                 _data;$/;"	m	class:BSTreeNode
+_data	util/dlist.h	/^   T              _data;$/;"	m	class:DListNode
+_head	util/dlist.h	/^   DListNode<T>*  _head;     \/\/ = dummy node if list is empty$/;"	m	class:DList
+_hidden_parent	util/bst.h	/^        const BSTree<T>*    _hidden_parent ;$/;"	m	class:BSTree::iterator
+_initMem	util/myUsage.h	/^   double     _initMem;$/;"	m	class:MyUsage
+_isSorted	util/array.h	/^   mutable bool  _isSorted;   \/\/ (optionally) to indicate the array is sorted$/;"	m	class:Array
+_isSorted	util/dlist.h	/^   mutable bool   _isSorted; \/\/ (optionally) to indicate the array is sorted$/;"	m	class:DList
+_next	util/dlist.h	/^   DListNode<T>*  _next;$/;"	m	class:DListNode
+_node	util/array.h	/^      T*    _node;$/;"	m	class:Array::iterator
+_node	util/dlist.h	/^      DListNode<T>* _node;$/;"	m	class:DList::iterator
+_parent	util/bst.h	/^    BSTreeNode<T>*    _parent;$/;"	m	class:BSTreeNode
+_periodUsedTime	util/myUsage.h	/^   double     _periodUsedTime;$/;"	m	class:MyUsage
+_prev	util/dlist.h	/^   DListNode<T>*  _prev;$/;"	m	class:DListNode
+_ptr	util/bst.h	/^        BSTreeNode<T>* _ptr;$/;"	m	class:BSTree::iterator
+_root	util/bst.h	/^    BSTreeNode<T>* _root;$/;"	m	class:BSTree
+_size	util/array.h	/^   size_t        _size;       \/\/ number of valid elements$/;"	m	class:Array
+_size	util/bst.h	/^    size_t _size;$/;"	m	class:BSTree
+_str	main/adtTest.h	/^   string      _str;  \/\/ _str.length() should alywas <= _strLen$/;"	m	class:AdtTestObj
+_strLen	main/adtTest.cpp	/^int AdtTestObj::_strLen = 6;$/;"	m	class:AdtTestObj	file:
+_strLen	main/adtTest.h	/^   static int  _strLen;$/;"	m	class:AdtTestObj
+_totalUsedTime	util/myUsage.h	/^   double     _totalUsedTime;$/;"	m	class:MyUsage
+add	main/adtTest.h	/^   void add() { add(AdtTestObj()); }$/;"	f	class:AdtTest
+add	main/adtTest.h	/^   void add(const AdtTestObj& o) {$/;"	f	class:AdtTest
+adtTest	main/adtTest.cpp	/^AdtTest adtTest;$/;"	v
+begin	util/array.h	/^class Array<T>::iterator Array<T>::begin() const {$/;"	f	class:Array
+begin	util/bst.h	/^BSTree<T>::begin() const {$/;"	f	class:BSTree
+begin	util/dlist.h	/^DList<T>::begin() const {$/;"	f	class:DList
+checkMem	util/myUsage.h	/^   double checkMem() const {$/;"	f	class:MyUsage
+checkTick	util/myUsage.h	/^   double checkTick() const {$/;"	f	class:MyUsage
+check_sort	util/bst.h	/^BSTree<T>::check_sort ( BSTreeNode<T>* ptr ) const{$/;"	f	class:BSTree
+clear	util/array.h	/^void Array<T>::clear() {$/;"	f	class:Array
+clear	util/bst.h	/^BSTree<T>::clear( BSTreeNode<T>* ptr ){$/;"	f	class:BSTree
+clear	util/bst.h	/^BSTree<T>::clear() {$/;"	f	class:BSTree
+clear	util/dlist.h	/^DList<T>::clear() {$/;"	f	class:DList
+clearList	util/util.h	/^void clearList(T& l)$/;"	f
+deleteAll	main/adtTest.h	/^   void deleteAll() { _container.clear(); }$/;"	f	class:AdtTest
+deleteBack	main/adtTest.h	/^   void deleteBack(size_t repeat = 1) {$/;"	f	class:AdtTest
+deleteFront	main/adtTest.h	/^   void deleteFront(size_t repeat = 1) {$/;"	f	class:AdtTest
+deleteObj	main/adtTest.h	/^   bool deleteObj(const AdtTestObj& o) { return _container.erase(o); }$/;"	f	class:AdtTest
+deleteRandom	main/adtTest.h	/^   void deleteRandom(size_t repeat = 1) {$/;"	f	class:AdtTest
+delete_fix	util/bst.h	/^BSTree<T>::delete_fix( BSTreeNode<T>* ptr,$/;"	f	class:BSTree
+empty	util/array.h	/^bool Array<T>::empty() const {$/;"	f	class:Array
+empty	util/bst.h	/^BSTree<T>::empty() const {$/;"	f	class:BSTree
+empty	util/dlist.h	/^DList<T>::empty() const {$/;"	f	class:DList
+end	util/array.h	/^class Array<T>::iterator Array<T>::end() const {$/;"	f	class:Array
+end	util/bst.h	/^BSTree<T>::end() const {$/;"	f	class:BSTree
+end	util/dlist.h	/^DList<T>::end() const {$/;"	f	class:DList
+erase	util/array.h	/^bool Array<T>::erase( Array<T>::iterator it ){$/;"	f	class:Array
+erase	util/array.h	/^bool Array<T>::erase( const T& other ){$/;"	f	class:Array
+erase	util/bst.h	/^BSTree<T>::erase( BSTreeNode<T>* ptr ) {$/;"	f	class:BSTree
+erase	util/bst.h	/^BSTree<T>::erase( const T& other){$/;"	f	class:BSTree
+erase	util/bst.h	/^BSTree<T>::erase( iterator pos ){$/;"	f	class:BSTree
+erase	util/dlist.h	/^DList<T>::erase( DList<T>::iterator pos ){$/;"	f	class:DList
+erase	util/dlist.h	/^DList<T>::erase( const T& other ){$/;"	f	class:DList
+exec	main/adtTest.cpp	/^AdtAddCmd::exec(const string& option)$/;"	f	class:AdtAddCmd
+exec	main/adtTest.cpp	/^AdtDeleteCmd::exec(const string& option)$/;"	f	class:AdtDeleteCmd
+exec	main/adtTest.cpp	/^AdtPrintCmd::exec(const string& option)$/;"	f	class:AdtPrintCmd
+exec	main/adtTest.cpp	/^AdtQueryCmd::exec(const string& option)$/;"	f	class:AdtQueryCmd
+exec	main/adtTest.cpp	/^AdtResetCmd::exec(const string& option)$/;"	f	class:AdtResetCmd
+exec	main/adtTest.cpp	/^AdtSortCmd::exec(const string& option)$/;"	f	class:AdtSortCmd
+find	main/adtTest.h	/^   bool find(const AdtTestObj& n) {$/;"	f	class:AdtTest
+find	util/array.h	/^class Array<T>::iterator Array<T>::find ( const T& other){$/;"	f	class:Array
+find	util/bst.h	/^BSTree<T>::find( const T& other ) {$/;"	f	class:BSTree
+find	util/bst.h	/^BSTree<T>::find( const T& other, BSTreeNode<T>* ptr ){$/;"	f	class:BSTree
+find	util/dlist.h	/^DList<T>::find( const T& other ){$/;"	f	class:DList
+getHashSize	util/util.cpp	/^size_t getHashSize(size_t s) {$/;"	f
+getLen	main/adtTest.h	/^   static int getLen() { return _strLen; }$/;"	f	class:AdtTestObj
+getPos	main/adtTest.h	/^   AdtType<AdtTestObj>::iterator getPos(size_t pos) const {$/;"	f	class:AdtTest
+help	main/adtTest.cpp	/^AdtAddCmd::help() const$/;"	f	class:AdtAddCmd
+help	main/adtTest.cpp	/^AdtDeleteCmd::help() const$/;"	f	class:AdtDeleteCmd
+help	main/adtTest.cpp	/^AdtPrintCmd::help() const$/;"	f	class:AdtPrintCmd
+help	main/adtTest.cpp	/^AdtQueryCmd::help() const$/;"	f	class:AdtQueryCmd
+help	main/adtTest.cpp	/^AdtResetCmd::help() const$/;"	f	class:AdtResetCmd
+help	main/adtTest.cpp	/^AdtSortCmd::help() const$/;"	f	class:AdtSortCmd
+initAdtCmd	main/adtTest.cpp	/^initAdtCmd()$/;"	f
+insert	util/bst.h	/^BSTree<T>::insert( const T& other ){$/;"	f	class:BSTree
+insert_fix	util/bst.h	/^BSTree<T>::insert_fix( BSTreeNode<T>*& ptr ){$/;"	f	class:BSTree
+isValidVarName	util/myString.cpp	/^isValidVarName(const string& str)$/;"	f
 iterator	util/array.h	/^      iterator(T* n= 0): _node(n) {}$/;"	f	class:Array::iterator
 iterator	util/array.h	/^      iterator(const iterator& i): _node(i._node) {}$/;"	f	class:Array::iterator
 iterator	util/array.h	/^   class iterator$/;"	c	class:Array
-iterator	util/array.h	/^Array<T>::iterator::operator + (int i ) const{$/;"	c	class:Array
-iterator	util/array.h	/^Array<T>::iterator::operator = (const iterator& other ){$/;"	c	class:Array
-iterator	util/array.h	/^class Array<T>::iterator Array<T>::iterator::operator ++ (int i) {$/;"	c	class:Array
-iterator	util/array.h	/^class Array<T>::iterator& Array<T>::iterator::operator ++ () {$/;"	c	class:Array
 iterator	util/bst.h	/^        iterator():_ptr(nullptr) {}$/;"	f	class:BSTree::iterator
 iterator	util/bst.h	/^        iterator(BSTreeNode<T>* p, const BSTree<T>* hp = nullptr):$/;"	f	class:BSTree::iterator
 iterator	util/bst.h	/^    class iterator {$/;"	c	class:BSTree
 iterator	util/dlist.h	/^      iterator(DListNode<T>* n= 0): _node(n) {}$/;"	f	class:DList::iterator
 iterator	util/dlist.h	/^      iterator(const iterator& i) : _node(i._node) {}$/;"	f	class:DList::iterator
 iterator	util/dlist.h	/^   class iterator$/;"	c	class:DList
-iterator	util/dlist.h	/^DList<T>::iterator::operator ++ () {$/;"	c	class:DList
-iterator	util/dlist.h	/^DList<T>::iterator::operator ++ (int dummy ) {$/;"	c	class:DList
-iterator	util/dlist.h	/^DList<T>::iterator::operator = ( const iterator& i ) {$/;"	c	class:DList
-left__rot	util/bst.h	/^BSTree<T>::left__rot( BSTreeNode<T>* ptr ){$/;"	f	class:BSTree	typeref:typename:void
-listDir	util/util.cpp	/^int listDir$/;"	f	typeref:typename:int
-main	main/main.cpp	/^main(int argc, char** argv)$/;"	f	typeref:typename:int
-max	util/bst.h	/^BSTree<T>::max() const {$/;"	f	class:BSTree	typeref:typename:BSTreeNode<T> *
-max_sub	util/bst.h	/^BSTree<T>::max_sub( BSTreeNode<T>* ptr ) const {$/;"	f	class:BSTree	typeref:typename:BSTreeNode<T> *
-min	util/bst.h	/^BSTree<T>::min() const {$/;"	f	class:BSTree	typeref:typename:BSTreeNode<T> *
-min_sub	util/bst.h	/^BSTree<T>::min_sub( BSTreeNode<T>* ptr ) const {$/;"	f	class:BSTree	typeref:typename:BSTreeNode<T> *
-myGetChar	util/myGetChar.cpp	/^char myGetChar()$/;"	f	typeref:typename:char
-myGetChar	util/myGetChar.cpp	/^char myGetChar(istream& istr)$/;"	f	typeref:typename:char
-myStr2Int	util/myString.cpp	/^myStr2Int(const string& str, int& num)$/;"	f	typeref:typename:bool
-myStrGetTok	util/myString.cpp	/^myStrGetTok(const string& str, string& tok, size_t pos = 0,$/;"	f	typeref:typename:size_t
-myStrNCmp	util/myString.cpp	/^myStrNCmp(const string& s1, const string& s2, unsigned n)$/;"	f	typeref:typename:int
-myUsage	util/util.cpp	/^MyUsage       myUsage;$/;"	v	typeref:typename:MyUsage
-my_find_mid_itor	util/dlist.h	/^DList<T>::my_find_mid_itor ( const DList<T>::iterator& start_it,$/;"	f	class:DList	typeref:typename:DList<T>::iterator
-my_iterator_swap_content	util/dlist.h	/^DList<T>::my_iterator_swap_content ( DList<T>::iterator& it1,$/;"	f	class:DList	typeref:typename:void
-my_merge	util/dlist.h	/^DList<T>::my_merge( const DList<T>::iterator& start_it,$/;"	f	class:DList	typeref:typename:void
-my_merge_sort	util/dlist.h	/^DList<T>::my_merge_sort( const DList<T>::iterator& start_it,$/;"	f	class:DList	typeref:typename:void
-my_random	util/rnGen.h	/^#define my_random /;"	d
-my_srandom	util/rnGen.h	/^#define my_srandom /;"	d
-myexit	main/main.cpp	/^myexit()$/;"	f	typeref:typename:void	file:
-operator !=	main/adtTest.h	/^   bool operator != (const AdtTestObj& o) const { return (_str != o._str); }$/;"	f	class:AdtTestObj	typeref:typename:bool
-operator !=	util/array.h	/^Array<T>::iterator::operator != (const iterator& other ) const{$/;"	f	class:Array::iterator	typeref:class:Array::iterator template<class T> bool
-operator !=	util/bst.h	/^BSTree<T>::iterator::operator != (const iterator&i ) const {$/;"	f	class:BSTree::iterator	typeref:typename:bool
-operator !=	util/dlist.h	/^DList<T>::iterator::operator != ( $/;"	f	class:DList::iterator	typeref:class:DList::iterator template<class T> bool
-operator () 	util/rnGen.h	/^      const int operator() (const int range) const {$/;"	f	class:RandomNumGen	typeref:typename:const int
-operator *	util/array.h	/^T& Array<T>::iterator::operator * () {$/;"	f	class:Array::iterator	typeref:typename:T &
-operator *	util/array.h	/^const T& Array<T>::iterator::operator * () const {$/;"	f	class:Array::iterator	typeref:typename:const T &
-operator *	util/bst.h	/^BSTree<T>::iterator::operator * () const {$/;"	f	class:BSTree::iterator	typeref:typename:const T &
-operator *	util/bst.h	/^BSTree<T>::iterator::operator * () {$/;"	f	class:BSTree::iterator	typeref:typename:T &
-operator *	util/dlist.h	/^DList<T>::iterator::operator * () const {$/;"	f	class:DList::iterator	typeref:typename:const T &
-operator *	util/dlist.h	/^DList<T>::iterator::operator * () {$/;"	f	class:DList::iterator	typeref:typename:T &
-operator ++	util/bst.h	/^BSTree<T>::iterator::operator ++ () {$/;"	f	class:BSTree::iterator	typeref:typename:BSTree<T>::iterator &
-operator ++	util/bst.h	/^BSTree<T>::iterator::operator ++ (int dummy ){$/;"	f	class:BSTree::iterator	typeref:typename:BSTree<T>::iterator
-operator +=	util/array.h	/^Array<T>::iterator::operator += ( int i ){$/;"	f	class:Array::iterator	typeref:class:Array::iterator template<class T> class Array<T>::iterator &
-operator --	util/array.h	/^class Array<T>::iterator Array<T>::iterator::operator -- (int i) {$/;"	f	class:Array::iterator	typeref:class:Array::iterator template<class T> class Array<T>::iterator
-operator --	util/array.h	/^class Array<T>::iterator& Array<T>::iterator::operator -- () {$/;"	f	class:Array::iterator	typeref:class:Array::iterator template<class T> class Array<T>::iterator &
-operator --	util/bst.h	/^BSTree<T>::iterator::operator -- () {$/;"	f	class:BSTree::iterator	typeref:typename:BSTree<T>::iterator &
-operator --	util/bst.h	/^BSTree<T>::iterator::operator -- (int dummy ){$/;"	f	class:BSTree::iterator	typeref:typename:BSTree<T>::iterator
-operator --	util/dlist.h	/^DList<T>::iterator::operator -- () {$/;"	f	class:DList::iterator	typeref:class:DList::iterator template<class T> class DList<T>::iterator &
-operator --	util/dlist.h	/^DList<T>::iterator::operator -- (int dummy ) {$/;"	f	class:DList::iterator	typeref:class:DList::iterator template<class T> class DList<T>::iterator
-operator <	main/adtTest.h	/^   bool operator < (const AdtTestObj& o) const { return (_str < o._str); }$/;"	f	class:AdtTestObj	typeref:typename:bool
-operator <<	main/adtTest.cpp	/^ostream& operator << (ostream& os, const AdtTestObj& o)$/;"	f	typeref:typename:ostream &
-operator <=	main/adtTest.h	/^   bool operator <= (const AdtTestObj& o) const { return (_str <= o._str); }$/;"	f	class:AdtTestObj	typeref:typename:bool
-operator =	util/bst.h	/^BSTree<T>::iterator::operator = (const iterator& i ){$/;"	f	class:BSTree::iterator	typeref:typename:BSTree<T>::iterator &
-operator ==	main/adtTest.h	/^   bool operator == (const AdtTestObj& o) const { return (_str == o._str); }$/;"	f	class:AdtTestObj	typeref:typename:bool
-operator ==	util/array.h	/^Array<T>::iterator::operator == (const iterator& other ) const{$/;"	f	class:Array::iterator	typeref:typename:bool
-operator ==	util/bst.h	/^BSTree<T>::iterator::operator == (const iterator&i ) const {$/;"	f	class:BSTree::iterator	typeref:typename:bool
-operator ==	util/dlist.h	/^DList<T>::iterator::operator == ( $/;"	f	class:DList::iterator	typeref:typename:bool
-operator >	main/adtTest.h	/^   bool operator > (const AdtTestObj& o) const { return (_str > o._str); }$/;"	f	class:AdtTestObj	typeref:typename:bool
-operator >=	main/adtTest.h	/^   bool operator >= (const AdtTestObj& o) const { return (_str >= o._str); }$/;"	f	class:AdtTestObj	typeref:typename:bool
-operator [] 	util/array.h	/^T& Array<T>::operator [] (size_t i) {$/;"	f	class:Array	typeref:typename:T &
-operator [] 	util/array.h	/^const T& Array<T>::operator [] (size_t i) const {$/;"	f	class:Array	typeref:typename:const T &
-pop_back	util/array.h	/^void Array<T>::pop_back() {$/;"	f	class:Array	typeref:typename:void
-pop_back	util/bst.h	/^BSTree<T>::pop_back() {$/;"	f	class:BSTree	typeref:typename:void
-pop_back	util/dlist.h	/^DList<T>::pop_back() {$/;"	f	class:DList	typeref:typename:void
-pop_front	util/array.h	/^void Array<T>::pop_front() {$/;"	f	class:Array	typeref:typename:void
-pop_front	util/bst.h	/^BSTree<T>::pop_front () {$/;"	f	class:BSTree	typeref:typename:void
-pop_front	util/dlist.h	/^DList<T>::pop_front() {$/;"	f	class:DList	typeref:typename:void
-predecessor	util/bst.h	/^BSTree<T>::predecessor( BSTreeNode<T>* ptr ) {$/;"	f	class:BSTree	typeref:typename:BSTreeNode<T> *
-predecessor	util/bst.h	/^BSTree<T>::predecessor( const iterator& it ){$/;"	f	class:BSTree	typeref:typename:BSTreeNode<T> *
-print	main/adtTest.h	/^   void print(bool reverse = false, bool verbose = false) const {$/;"	f	class:AdtTest	typeref:typename:void
-print	util/bst.h	/^BSTree<T>::print( BSTreeNode<T>* ptr, size_t indent, char type ) const {$/;"	f	class:BSTree	typeref:typename:void
-print	util/bst.h	/^BSTree<T>::print() const {$/;"	f	class:BSTree	typeref:typename:void
-printBackward	main/adtTest.h	/^   void printBackward() const {$/;"	f	class:AdtTest	typeref:typename:void
-printData	main/adtTest.h	/^   void printData(size_t idx, AdtType<AdtTestObj>::iterator li,$/;"	f	class:AdtTest	typeref:typename:void
-printData	main/adtTest.h	/^   void printData(size_t index) const {$/;"	f	class:AdtTest	typeref:typename:void
-printForward	main/adtTest.h	/^   void printForward() const {$/;"	f	class:AdtTest	typeref:typename:void
-push_back	util/dlist.h	/^DList<T>::push_back( const T& other) {$/;"	f	class:DList	typeref:typename:void
-removeData	util/util.h	/^void removeData(T& l, const D& d)$/;"	f	typeref:typename:void
-report	util/myUsage.h	/^   void report(bool repTime, bool repMem) {$/;"	f	class:MyUsage	typeref:typename:void
-reset	main/adtTest.h	/^   void reset(int len) { deleteAll(); AdtTestObj::setLen(len); }$/;"	f	class:AdtTest	typeref:typename:void
-reset	util/myUsage.h	/^   void reset() {$/;"	f	class:MyUsage	typeref:typename:void
-reset_keypress	util/myGetChar.cpp	/^static void reset_keypress(void)$/;"	f	typeref:typename:void	file:
-ret	util/array.h	/^  Array<T>::iterator ret = *this;$/;"	m	class:Array::iterator	typeref:typename:Array<T>::iterator
-right_rot	util/bst.h	/^BSTree<T>::right_rot( BSTreeNode<T>* ptr ){$/;"	f	class:BSTree	typeref:typename:void
-rnGen	util/util.cpp	/^RandomNumGen  rnGen(0);  \/\/ use random seed = 0$/;"	v	typeref:typename:RandomNumGen
-setLen	main/adtTest.h	/^   static void setLen(int len) { _strLen = len; }$/;"	f	class:AdtTestObj	typeref:typename:void
-setMemUsage	util/myUsage.h	/^   void setMemUsage() { _currentMem = checkMem() - _initMem; }$/;"	f	class:MyUsage	typeref:typename:void
-setTimeUsage	util/myUsage.h	/^   void setTimeUsage() {$/;"	f	class:MyUsage	typeref:typename:void
-set_keypress	util/myGetChar.cpp	/^static void set_keypress(void)$/;"	f	typeref:typename:void	file:
-size	main/adtTest.h	/^   size_t size() const { return _container.size(); }$/;"	f	class:AdtTest	typeref:typename:size_t
-size	util/array.h	/^size_t Array<T>::size() const {$/;"	f	class:Array	typeref:typename:size_t
-size	util/bst.h	/^BSTree<T>::size() const {$/;"	f	class:BSTree	typeref:typename:size_t
-size	util/dlist.h	/^DList<T>::size() const {$/;"	f	class:DList	typeref:typename:size_t
-sort	main/adtTest.h	/^   void sort() { _container.sort(); }$/;"	f	class:AdtTest	typeref:typename:void
-sort	util/array.h	/^   void sort() const { if (!empty()) ::sort(_data, _data+_size); }$/;"	f	class:Array	typeref:typename:void
-sort	util/bst.h	/^BSTree<T>::sort() const {$/;"	f	class:BSTree	typeref:typename:void
-sort	util/dlist.h	/^DList<T>::sort() const {$/;"	f	class:DList	typeref:typename:void
+left__rot	util/bst.h	/^BSTree<T>::left__rot( BSTreeNode<T>* ptr ){$/;"	f	class:BSTree
+listDir	util/util.cpp	/^int listDir$/;"	f
+main	main/main.cpp	/^main(int argc, char** argv)$/;"	f
+max	util/bst.h	/^BSTree<T>::max() const {$/;"	f	class:BSTree
+max_sub	util/bst.h	/^BSTree<T>::max_sub( BSTreeNode<T>* ptr ) const {$/;"	f	class:BSTree
+min	util/bst.h	/^BSTree<T>::min() const {$/;"	f	class:BSTree
+min_sub	util/bst.h	/^BSTree<T>::min_sub( BSTreeNode<T>* ptr ) const {$/;"	f	class:BSTree
+myGetChar	util/myGetChar.cpp	/^char myGetChar()$/;"	f
+myGetChar	util/myGetChar.cpp	/^char myGetChar(istream& istr)$/;"	f
+myStr2Int	util/myString.cpp	/^myStr2Int(const string& str, int& num)$/;"	f
+myStrGetTok	util/myString.cpp	/^myStrGetTok(const string& str, string& tok, size_t pos = 0,$/;"	f
+myStrNCmp	util/myString.cpp	/^myStrNCmp(const string& s1, const string& s2, unsigned n)$/;"	f
+myUsage	util/util.cpp	/^MyUsage       myUsage;$/;"	v
+my_find_mid_itor	util/dlist.h	/^DList<T>::my_find_mid_itor ( const DList<T>::iterator& start_it,$/;"	f	class:DList
+my_iterator_swap_content	util/dlist.h	/^DList<T>::my_iterator_swap_content ( DList<T>::iterator& it1,$/;"	f	class:DList
+my_merge	util/dlist.h	/^DList<T>::my_merge( const DList<T>::iterator& start_it,$/;"	f	class:DList
+my_merge_sort	util/dlist.h	/^DList<T>::my_merge_sort( const DList<T>::iterator& start_it,$/;"	f	class:DList
+my_random	util/rnGen.h	17;"	d
+my_srandom	util/rnGen.h	16;"	d
+myexit	main/main.cpp	/^myexit()$/;"	f	file:
+operator !=	main/adtTest.h	/^   bool operator != (const AdtTestObj& o) const { return (_str != o._str); }$/;"	f	class:AdtTestObj
+operator !=	util/array.h	/^Array<T>::iterator::operator != (const iterator& other ) const{$/;"	f	class:Array::iterator
+operator !=	util/bst.h	/^BSTree<T>::iterator::operator != (const iterator&i ) const {$/;"	f	class:BSTree::iterator
+operator !=	util/dlist.h	/^DList<T>::iterator::operator != ( $/;"	f	class:DList::iterator
+operator ()	util/rnGen.h	/^      const int operator() (const int range) const {$/;"	f	class:RandomNumGen
+operator *	util/array.h	/^T& Array<T>::iterator::operator * () {$/;"	f	class:Array::iterator
+operator *	util/array.h	/^const T& Array<T>::iterator::operator * () const {$/;"	f	class:Array::iterator
+operator *	util/bst.h	/^BSTree<T>::iterator::operator * () const {$/;"	f	class:BSTree::iterator
+operator *	util/bst.h	/^BSTree<T>::iterator::operator * () {$/;"	f	class:BSTree::iterator
+operator *	util/dlist.h	/^DList<T>::iterator::operator * () const {$/;"	f	class:DList::iterator
+operator *	util/dlist.h	/^DList<T>::iterator::operator * () {$/;"	f	class:DList::iterator
+operator +	util/array.h	/^Array<T>::iterator::operator + (int i ) const{$/;"	f	class:Array::iterator
+operator ++	util/array.h	/^class Array<T>::iterator Array<T>::iterator::operator ++ (int i) {$/;"	f	class:Array::iterator
+operator ++	util/array.h	/^class Array<T>::iterator& Array<T>::iterator::operator ++ () {$/;"	f	class:Array::iterator
+operator ++	util/bst.h	/^BSTree<T>::iterator::operator ++ () {$/;"	f	class:BSTree::iterator
+operator ++	util/bst.h	/^BSTree<T>::iterator::operator ++ (int dummy ){$/;"	f	class:BSTree::iterator
+operator ++	util/dlist.h	/^DList<T>::iterator::operator ++ () {$/;"	f	class:DList::iterator
+operator ++	util/dlist.h	/^DList<T>::iterator::operator ++ (int dummy ) {$/;"	f	class:DList::iterator
+operator +=	util/array.h	/^Array<T>::iterator::operator += ( int i ){$/;"	f	class:Array::iterator
+operator --	util/array.h	/^class Array<T>::iterator Array<T>::iterator::operator -- (int i) {$/;"	f	class:Array::iterator
+operator --	util/array.h	/^class Array<T>::iterator& Array<T>::iterator::operator -- () {$/;"	f	class:Array::iterator
+operator --	util/bst.h	/^BSTree<T>::iterator::operator -- () {$/;"	f	class:BSTree::iterator
+operator --	util/bst.h	/^BSTree<T>::iterator::operator -- (int dummy ){$/;"	f	class:BSTree::iterator
+operator --	util/dlist.h	/^DList<T>::iterator::operator -- () {$/;"	f	class:DList::iterator
+operator --	util/dlist.h	/^DList<T>::iterator::operator -- (int dummy ) {$/;"	f	class:DList::iterator
+operator <	main/adtTest.h	/^   bool operator < (const AdtTestObj& o) const { return (_str < o._str); }$/;"	f	class:AdtTestObj
+operator <<	main/adtTest.cpp	/^ostream& operator << (ostream& os, const AdtTestObj& o)$/;"	f
+operator <=	main/adtTest.h	/^   bool operator <= (const AdtTestObj& o) const { return (_str <= o._str); }$/;"	f	class:AdtTestObj
+operator =	util/array.h	/^Array<T>::iterator::operator = (const iterator& other ){$/;"	f	class:Array::iterator
+operator =	util/bst.h	/^BSTree<T>::iterator::operator = (const iterator& i ){$/;"	f	class:BSTree::iterator
+operator =	util/dlist.h	/^DList<T>::iterator::operator = ( const iterator& i ) {$/;"	f	class:DList::iterator
+operator ==	main/adtTest.h	/^   bool operator == (const AdtTestObj& o) const { return (_str == o._str); }$/;"	f	class:AdtTestObj
+operator ==	util/array.h	/^Array<T>::iterator::operator == (const iterator& other ) const{$/;"	f	class:Array::iterator
+operator ==	util/bst.h	/^BSTree<T>::iterator::operator == (const iterator&i ) const {$/;"	f	class:BSTree::iterator
+operator ==	util/dlist.h	/^DList<T>::iterator::operator == ( $/;"	f	class:DList::iterator
+operator >	main/adtTest.h	/^   bool operator > (const AdtTestObj& o) const { return (_str > o._str); }$/;"	f	class:AdtTestObj
+operator >=	main/adtTest.h	/^   bool operator >= (const AdtTestObj& o) const { return (_str >= o._str); }$/;"	f	class:AdtTestObj
+operator []	util/array.h	/^T& Array<T>::operator [] (size_t i) {$/;"	f	class:Array
+operator []	util/array.h	/^const T& Array<T>::operator [] (size_t i) const {$/;"	f	class:Array
+pop_back	util/array.h	/^void Array<T>::pop_back() {$/;"	f	class:Array
+pop_back	util/bst.h	/^BSTree<T>::pop_back() {$/;"	f	class:BSTree
+pop_back	util/dlist.h	/^DList<T>::pop_back() {$/;"	f	class:DList
+pop_front	util/array.h	/^void Array<T>::pop_front() {$/;"	f	class:Array
+pop_front	util/bst.h	/^BSTree<T>::pop_front () {$/;"	f	class:BSTree
+pop_front	util/dlist.h	/^DList<T>::pop_front() {$/;"	f	class:DList
+predecessor	util/bst.h	/^BSTree<T>::predecessor( BSTreeNode<T>* ptr ) {$/;"	f	class:BSTree
+predecessor	util/bst.h	/^BSTree<T>::predecessor( const iterator& it ){$/;"	f	class:BSTree
+print	main/adtTest.h	/^   void print(bool reverse = false, bool verbose = false) const {$/;"	f	class:AdtTest
+print	util/bst.h	/^BSTree<T>::print( BSTreeNode<T>* ptr, size_t indent, char type ) const {$/;"	f	class:BSTree
+print	util/bst.h	/^BSTree<T>::print() const {$/;"	f	class:BSTree
+printBackward	main/adtTest.h	/^   void printBackward() const {$/;"	f	class:AdtTest
+printData	main/adtTest.h	/^   void printData(size_t idx, AdtType<AdtTestObj>::iterator li,$/;"	f	class:AdtTest
+printData	main/adtTest.h	/^   void printData(size_t index) const {$/;"	f	class:AdtTest
+printForward	main/adtTest.h	/^   void printForward() const {$/;"	f	class:AdtTest
+push_back	util/array.h	/^void Array<T>::push_back( const T& other){$/;"	f	class:Array
+push_back	util/dlist.h	/^DList<T>::push_back( const T& other) {$/;"	f	class:DList
+removeData	util/util.h	/^void removeData(T& l, const D& d)$/;"	f
+report	util/myUsage.h	/^   void report(bool repTime, bool repMem) {$/;"	f	class:MyUsage
+reset	main/adtTest.h	/^   void reset(int len) { deleteAll(); AdtTestObj::setLen(len); }$/;"	f	class:AdtTest
+reset	util/myUsage.h	/^   void reset() {$/;"	f	class:MyUsage
+reset_keypress	util/myGetChar.cpp	/^static void reset_keypress(void)$/;"	f	file:
+right_rot	util/bst.h	/^BSTree<T>::right_rot( BSTreeNode<T>* ptr ){$/;"	f	class:BSTree
+setLen	main/adtTest.h	/^   static void setLen(int len) { _strLen = len; }$/;"	f	class:AdtTestObj
+setMemUsage	util/myUsage.h	/^   void setMemUsage() { _currentMem = checkMem() - _initMem; }$/;"	f	class:MyUsage
+setTimeUsage	util/myUsage.h	/^   void setTimeUsage() {$/;"	f	class:MyUsage
+set_keypress	util/myGetChar.cpp	/^static void set_keypress(void)$/;"	f	file:
+size	main/adtTest.h	/^   size_t size() const { return _container.size(); }$/;"	f	class:AdtTest
+size	util/array.h	/^size_t Array<T>::size() const {$/;"	f	class:Array
+size	util/bst.h	/^BSTree<T>::size() const {$/;"	f	class:BSTree
+size	util/dlist.h	/^DList<T>::size() const {$/;"	f	class:DList
+sort	main/adtTest.h	/^   void sort() { _container.sort(); }$/;"	f	class:AdtTest
+sort	util/array.h	/^   void sort() const { if (!empty()) ::sort(_data, _data+_size); }$/;"	f	class:Array
+sort	util/bst.h	/^BSTree<T>::sort() const {$/;"	f	class:BSTree
+sort	util/dlist.h	/^DList<T>::sort() const {$/;"	f	class:DList
 stored_settings	util/myGetChar.cpp	/^static struct termios stored_settings;$/;"	v	typeref:struct:termios	file:
-successor	util/bst.h	/^BSTree<T>::successor( BSTreeNode<T>* ptr ){$/;"	f	class:BSTree	typeref:typename:BSTreeNode<T> *
-successor	util/bst.h	/^BSTree<T>::successor( const iterator& it ){$/;"	f	class:BSTree	typeref:typename:BSTreeNode<T> *
-transplant	util/bst.h	/^BSTree<T>::transplant( BSTreeNode<T>* ptr1, BSTreeNode<T>* ptr2 ){$/;"	f	class:BSTree	typeref:typename:void
-usage	main/adtTest.cpp	/^AdtAddCmd::usage(ostream& os) const$/;"	f	class:AdtAddCmd	typeref:typename:void
-usage	main/adtTest.cpp	/^AdtDeleteCmd::usage(ostream& os) const$/;"	f	class:AdtDeleteCmd	typeref:typename:void
-usage	main/adtTest.cpp	/^AdtPrintCmd::usage(ostream& os) const$/;"	f	class:AdtPrintCmd	typeref:typename:void
-usage	main/adtTest.cpp	/^AdtQueryCmd::usage(ostream& os) const$/;"	f	class:AdtQueryCmd	typeref:typename:void
-usage	main/adtTest.cpp	/^AdtResetCmd::usage(ostream& os) const$/;"	f	class:AdtResetCmd	typeref:typename:void
-usage	main/adtTest.cpp	/^AdtSortCmd::usage(ostream& os) const$/;"	f	class:AdtSortCmd	typeref:typename:void
-usage	main/main.cpp	/^usage()$/;"	f	typeref:typename:void	file:
+successor	util/bst.h	/^BSTree<T>::successor( BSTreeNode<T>* ptr ){$/;"	f	class:BSTree
+successor	util/bst.h	/^BSTree<T>::successor( const iterator& it ){$/;"	f	class:BSTree
+transplant	util/bst.h	/^BSTree<T>::transplant( BSTreeNode<T>* ptr1, BSTreeNode<T>* ptr2 ){$/;"	f	class:BSTree
+usage	main/adtTest.cpp	/^AdtAddCmd::usage(ostream& os) const$/;"	f	class:AdtAddCmd
+usage	main/adtTest.cpp	/^AdtDeleteCmd::usage(ostream& os) const$/;"	f	class:AdtDeleteCmd
+usage	main/adtTest.cpp	/^AdtPrintCmd::usage(ostream& os) const$/;"	f	class:AdtPrintCmd
+usage	main/adtTest.cpp	/^AdtQueryCmd::usage(ostream& os) const$/;"	f	class:AdtQueryCmd
+usage	main/adtTest.cpp	/^AdtResetCmd::usage(ostream& os) const$/;"	f	class:AdtResetCmd
+usage	main/adtTest.cpp	/^AdtSortCmd::usage(ostream& os) const$/;"	f	class:AdtSortCmd
+usage	main/main.cpp	/^usage()$/;"	f	file:
 ~Array	util/array.h	/^   ~Array() { delete []_data; }$/;"	f	class:Array
 ~DList	util/dlist.h	/^   ~DList() { clear(); delete _head; }$/;"	f	class:DList
 ~iterator	util/array.h	/^      ~iterator() {} \/\/ Should NOT delete _node$/;"	f	class:Array::iterator
