@@ -49,8 +49,8 @@ class BSTree
     class iterator {
       public:
         friend class BSTree;
-        iterator():ptr(nullptr) {}
-        iterator(BSTreeNode<T>* p):ptr(p) {}
+        iterator():_ptr(nullptr) {}
+        iterator(BSTreeNode<T>* p):_ptr(p) {}
         const T&  operator *   () const             ;
         T&        operator *   ()                   ;
         iterator& operator ++  ()                   ;
@@ -61,7 +61,7 @@ class BSTree
         bool operator != (const iterator& i) const  ;
         bool operator == (const iterator& i) const  ;
       private:
-        BSTreeNode<T>* ptr;
+        BSTreeNode<T>* _ptr;
     };
     void    pop_front();
     void    pop_back();
@@ -111,20 +111,20 @@ class BSTree
 template<typename T>
 const T&
 BSTree<T>::iterator::operator * () const {
-  return ptr -> _data;
+  return _ptr -> _data;
 }
 
 template<typename T>
 T&
 BSTree<T>::iterator::operator * () {
-  return ptr -> _data;
+  return _ptr -> _data;
 }
 
 template<typename T>
 typename BSTree<T>::iterator&
 BSTree<T>::iterator::operator ++ () {
   // pre-increment operator ++;
-  ptr = BSTree<T>::successor( ptr );
+  _ptr = BSTree<T>::successor( _ptr );
   return *this;
 }
 
@@ -132,7 +132,7 @@ template<typename T>
 typename BSTree<T>::iterator
 BSTree<T>::iterator::operator ++ (int dummy ){
   // post-increment operator ++;
-  auto* ret = ptr;
+  auto* ret = _ptr;
   this->operator ++();
   return ret;
 }
@@ -141,7 +141,7 @@ template<typename T>
 typename BSTree<T>::iterator&
 BSTree<T>::iterator::operator -- () {
   // pre-increment operator --;
-  ptr = BSTree<T>::predecessor( ptr );
+  _ptr = BSTree<T>::predecessor( _ptr );
   return *this;
 }
 
@@ -149,7 +149,7 @@ template<typename T>
 typename BSTree<T>::iterator
 BSTree<T>::iterator::operator -- (int dummy ){
   // post-increment operator --;
-  auto* ret = ptr;
+  auto* ret = _ptr;
   this->operator --();
   return ret;
 }
@@ -157,13 +157,13 @@ BSTree<T>::iterator::operator -- (int dummy ){
 template<typename T>
 typename BSTree<T>::iterator&
 BSTree<T>::iterator::operator = (const iterator& i ){
-  ptr = i.ptr;
+  _ptr = i._ptr;
 }
 
 template<typename T>
 bool
 BSTree<T>::iterator::operator == (const iterator&i ) const {
-  return ( ptr == (i.ptr) );
+  return ( _ptr == (i._ptr) );
 }
 
 template<typename T>
@@ -279,24 +279,23 @@ BSTree<T>::erase( BSTreeNode<T>* ptr ) {
   BSTreeNode<T>* successor_ptr = nullptr;
   _size --;
   char ch = 0;
+
   if( ptr != _root ){
-    // if ptr == _root, we won't care about first two cases.
-    // thus position is determined later.
-    if( ptr == ptr -> _parent -> _child_L )
-      ch = 'L';
-    else if( ptr == ptr -> _parent -> _child_R )
+    if( ptr == ptr -> _parent -> _child_R )
       ch = 'R';
+    else if( ptr == ptr -> _parent -> _child_L )
+      ch = 'L';
     else
-      assert( 0 && "WTF in erase(ptr)" );
+      assert( 0 && "wait what???????? erase(ptr)." );
   }
 
-  if( ptr -> _child_R == nullptr ){
-    successor_ptr = ptr -> _child_L;
+  if( ptr -> _child_L == nullptr ){
+    successor_ptr = ptr -> _child_R;
     transplant( ptr, successor_ptr );
     if( color_bak == BLACK )
       delete_fix( successor_ptr, ptr -> _parent, ch );
-  }else if( ptr -> _child_L == nullptr ){
-    successor_ptr = ptr -> _child_R;
+  }else if( ptr -> _child_R == nullptr ){
+    successor_ptr = ptr -> _child_L;
     transplant( ptr, successor_ptr );
     if( color_bak == BLACK )
       delete_fix( successor_ptr, ptr -> _parent, ch );
@@ -353,7 +352,7 @@ BSTree<T>::erase( const T& other){
 template<typename T>
 bool
 BSTree<T>::erase( iterator pos ){
-  return ( erase( pos.ptr ) );
+  return ( erase( pos._ptr ) );
 }
 
 template<typename T>
@@ -424,6 +423,8 @@ BSTree<T>::find( const T& other ) {
 template<typename T>
 BSTreeNode<T>*
 BSTree<T>::find( const T& other, BSTreeNode<T>* ptr ){
+  if( empty() )
+    return nullptr;
   BSTreeNode<T>* tmp_ptr = nullptr;
   if( ptr -> _child_L != nullptr ){
     tmp_ptr = find( other, ptr -> _child_L );
@@ -871,9 +872,9 @@ BSTree<T>::transplant( BSTreeNode<T>* ptr1, BSTreeNode<T>* ptr2 ){
   if( ptr1 == _root )
     _root = ptr2;
   else if( ptr1 == ptr1 -> _parent -> _child_R )
-    ptr1 -> _parent -> _child_R = ptr2;
+    (ptr1 -> _parent -> _child_R) = ptr2;
   else if( ptr1 == ptr1 -> _parent -> _child_L )
-    ptr1 -> _parent -> _child_L = ptr2;
+    (ptr1 -> _parent -> _child_L) = ptr2;
   else
     assert( 0 && "wtf in transplant????" );
   if( ptr2 != nullptr )

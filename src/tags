@@ -64,6 +64,7 @@ _node	util/dlist.h	/^      DListNode<T>* _node;$/;"	m	class:DList::iterator	type
 _parent	util/bst.h	/^    BSTreeNode<T>*    _parent;$/;"	m	class:BSTreeNode	typeref:typename:BSTreeNode<T> *
 _periodUsedTime	util/myUsage.h	/^   double     _periodUsedTime;$/;"	m	class:MyUsage	typeref:typename:double
 _prev	util/dlist.h	/^   DListNode<T>*  _prev;$/;"	m	class:DListNode	typeref:typename:DListNode<T> *
+_ptr	util/bst.h	/^        BSTreeNode<T>* _ptr;$/;"	m	class:BSTree::iterator	typeref:typename:BSTreeNode<T> *
 _root	util/bst.h	/^    BSTreeNode<T>* _root;$/;"	m	class:BSTree	typeref:typename:BSTreeNode<T> *
 _size	util/array.h	/^   size_t        _size;       \/\/ number of valid elements$/;"	m	class:Array	typeref:typename:size_t
 _size	util/bst.h	/^    size_t _size;$/;"	m	class:BSTree	typeref:typename:size_t
@@ -139,8 +140,8 @@ iterator	util/array.h	/^Array<T>::iterator::operator + (int i ) const{$/;"	c	cla
 iterator	util/array.h	/^Array<T>::iterator::operator = (const iterator& other ){$/;"	c	class:Array
 iterator	util/array.h	/^class Array<T>::iterator Array<T>::iterator::operator ++ (int i) {$/;"	c	class:Array
 iterator	util/array.h	/^class Array<T>::iterator& Array<T>::iterator::operator ++ () {$/;"	c	class:Array
-iterator	util/bst.h	/^        iterator():ptr(nullptr) {}$/;"	f	class:BSTree::iterator
-iterator	util/bst.h	/^        iterator(BSTreeNode<T>* p):ptr(p) {}$/;"	f	class:BSTree::iterator
+iterator	util/bst.h	/^        iterator():_ptr(nullptr) {}$/;"	f	class:BSTree::iterator
+iterator	util/bst.h	/^        iterator(BSTreeNode<T>* p):_ptr(p) {}$/;"	f	class:BSTree::iterator
 iterator	util/bst.h	/^    class iterator {$/;"	c	class:BSTree
 iterator	util/dlist.h	/^      iterator(DListNode<T>* n= 0): _node(n) {}$/;"	f	class:DList::iterator
 iterator	util/dlist.h	/^      iterator(const iterator& i) : _node(i._node) {}$/;"	f	class:DList::iterator
@@ -215,7 +216,6 @@ printBackward	main/adtTest.h	/^   void printBackward() const {$/;"	f	class:AdtTe
 printData	main/adtTest.h	/^   void printData(size_t idx, AdtType<AdtTestObj>::iterator li,$/;"	f	class:AdtTest	typeref:typename:void
 printData	main/adtTest.h	/^   void printData(size_t index) const {$/;"	f	class:AdtTest	typeref:typename:void
 printForward	main/adtTest.h	/^   void printForward() const {$/;"	f	class:AdtTest	typeref:typename:void
-ptr	util/bst.h	/^        BSTreeNode<T>* ptr;$/;"	m	class:BSTree::iterator	typeref:typename:BSTreeNode<T> *
 push_back	util/dlist.h	/^DList<T>::push_back( const T& other) {$/;"	f	class:DList	typeref:typename:void
 removeData	util/util.h	/^void removeData(T& l, const D& d)$/;"	f	typeref:typename:void
 report	util/myUsage.h	/^   void report(bool repTime, bool repMem) {$/;"	f	class:MyUsage	typeref:typename:void

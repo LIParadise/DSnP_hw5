@@ -156,8 +156,10 @@ private:
          AdtType<AdtTestObj>::iterator lj = _container.end();
          while ((li != lj) && (i++ != pos)) ++li;
 #ifdef DEBUG
-         cerr << "random iterator: " << *li << endl;
-         cerr << "random iterator: " << i << endl;
+         if( li != _container.end() ){
+           cerr << "random iterator: " << *li << endl;
+           cerr << "random iterator: " << i << endl;
+         }
 #endif // DEBUG
          return li;
       #endif // RANDOM_ACCESS
