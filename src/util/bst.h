@@ -424,19 +424,19 @@ BSTreeNode<T>*
 BSTree<T>::find( const T& other, BSTreeNode<T>* ptr ){
   if( empty() )
     return nullptr;
-  BSTreeNode<T>* tmp_ptr = nullptr;
-  if( ptr -> _child_L != nullptr ){
-    tmp_ptr = find( other, ptr -> _child_L );
-    if( tmp_ptr != nullptr )
-      return tmp_ptr;
-  }
-  if( ptr -> _data == other ){
+  if( ptr -> _data == other )
     return ptr;
-  }
-  if( ptr -> _child_R != nullptr ){
-    tmp_ptr = find( other, ptr -> _child_R );
-    if( tmp_ptr != nullptr )
-      return tmp_ptr;
+  else if( ptr -> _data > other ){
+    if( ptr -> _child_L == nullptr )
+      return nullptr;
+    else
+      return find( other, ptr -> _child_L );
+  }else{
+    // ptr -> _data < other
+    if( ptr -> _child_R == nullptr )
+      return nullptr;
+    else
+      return find( other, ptr -> _child_R );
   }
   return nullptr;
 }
