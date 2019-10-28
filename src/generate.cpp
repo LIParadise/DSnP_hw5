@@ -42,7 +42,7 @@ int main(){
     }
   }
 
-  ofstream ofs( "tests/mydo2019.txt", ofstream::out | ofstream::trunc );
+  ofstream ofs( "../tests/mydo2019.txt", ofstream::out | ofstream::trunc );
   for( auto& it : outputStr )
     ofs << it << endl;
 
