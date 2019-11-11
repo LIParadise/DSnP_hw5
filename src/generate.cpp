@@ -15,7 +15,7 @@ union My64Bit {
   char charArr[8];
 }my64Bit;
 
-static const int mySize = 150 * 10000;
+static const int mySize = 150 * 1000 * 1000;
 
 int main(){
   vector<string> outputStr;
